@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": "off"
+  },
+  "overrides": [
+    {
+      "files": ["packages/**/*.ts", "packages/**/*.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  ]
+}
