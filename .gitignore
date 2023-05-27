@@ -15,3 +15,6 @@ out
 
 ### VisualStudioCode ###
 .vscode/*
+
+# Coverage directory used by tools
+coverage
