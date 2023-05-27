@@ -1,0 +1,22 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/components.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "node ./__tests__/components.test.js"
+  },
+  "devDependencies": {
+    "react": "^18.2.0"
+  }
+}
