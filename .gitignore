@@ -1,0 +1,27 @@
+# compiled output
+dist/
+
+# Logs
+logs
+*.log
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Dependency directories
+node_modules/
+
+# Output of 'npm pack'
+*.tgz
+
+# Next.js build output
+.next
+out
+
+### VisualStudioCode ###
+.vscode/*
+
+# Coverage directory used by tools
+coverage

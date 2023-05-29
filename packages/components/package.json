@@ -1,0 +1,19 @@
+{
+  "name": "@danji/components",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "@types/react": "^18.2.7",
+    "react": "^18.2.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@danji/styled",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "exports": {
+    ".": {
+      "require": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "typings": "dist/index.d.ts"
+  },
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run build:types && npm run build:prod",
+    "build:dev": "cross-env NODE_ENV=development rollup -cw --bundleConfigAsCjs",
+    "build:prod": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs",
+    "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly"
+  },
+  "devDependencies": {}
+}
