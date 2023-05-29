@@ -1,4 +1,4 @@
-import sharedConfigs from 'root/configs/jest.config';
+import sharedConfigs from '../../configs/jest.config';
 
 export default {
   ...sharedConfigs,
