@@ -1,14 +1,14 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { ButtonOptions } from './button.types';
+import { SIZES } from './button.constants';
 
-interface Props {
-  children?: React.ReactNode;
-}
+const Button = forwardRef<HTMLButtonElement, ButtonOptions>((props, ref) => {
+  const { children, size = 'md' } = props;
 
-const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
-  const { children } = props;
+  const tempSize = SIZES[size];
 
   return (
-    <button type="button" ref={ref}>
+    <button style={tempSize} type="button" ref={ref}>
       {children}
     </button>
   );

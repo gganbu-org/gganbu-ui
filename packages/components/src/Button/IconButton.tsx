@@ -1,14 +1,13 @@
 import { forwardRef } from 'react';
 import Button from './Button';
+import { ButtonOptions } from './button.types';
 
-interface Props {
-  children?: React.ReactNode;
-}
+const IconButton = forwardRef<HTMLButtonElement, ButtonOptions>(
+  (props, ref) => {
+    const { children } = props;
 
-const IconButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
-  const { children } = props;
-
-  return <Button ref={ref}>{children}</Button>;
-});
+    return <Button ref={ref}>{children}</Button>;
+  },
+);
 
 export default IconButton;
