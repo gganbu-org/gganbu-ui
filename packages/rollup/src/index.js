@@ -9,6 +9,22 @@ const { babel } = require(`@rollup/plugin-babel`);
 const typescript = require(`rollup-plugin-typescript2`);
 const terser = require(`@rollup/plugin-terser`);
 
+const getDeps = ({ pkg, type = 'peerDependencies' }) =>
+  Object.keys(pkg[type] || {});
+
+const getModulesMatcher = (modulesNames) => {
+  const regexps = modulesNames.map(
+    (module) => new RegExp(`^${module}(\\/\.+)*$`),
+  );
+  return (id) => regexps.some((regexp) => regexp.test(id));
+};
+
+const getExternal = (pkg) => {
+  const pkgPeerDependencies = getDeps({ pkg, type: 'peerDependencies' });
+
+  return getModulesMatcher([...pkgPeerDependencies]);
+};
+
 const FORMAT = {
   ESM: 'esm',
   CJS: 'cjs',
@@ -36,9 +52,10 @@ const validateRequiredField = (pkg) => {
 };
 
 const bundleLibraries =
-  ({ moduleAlias, external }) =>
+  ({ moduleAlias, pkg }) =>
   (input, output, format) => {
     const isESMFormat = format === FORMAT.ESM;
+    const external = getExternal(pkg);
 
     const esOutputConfig = {
       format,
@@ -79,8 +96,11 @@ const bundleLibraries =
 
 const createOutput = (opts) => {
   const { packageDir } = opts;
-  const handleBundleLibraries = bundleLibraries(opts);
   const pkg = require(path.join(packageDir, 'package.json'));
+  const handleBundleLibraries = bundleLibraries({
+    moduleAlias: opts?.moduleAlias,
+    pkg,
+  });
   if (!validateRequiredField(pkg)) return;
 
   const { exports, publishConfig } = pkg;
