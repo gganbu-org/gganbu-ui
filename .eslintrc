@@ -17,7 +17,8 @@
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "import/no-extraneous-dependencies": "off",
-    "import/no-relative-packages": "off"
+    "import/no-relative-packages": "off",
+    "import/prefer-default-export": "off"
   },
   "overrides": [
     {
