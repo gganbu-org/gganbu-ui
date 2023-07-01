@@ -1,16 +1,18 @@
 import { forwardRef } from 'react';
+import { dj } from '@danji/styled';
 import { ButtonOptions } from './button.types';
 import { SIZES } from './button.constants';
 
 const Button = forwardRef<HTMLButtonElement, ButtonOptions>((props, ref) => {
   const { children, size = 'md' } = props;
 
-  const tempSize = SIZES[size];
+  const sizeStyles = SIZES[size];
+  const styles = [sizeStyles];
 
   return (
-    <button style={tempSize} type="button" ref={ref}>
+    <dj.button styles={styles} ref={ref}>
       {children}
-    </button>
+    </dj.button>
   );
 });
 
