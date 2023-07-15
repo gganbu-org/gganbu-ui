@@ -1,3 +1,8 @@
+import { JSONObject, JSONValue } from './theme.types';
+
+export const splitBySeparator = (str: string, separator: string) =>
+  str.split(separator);
+
 export const join = (...args: (string | undefined)[]) =>
   args.filter(Boolean).join('-');
 
@@ -18,4 +23,19 @@ export const toCustomProperties = (
     }
   });
   return next;
+};
+
+export const getValueFromKey = (object: JSONObject, key: string) => {
+  const properties = splitBySeparator(key, '.');
+  let current: JSONValue = object;
+
+  for (let i = 0; i < properties.length; i += 1) {
+    const property = properties[i];
+
+    if (property == null) return undefined;
+
+    current = (current as any)[property];
+  }
+
+  return current;
 };
