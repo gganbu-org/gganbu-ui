@@ -33,7 +33,7 @@ const customCssVariables = <T,>(theme: ThemeWithCssVars<T>) => {
 };
 
 export function DjProvider(props: any): JSX.Element {
-  const { theme, children } = props;
+  const { theme = {}, children } = props;
 
   return (
     <EmotionThemeProvider theme={customCssVariables<EmotionTheme>(theme)}>
