@@ -25,7 +25,11 @@ export const toCustomProperties = (
   return next;
 };
 
-export const getValueFromKey = (object: JSONObject, key: string) => {
+export const getValueFromKey = (
+  object: JSONObject,
+  key: string,
+  fallback?: unknown,
+) => {
   const properties = splitBySeparator(key, '.');
   let current: JSONValue = object;
 
@@ -37,5 +41,5 @@ export const getValueFromKey = (object: JSONObject, key: string) => {
     current = (current as any)[property];
   }
 
-  return current;
+  return typeof current !== 'undefined' ? current : fallback;
 };
