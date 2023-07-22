@@ -8,6 +8,7 @@ import {
 import { toCustomProperties } from './theme';
 import { colors } from './variables';
 import { CssVariablesProps, ThemeWithCssVars } from './provider.types';
+import CssReset from './reset';
 
 const jsx: typeof React.createElement = <P extends object>(
   type: React.FunctionComponent<P> | React.ComponentClass<P> | string,
@@ -26,7 +27,7 @@ const CssVariables = ({ selector = ':root' }: CssVariablesProps): JSX.Element =>
 
 const customCssVariables = <T,>(theme: ThemeWithCssVars<T>) => {
   Object.assign(theme, {
-    cssVars: { ...toCustomProperties(colors, '-') },
+    cssVars: { ...toCustomProperties(colors, '--dj') },
   });
 
   return theme;
@@ -37,6 +38,7 @@ export function DjProvider(props: any): JSX.Element {
 
   return (
     <EmotionThemeProvider theme={customCssVariables<EmotionTheme>(theme)}>
+      <CssReset />
       <CssVariables />
       {children}
     </EmotionThemeProvider>
