@@ -25,21 +25,23 @@ export const toCustomProperties = (
   return next;
 };
 
-export const getValueFromKey = (
+export const getValueByPath = (
   object: JSONObject,
-  key: string,
+  path: string | number | undefined,
   fallback?: unknown,
-) => {
-  const properties = splitBySeparator(key, '.');
+): any => {
+  const properties =
+    path && typeof path === 'string' ? splitBySeparator(path, '.') : [path];
+
   let current: JSONValue = object;
 
   for (let i = 0; i < properties.length; i += 1) {
     const property = properties[i];
 
-    if (property == null) return undefined;
+    if (property == null) return fallback;
 
-    current = (current as any)[property];
+    current = current ? (current as any)[property] : undefined;
   }
 
-  return typeof current !== 'undefined' ? current : fallback;
+  return typeof current === 'undefined' ? fallback : current;
 };
