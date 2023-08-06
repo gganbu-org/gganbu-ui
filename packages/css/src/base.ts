@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import { getValueByPath } from '@danji/styled';
 import { CSSObject } from './types';
-import { systemProps } from './system';
+import { aliases, systemProps } from './system';
 
 export const css =
   (styles: any) =>
@@ -9,12 +9,13 @@ export const css =
     const computedCSS: CSSObject = {};
 
     for (const [key, val] of Object.entries(styles)) {
-      const systemProp = getValueByPath(systemProps, key);
+      const rawProp = getValueByPath(aliases, key, key);
+      const systemProp = getValueByPath(systemProps, rawProp);
       const themeProp = getValueByPath(theme, systemProp);
 
       const value = getValueByPath(themeProp, val as string, val);
 
-      computedCSS[key] = value;
+      computedCSS[rawProp] = value;
     }
 
     return computedCSS;

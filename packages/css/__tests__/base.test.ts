@@ -25,4 +25,14 @@ describe('css', () => {
       color: colors.gray[100],
     });
   });
+
+  it('should convert aliases to css property', () => {
+    const result = css({
+      bg: 'gray.100',
+    })(theme);
+
+    expect(result).toEqual({
+      backgroundColor: colors.gray[100],
+    });
+  });
 });
