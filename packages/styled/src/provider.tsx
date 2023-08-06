@@ -5,7 +5,7 @@ import {
   ThemeProvider as EmotionThemeProvider,
   Theme as EmotionTheme,
 } from '@emotion/react';
-import { toCustomProperties } from './theme';
+import { THEME, toCustomProperties } from './theme';
 import { colors } from './variables';
 import { CssVariablesProps, ThemeWithCssVars } from './provider.types';
 import CssReset from './reset';
@@ -27,7 +27,7 @@ const CssVariables = ({ selector = ':root' }: CssVariablesProps): JSX.Element =>
 
 const customCssVariables = <T,>(theme: ThemeWithCssVars<T>) => {
   Object.assign(theme, {
-    cssVars: { ...toCustomProperties(colors, '--dj') },
+    cssVars: { ...toCustomProperties(colors, `--${THEME.KEY}`) },
   });
 
   return theme;

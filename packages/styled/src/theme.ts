@@ -1,5 +1,10 @@
 import { JSONObject, JSONValue } from './theme.types';
 
+export const THEME = {
+  KEY: 'dj',
+  DEFAULT_KEY: '__default',
+} as const;
+
 export const splitBySeparator = (str: string, separator: string) =>
   str.split(separator);
 
