@@ -6,6 +6,7 @@
     "target": "ES2015",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
+    "jsx": "react-jsx",
 
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
