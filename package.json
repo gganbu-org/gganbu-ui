@@ -21,6 +21,7 @@
     "@types/node": "^20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
+    "chromatic": "^6.20.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.41.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -47,7 +48,8 @@
     "build:all": "lerna run --stream build",
     "clean": "lerna run clean && lerna clean -y",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "cross-env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "eslintConfig": {
     "extends": [
