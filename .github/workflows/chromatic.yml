@@ -33,7 +33,6 @@ jobs:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # 👇 Runs Chromatic with the option to compress the build output.
-          workingDir: packages/components
           zip: true
           onlyChanged: true
       - name: Publish to Chromatic and auto-accept changes in Chromatic for merge
