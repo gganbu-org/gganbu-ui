@@ -42,3 +42,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # 👇 Option to accept all changes
           autoAcceptChanges: true
+# 빌드용 주석
