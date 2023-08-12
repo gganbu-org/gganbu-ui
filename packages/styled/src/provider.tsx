@@ -5,8 +5,12 @@ import {
   ThemeProvider as EmotionThemeProvider,
   Theme as EmotionTheme,
 } from '@emotion/react';
-import { THEME, toCustomProperties } from './theme';
-import { colors } from './variables';
+import {
+  DJ_DEFAULT_THEME,
+  THEME,
+  toCustomProperties,
+  toVarDefinition,
+} from './theme';
 import { CssVariablesProps, ThemeWithCssVars } from './provider.types';
 import CssReset from './reset';
 
@@ -25,19 +29,25 @@ const CssVariables = ({ selector = ':root' }: CssVariablesProps): JSX.Element =>
     },
   });
 
-const customCssVariables = <T,>(theme: ThemeWithCssVars<T>) => {
+export const customTheme = <T extends Record<string, any>>(theme: T) => {
+  const { colors } = theme;
+
+  const flattenTokens = {
+    ...toCustomProperties(colors, toVarDefinition(THEME.KEY)),
+  };
+
   Object.assign(theme, {
-    cssVars: { ...toCustomProperties(colors, `--${THEME.KEY}`) },
+    cssVars: flattenTokens,
   });
 
-  return theme;
+  return theme as ThemeWithCssVars<T>;
 };
 
 export function DjProvider(props: any): JSX.Element {
-  const { theme = {}, children } = props;
+  const { theme = DJ_DEFAULT_THEME, children } = props;
 
   return (
-    <EmotionThemeProvider theme={customCssVariables<EmotionTheme>(theme)}>
+    <EmotionThemeProvider theme={customTheme<EmotionTheme>(theme)}>
       <CssReset />
       <CssVariables />
       {children}
