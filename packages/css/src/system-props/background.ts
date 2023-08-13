@@ -1,4 +1,7 @@
 export const background = {
-  bg: 'colors',
   backgroundColor: 'colors',
 };
+
+Object.assign(background, {
+  bg: background.backgroundColor,
+});

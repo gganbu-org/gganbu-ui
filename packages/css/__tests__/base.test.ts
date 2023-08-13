@@ -27,10 +27,12 @@ describe('css', () => {
   it('should convert aliases to css property', () => {
     const result = css({
       bg: '#fff',
+      w: '0.25rem',
     })(theme);
 
     expect(result).toEqual({
       backgroundColor: '#fff',
+      width: '0.25rem',
     });
   });
 
