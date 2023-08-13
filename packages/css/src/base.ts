@@ -7,7 +7,8 @@ import {
   tokenToCssVar,
 } from '@danji/styled';
 import { CSSObject } from './types';
-import { aliases, systemProps } from './system';
+import { systemProps } from './system';
+import { aliases } from './system-props';
 
 export const css =
   (styles: any) =>
@@ -15,6 +16,11 @@ export const css =
     const computedCSS: CSSObject = {};
 
     for (const [key, val] of Object.entries(styles)) {
+      if (val && typeof val === 'object') {
+        computedCSS[key] = css(val)(theme);
+        continue;
+      }
+
       const rawProp = getValueByPath(aliases, key, key);
       const systemProp = getValueByPath(systemProps, rawProp);
 

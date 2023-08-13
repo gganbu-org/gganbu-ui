@@ -33,4 +33,20 @@ describe('css', () => {
       backgroundColor: '#fff',
     });
   });
+
+  it('should convert nested object to style object', () => {
+    const result = css({
+      bg: '#fff',
+      '&:hover': {
+        bg: 'gray.100',
+      },
+    })(theme);
+
+    expect(result).toEqual({
+      backgroundColor: '#fff',
+      '&:hover': {
+        backgroundColor: 'var(--dj-gray-100)',
+      },
+    });
+  });
 });
