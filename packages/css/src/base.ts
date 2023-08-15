@@ -16,17 +16,21 @@ export const css =
     const computedCSS: CSSObject = {};
 
     for (const [key, val] of Object.entries(styles)) {
-      if (val && typeof val === 'object') {
-        computedCSS[key] = css(val)(theme);
+      if (isObject(val)) {
+        const nestedStyles = val;
+        computedCSS[key] = css(nestedStyles)(theme);
         continue;
       }
 
       const rawProp = getValueByPath(aliases, key, key);
       const systemProp = getValueByPath(systemProps, rawProp);
 
-      const cssVar = systemProp
-        ? tokenToCssVar(val as string, THEME.KEY)
-        : (val as string);
+      if (!systemProp) {
+        computedCSS[rawProp] = val as any;
+        continue;
+      }
+
+      const cssVar = tokenToCssVar(val as string, THEME.KEY);
 
       const transformed =
         isObject(theme.cssVars) && cssVar in theme.cssVars
