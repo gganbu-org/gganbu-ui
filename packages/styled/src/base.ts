@@ -1,28 +1,22 @@
-import emotionStyled from '@emotion/styled';
 import React from 'react';
-
-import { isObject } from './utils';
-import { DjComponent, Dict } from './base.types';
+import { css } from '@danji/css';
+import emotionStyled from '@emotion/styled';
+import { DjComponent } from './base.types';
 
 export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
   if (!tag) {
     throw new Error('Define tag to create styled component');
   }
 
-  const styled = (props: any) => {
-    const { styles = [] } = props || {};
-    let computedStyles: Dict = {};
-    // TODO: theme, styled-system등에서 지원해야 할 전처리
+  const styled = () => {
+    const toStyleObject = (props: any) => {
+      const { styles = {} } = props;
+      // TODO: component theme prop, system prop 분리
 
-    for (let i = 0; i < styles.length; i += 1) {
-      if (isObject(styles[i])) {
-        computedStyles = Object.assign(computedStyles, styles[i]);
-      } else {
-        // TODO: 예외 처리
-      }
-    }
+      return css(styles)(props.theme);
+    };
 
-    return computedStyles;
+    return toStyleObject;
   };
 
   const Component = emotionStyled(tag as React.ComponentType)(styled);

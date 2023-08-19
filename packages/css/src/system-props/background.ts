@@ -1,5 +1,7 @@
+import { scales as s } from './scales';
+
 export const background = {
-  backgroundColor: 'colors',
+  backgroundColor: s.colors('backgroundColor'),
 };
 
 Object.assign(background, {

@@ -28,5 +28,5 @@ interface CustomComponent<T extends React.ElementType> {
 }
 
 interface DjProps {
-  styles?: CSSObject[];
+  styles?: CSSObject;
 }

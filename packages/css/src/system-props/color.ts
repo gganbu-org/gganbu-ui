@@ -1,4 +1,6 @@
+import { scales as s } from './scales';
+
 export const color = {
-  color: 'colors',
-  textColor: 'colors',
+  color: s.colors('color'),
+  textColor: s.colors('textColor'),
 };

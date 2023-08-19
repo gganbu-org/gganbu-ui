@@ -1,14 +1,7 @@
 /* eslint-disable no-restricted-syntax */
-import {
-  THEME,
-  getValueByPath,
-  isObject,
-  toVarFunc,
-  tokenToCssVar,
-} from '@danji/styled';
+import { getValueByPath, isObject } from '@danji/styled';
 import { CSSObject } from './types';
 import { systemProps } from './system';
-import { aliases } from './system-props';
 
 export const css =
   (styles: any) =>
@@ -22,22 +15,15 @@ export const css =
         continue;
       }
 
-      const rawProp = getValueByPath(aliases, key, key);
-      const systemProp = getValueByPath(systemProps, rawProp);
+      const systemProp = getValueByPath(systemProps as any, key);
 
       if (!systemProp) {
-        computedCSS[rawProp] = val as any;
+        computedCSS[key] = val as any;
         continue;
       }
 
-      const cssVar = tokenToCssVar(val as string, THEME.KEY);
-
-      const transformed =
-        isObject(theme.cssVars) && cssVar in theme.cssVars
-          ? `${toVarFunc(cssVar)}`
-          : val;
-
-      computedCSS[rawProp] = transformed as any;
+      const alias = systemProp.prop;
+      computedCSS[alias] = systemProp.transform(val)(theme);
     }
 
     return computedCSS;
