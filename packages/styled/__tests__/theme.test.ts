@@ -1,4 +1,4 @@
-import { toCustomProperties, getValueFromKey } from '../src/theme';
+import { toCustomProperties, getValueByPath } from '../src/theme';
 
 describe('toCustomProperties', () => {
   const colors = {
@@ -83,7 +83,7 @@ describe('toCustomProperties', () => {
   });
 });
 
-describe('getValueFromKey', () => {
+describe('getValueByPath', () => {
   const colors = {
     gray: {
       100: '#f8f9fa',
@@ -109,7 +109,7 @@ describe('getValueFromKey', () => {
     ];
 
     testCases.forEach(({ key, expected }) => {
-      const result = getValueFromKey(colors, key);
+      const result = getValueByPath(colors, key);
       expect(result).toEqual(expected);
     });
   });
@@ -120,10 +120,23 @@ describe('getValueFromKey', () => {
       { key: 'nope!!', expected: undefined },
       { key: '', expected: undefined },
       { key: 'gray.1004', expected: undefined },
+      { key: 'gray.', expected: undefined },
     ];
 
     testCases.forEach(({ key, expected }) => {
-      const result = getValueFromKey(colors, key);
+      const result = getValueByPath(colors, key);
+      expect(result).toEqual(expected);
+    });
+  });
+
+  it('should returned fallback for a property that not exists', () => {
+    const testCases = [
+      { key: '#fff', fallback: '#fff', expected: '#fff' },
+      { key: 'gray.', fallback: {}, expected: {} },
+    ];
+
+    testCases.forEach(({ key, expected, fallback }) => {
+      const result = getValueByPath(colors, key, fallback);
       expect(result).toEqual(expected);
     });
   });
