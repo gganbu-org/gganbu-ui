@@ -1,28 +1,17 @@
-import { colors } from './variables';
-import { join, splitBySeparator } from './utils';
-import { JSONObject, JSONValue } from './theme.types';
+import { Theme } from '@danji/components';
+import { colors } from '../variables';
+import { join, splitBySeparator } from '../utils';
+import { JSONObject, JSONValue } from './base.types';
 
 export const DJ_DEFAULT_THEME = {
   colors,
+  components: Theme,
 };
 
 export const THEME = {
   KEY: 'dj',
   DEFAULT_KEY: '__default',
 } as const;
-
-export const toVarFunc = (value: string) => `var(${value})`;
-
-export const toVarDefinition = (value: string, prefix?: string) =>
-  `--${join(prefix, value)}`;
-
-export const tokenToCssVarFunc = (token: string | number): string =>
-  toVarFunc(String(token).replace(/\./g, '-'));
-
-export const tokenToCssVar = (
-  token: string | number,
-  prefix?: string,
-): string => toVarDefinition(String(token).replace(/\./g, '-'), prefix);
 
 export const toCustomProperties = (
   obj: Record<string, any>,
