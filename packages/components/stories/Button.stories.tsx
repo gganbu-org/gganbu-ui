@@ -16,20 +16,22 @@ type Story = StoryObj<typeof meta>;
 export const Small: Story = {
   args: {
     size: 'sm',
+    type: 'primary',
+    variant: 'solid',
     children: 'Button',
   },
 };
 
 export const Secondary: Story = {
   args: {
+    ...Small.args,
     size: 'md',
-    children: 'Button',
   },
 };
 
 export const Large: Story = {
   args: {
+    ...Small.args,
     size: 'lg',
-    children: 'Button',
   },
 };
