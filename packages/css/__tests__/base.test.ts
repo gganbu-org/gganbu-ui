@@ -20,7 +20,7 @@ describe('css', () => {
     })(theme);
 
     expect(result).toEqual({
-      color: 'var(--dj-gray-100)',
+      color: 'var(--dj-colors-gray-100)',
     });
   });
 
@@ -47,7 +47,7 @@ describe('css', () => {
     expect(result).toEqual({
       backgroundColor: '#fff',
       '&:hover': {
-        backgroundColor: 'var(--dj-gray-100)',
+        backgroundColor: 'var(--dj-colors-gray-100)',
       },
     });
   });

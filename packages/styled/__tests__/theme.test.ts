@@ -1,3 +1,4 @@
+import { join } from '../src';
 import { toCustomProperties, getValueByPath } from '../src/theme';
 
 describe('toCustomProperties', () => {
@@ -64,21 +65,21 @@ describe('toCustomProperties', () => {
   });
 
   it('should handle prefix', () => {
-    const customProperties = toCustomProperties(colors, 'dj');
+    const customProperties = toCustomProperties(colors, join('dj', 'colors'));
 
     expect(customProperties).toEqual({
-      'dj-gray-100': '#f8f9fa',
-      'dj-gray-200': '#e9ecef',
-      'dj-gray-300': '#dee2e6',
-      'dj-gray-400': '#ced4da',
-      'dj-gray-500': '#adb5bd',
-      'dj-gray-600': '#6c757d',
-      'dj-gray-700': '#495057',
-      'dj-gray-800': '#343a40',
-      'dj-gray-900': '#212529',
-      'dj-blue': '#007bff',
-      'dj-red': '#dc3545',
-      'dj-green': '#28a745',
+      'dj-colors-gray-100': '#f8f9fa',
+      'dj-colors-gray-200': '#e9ecef',
+      'dj-colors-gray-300': '#dee2e6',
+      'dj-colors-gray-400': '#ced4da',
+      'dj-colors-gray-500': '#adb5bd',
+      'dj-colors-gray-600': '#6c757d',
+      'dj-colors-gray-700': '#495057',
+      'dj-colors-gray-800': '#343a40',
+      'dj-colors-gray-900': '#212529',
+      'dj-colors-blue': '#007bff',
+      'dj-colors-red': '#dc3545',
+      'dj-colors-green': '#28a745',
     });
   });
 });
