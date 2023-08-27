@@ -1,17 +1,5 @@
-import { Theme } from '@danji/components';
-import { colors } from '../variables';
-import { join, splitBySeparator } from '../utils';
+import { isObject, join, splitBySeparator } from '../utils';
 import { JSONObject, JSONValue } from './base.types';
-
-export const DJ_DEFAULT_THEME = {
-  colors,
-  components: Theme,
-};
-
-export const THEME = {
-  KEY: 'dj',
-  DEFAULT_KEY: '__default',
-} as const;
 
 export const toCustomProperties = (
   obj: Record<string, any>,
@@ -22,7 +10,7 @@ export const toCustomProperties = (
   Object.entries(obj).forEach(([key, value]) => {
     const name = join(prefix, key);
 
-    if (typeof value === 'object') {
+    if (isObject(value)) {
       const nestedObj = toCustomProperties(value, name);
       Object.assign(next, nestedObj);
     } else {

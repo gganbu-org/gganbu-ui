@@ -1,30 +1,4 @@
-import {
-  COLORS,
-  getColor,
-  getRandomColor,
-  isArray,
-  isObject,
-} from '../src/utils';
-
-describe('getColor', () => {
-  it('should return the correct color based on index', () => {
-    expect(getColor(0)).toBe('#78858B');
-    expect(getColor(1)).toBe('#D95030');
-    expect(getColor(2)).toBe('#EA899A');
-    expect(getColor(3)).toBe('#78858B');
-  });
-
-  it('should handle negative index correctly', () => {
-    expect(getColor(-1)).toBe('#EA899A');
-  });
-});
-
-describe('getRandomColor', () => {
-  it('should return a random color from the COLORS array', () => {
-    const randomColor = getRandomColor();
-    expect(COLORS).toContain(randomColor);
-  });
-});
+import { isArray, isObject, splitBySeparator } from '../src/utils';
 
 describe('isArray', () => {
   it('should return true if the value is an array', () => {
@@ -54,5 +28,32 @@ describe('isObject', () => {
     expect(isObject([])).toBe(false);
     expect(isObject('string')).toBe(false);
     expect(isObject(123)).toBe(false);
+  });
+});
+
+describe('splitBySeparator', () => {
+  it('should split a string by the separator', () => {
+    const input = 'apple,banana,orange';
+    const separator = ',';
+
+    expect(splitBySeparator(input, separator)).toEqual([
+      'apple',
+      'banana',
+      'orange',
+    ]);
+  });
+
+  it('should handle empty string and non-empty separator', () => {
+    const input = '';
+    const separator = ',';
+
+    expect(splitBySeparator(input, separator)).toEqual(['']);
+  });
+
+  it('should handle empty string and empty separator', () => {
+    const input = '';
+    const separator = '';
+
+    expect(splitBySeparator(input, separator)).toEqual([]);
   });
 });
