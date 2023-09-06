@@ -8,15 +8,14 @@ export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
     throw new Error('Define tag to create styled component');
   }
 
-  const styled = () => {
-    const toStyleObject = (props: any) => {
-      const { styles = {} } = props;
-      // TODO: component theme prop, system prop 분리
+  /**
+   * @todo system props 분리, 스타일 우선순위 정의
+   */
+  const styled = (props: any) => {
+    const { styles = {}, theme } = props;
+    const cssObject = css(styles)(theme);
 
-      return css(styles)(props.theme);
-    };
-
-    return toStyleObject;
+    return cssObject;
   };
 
   const Component = emotionStyled(tag as React.ComponentType)(styled);

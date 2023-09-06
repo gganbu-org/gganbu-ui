@@ -1,13 +1,21 @@
 import { forwardRef } from 'react';
-import { dj } from '@danji/styled';
+import { dj, useThemeStyles } from '@danji/styled';
 import { ButtonOptions } from './button.types';
-import { SIZES } from './button.constants';
 
 const Button = forwardRef<HTMLButtonElement, ButtonOptions>((props, ref) => {
-  const { children, size = 'md' } = props;
+  const { children, type = 'primary', variant = 'solid', size = 'md' } = props;
 
-  const sizeStyles = SIZES[size];
-  const styles = [sizeStyles];
+  const baseStyles = {
+    borderRadius: '0.325rem',
+    cursor: 'pointer',
+  };
+
+  const buttonThemeStyles = useThemeStyles('Button', { type, variant, size });
+
+  const styles = {
+    ...baseStyles,
+    ...buttonThemeStyles,
+  };
 
   return (
     <dj.button styles={styles} ref={ref}>
