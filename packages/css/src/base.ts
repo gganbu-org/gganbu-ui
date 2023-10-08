@@ -14,7 +14,9 @@ export const css =
     const computedCSS: CSSObject = {};
     const styles = callIfFunc(stylesOrFunc, theme);
 
-    for (const [key, val] of Object.entries(styles)) {
+    for (const [key, valueOrFunc] of Object.entries(styles)) {
+      const val = callIfFunc(valueOrFunc, theme);
+
       if (isObject(val)) {
         const nestedStyles = val;
         computedCSS[key] = css(nestedStyles)(theme);

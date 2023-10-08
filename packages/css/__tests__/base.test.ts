@@ -61,4 +61,14 @@ describe('css', () => {
       color: colors.gray[100],
     });
   });
+
+  it('should convert functional vales to value', () => {
+    const result = css({
+      color: (t: any) => t.colors.gray['100'],
+    })(theme);
+
+    expect(result).toEqual({
+      color: colors.gray[100],
+    });
+  });
 });
