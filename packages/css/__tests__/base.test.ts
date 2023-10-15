@@ -1,4 +1,4 @@
-import { DJ_DEFAULT_THEME, customTheme } from '@danji/styled';
+import { DJ_DEFAULT_THEME, colors, customTheme } from '@danji/styled';
 import { css } from '../src';
 
 const theme = customTheme(DJ_DEFAULT_THEME);
@@ -49,6 +49,26 @@ describe('css', () => {
       '&:hover': {
         backgroundColor: 'var(--dj-colors-gray-100)',
       },
+    });
+  });
+
+  it('should convert functional arguments to value', () => {
+    const result = css((t: any) => ({
+      color: t.colors.gray['100'],
+    }))(theme);
+
+    expect(result).toEqual({
+      color: colors.gray[100],
+    });
+  });
+
+  it('should convert functional vales to value', () => {
+    const result = css({
+      color: (t: any) => t.colors.gray['100'],
+    })(theme);
+
+    expect(result).toEqual({
+      color: colors.gray[100],
     });
   });
 });

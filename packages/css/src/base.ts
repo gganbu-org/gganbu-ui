@@ -1,14 +1,22 @@
 /* eslint-disable no-restricted-syntax */
-import { getValueByPath, isObject } from '@danji/styled';
+import { getValueByPath, isFunction, isObject } from '@danji/styled';
 import { CSSObject } from './types';
 import { systemProps } from './system';
 
+const callIfFunc = <T, U extends any[]>(
+  valueOrFunc: T | ((...args: U) => T),
+  ...args: U
+): T => (isFunction(valueOrFunc) ? valueOrFunc(...args) : valueOrFunc);
+
 export const css =
-  (styles: any) =>
+  (stylesOrFunc: any) =>
   (theme: any): CSSObject => {
     const computedCSS: CSSObject = {};
+    const styles = callIfFunc(stylesOrFunc, theme);
 
-    for (const [key, val] of Object.entries(styles)) {
+    for (const [key, valueOrFunc] of Object.entries(styles)) {
+      const val = callIfFunc(valueOrFunc, theme);
+
       if (isObject(val)) {
         const nestedStyles = val;
         computedCSS[key] = css(nestedStyles)(theme);
