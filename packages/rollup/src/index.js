@@ -29,7 +29,8 @@ const FORMAT = {
   ESM: 'esm',
   CJS: 'cjs',
 };
-const REQURIED_FIELDS = [`main`, 'exports', 'publishConfig'];
+
+const REQUIRED_FIELDS = [`main`, 'exports', 'publishConfig'];
 const EXTENSIONS = ['.js', '.jsx', '.ts', '.tsx'];
 const isProduction = process.env?.NODE_ENV === `production`;
 
@@ -44,7 +45,7 @@ const nodeOptions = {
 };
 
 const validateRequiredField = (pkg) => {
-  [...REQURIED_FIELDS].forEach((field) => {
+  [...REQUIRED_FIELDS].forEach((field) => {
     ensureFieldInPkg(field, pkg[field]);
   });
 
