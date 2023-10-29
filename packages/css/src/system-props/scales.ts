@@ -11,18 +11,22 @@ export interface ScaleOpts {
   transform?: Transform;
 }
 
+const shouldTransformToVarFunc = (
+  theme: ThemeWithCssVars<Record<string, any>>,
+  cssVar: string,
+) => isObject(theme.cssVars) && cssVar in theme.cssVars;
+
 const tokenToCssVarFunc =
-  (scale: ThemeScale, val: string) =>
+  (scale: ThemeScale, value: string) =>
   (theme: ThemeWithCssVars<Record<string, any>>) => {
     const prefix = `${THEME.KEY}-${scale}`;
-    const cssVar = tokenToCssVar(val, prefix);
+    const cssVar = tokenToCssVar(value, prefix);
 
-    const transformed =
-      isObject(theme.cssVars) && cssVar in theme.cssVars
-        ? `${toVarFunc(cssVar)}`
-        : val;
+    const transformedValue = shouldTransformToVarFunc(theme, cssVar)
+      ? toVarFunc(cssVar)
+      : value;
 
-    return transformed;
+    return transformedValue;
   };
 
 const createTransform = ({ scale, transform }: ScaleOpts) => {
