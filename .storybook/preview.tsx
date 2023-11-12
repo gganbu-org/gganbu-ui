@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { DjProvider } from '../packages/components/src/DjProvider';
+import { DjProvider } from '@danji/components';
 
 const preview: Preview = {
   parameters: {
