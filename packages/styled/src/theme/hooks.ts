@@ -1,10 +1,10 @@
-import { ThemeContext } from '@emotion/react';
+import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
 import { ThemeWithCssVars } from '../provider.types';
 import { getValueByPath } from './base';
 
 const useTheme = <T extends Record<string, any>>() => {
-  const ctx = useContext(ThemeContext);
+  const ctx = useContext(EmotionThemeContext);
 
   if (ctx === null || ctx === undefined) throw new Error('useTheme error');
 

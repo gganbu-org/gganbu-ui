@@ -1,7 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 import { getValueByPath, isFunction, isObject } from '@danji/styled';
-import { CSSObject } from './types';
+import { EmotionCssObject } from './types';
 import { systemProps } from './system';
+
+export type CSSObject = EmotionCssObject;
 
 const callIfFunc = <T, U extends any[]>(
   valueOrFunc: T | ((...args: U) => T),

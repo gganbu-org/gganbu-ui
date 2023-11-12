@@ -1,1 +1,1 @@
-export type { CSSObject } from '@emotion/react';
+export type { CSSObject as EmotionCssObject } from '@emotion/react';
