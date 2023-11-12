@@ -4,15 +4,10 @@ import {
   jsx as emotionJsx,
   ThemeProvider as EmotionThemeProvider,
   Theme as EmotionTheme,
+  ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
-import {
-  DJ_DEFAULT_THEME,
-  THEME,
-  toCustomProperties,
-  toVarDefinition,
-} from './theme';
-import { CssVariablesProps, ThemeWithCssVars } from './provider.types';
-import CssReset from './reset';
+import { THEME, toCustomProperties, toVarDefinition } from './theme';
+import { CssVariablesProps, ThemeWithCssVars } from './providers.types';
 import { join } from './utils';
 
 const jsx: typeof React.createElement = <P extends object>(
@@ -21,14 +16,22 @@ const jsx: typeof React.createElement = <P extends object>(
   ...children: React.ReactNode[]
 ): any => emotionJsx(type, props, ...children);
 
-const CssVariables = ({ selector = ':root' }: CssVariablesProps): JSX.Element =>
+export const Global = ({ styles }: any) =>
   jsx(EmotionGlobal, {
-    styles: (djTheme: any) => {
-      return {
-        [selector]: djTheme.cssVars,
-      };
-    },
+    styles,
   });
+
+function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
+  return (
+    <Global
+      styles={(djTheme: any) => {
+        return {
+          [selector]: djTheme.cssVars,
+        };
+      }}
+    />
+  );
+}
 
 export const customTheme = <T extends Record<string, any>>(theme: T) => {
   const { colors } = theme;
@@ -44,12 +47,11 @@ export const customTheme = <T extends Record<string, any>>(theme: T) => {
   return theme as ThemeWithCssVars<T>;
 };
 
-export function DjProvider(props: any): JSX.Element {
-  const { theme = DJ_DEFAULT_THEME, children } = props;
+export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {
+  const { theme, children } = props;
 
   return (
     <EmotionThemeProvider theme={customTheme<EmotionTheme>(theme)}>
-      <CssReset />
       <CssVariables />
       {children}
     </EmotionThemeProvider>

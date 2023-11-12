@@ -1,4 +1,4 @@
-import { Global as EmotionGlobal } from '@emotion/react';
+import { Global } from './providers';
 
 const reset = `
   :where(*, *::before, *::after) {
@@ -10,7 +10,7 @@ const reset = `
 `;
 
 function CssReset() {
-  return <EmotionGlobal styles={reset} />;
+  return <Global styles={reset} />;
 }
 
 export default CssReset;

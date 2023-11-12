@@ -1,6 +1,6 @@
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
-import { ThemeWithCssVars } from '../provider.types';
+import { ThemeWithCssVars } from '../providers.types';
 import { getValueByPath } from './base';
 
 const useTheme = <T extends Record<string, any>>() => {
