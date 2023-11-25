@@ -10,3 +10,6 @@ export function useColorTheme() {
   }
   return context;
 }
+
+if (process.env.NODE_ENV !== 'production')
+  ColorThemeContext.displayName = 'ColorThemeContext';

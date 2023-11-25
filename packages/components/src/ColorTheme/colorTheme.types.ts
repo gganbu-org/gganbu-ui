@@ -1,11 +1,6 @@
-export type ValueOf<T> = T[keyof T];
+import { COLOR_THEME } from './colorTheme.constants';
 
-export const COLOR_THEME = {
-  LIGHT: 'light',
-  DARK: 'dark',
-} as const;
-
-export type ColorTheme = ValueOf<typeof COLOR_THEME>;
+export type ColorTheme = (typeof COLOR_THEME)[keyof typeof COLOR_THEME];
 export type UserTheme = ColorTheme | 'default';
 export type SystemTheme = ColorTheme | 'no-preference';
 

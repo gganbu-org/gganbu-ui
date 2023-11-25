@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ColorThemeContext } from './colorThemeContext';
-import { COLOR_THEME, ColorThemeState } from './colorTheme.types';
+import { ColorThemeState } from './colorTheme.types';
+import { COLOR_THEME, DEFAULT_COLOR_MODE } from './colorTheme.constants';
 
 const preferDarkQuery = '(prefers-color-scheme: dark)';
 
@@ -19,7 +20,8 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
   const theme = (() => {
     if (themes.userTheme !== 'default') return themes.userTheme;
 
-    if (themes.systemTheme === 'no-preference') return COLOR_THEME.LIGHT;
+    if (themes.systemTheme === 'no-preference') return DEFAULT_COLOR_MODE;
+
     return themes.systemTheme;
   })();
 
