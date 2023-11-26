@@ -1,9 +1,13 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { ColorThemeContext } from './colorThemeContext';
-import { ColorThemeState } from './colorTheme.types';
-import { COLOR_THEME, DEFAULT_COLOR_MODE } from './colorTheme.constants';
-
-const preferDarkQuery = '(prefers-color-scheme: dark)';
+import { useMediaQuery } from '../hooks/useMediaQuery';
+import {
+  COLOR_THEME,
+  DEFAULT_COLOR_MODE,
+  PREFER_DARK_QUERY,
+} from './colorTheme.constants';
+import { getSystemTheme, isDarkTheme, isSystemTheme } from './colorTheme.utils';
+import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
 interface ColorThemeProviderProps {
   children?: React.ReactNode;
@@ -12,63 +16,41 @@ interface ColorThemeProviderProps {
 function ColorThemeProvider(props: ColorThemeProviderProps) {
   const { children } = props;
 
-  const [themes, setThemes] = useState<ColorThemeState>({
-    userTheme: 'default',
-    systemTheme: 'no-preference',
+  const [colorTheme, setColorTheme] =
+    useState<ColorThemeWithSystem>(DEFAULT_COLOR_MODE);
+
+  const handleSetColorTheme = useCallback(
+    (nextColorTheme: ColorTheme) => {
+      // 시스템 테마가 바뀌는 경우 핸들링
+      // 토글 버튼을 눌러 바뀌는 경우 핸들링
+
+      setColorTheme(nextColorTheme);
+      // 스토리지 관리 기능 추가 시 저장
+    },
+    [getSystemTheme],
+  );
+
+  const theme = isSystemTheme(colorTheme)
+    ? getSystemTheme()
+    : (colorTheme as ColorTheme);
+
+  useMediaQuery(PREFER_DARK_QUERY, (matches) => {
+    handleSetColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
   });
 
-  const theme = (() => {
-    if (themes.userTheme !== 'default') return themes.userTheme;
-
-    if (themes.systemTheme === 'no-preference') return DEFAULT_COLOR_MODE;
-
-    return themes.systemTheme;
-  })();
-
-  const toggleColorTheme = useCallback(() => {
-    const nextUserTheme =
-      theme === COLOR_THEME.DARK ? COLOR_THEME.LIGHT : COLOR_THEME.DARK;
-
-    setThemes((prevThemes) => {
-      return { ...prevThemes, userTheme: nextUserTheme };
-    });
-  }, [theme]);
-
-  useEffect(() => {
-    const matcher = window.matchMedia(preferDarkQuery);
-    const systemPrefersDark = matcher.matches;
-
-    const onChangePreferColorScheme = (event: MediaQueryListEvent) => {
-      const { matches } = event;
-
-      setThemes((prevThemes) => {
-        return {
-          ...prevThemes,
-          systemTheme: matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT,
-        };
-      });
-    };
-
-    matcher.addEventListener('change', onChangePreferColorScheme);
-
-    setThemes((prevThemes) => {
-      return {
-        ...prevThemes,
-        systemTheme: systemPrefersDark ? COLOR_THEME.DARK : COLOR_THEME.LIGHT,
-      };
-    });
-
-    return () => {
-      matcher.removeEventListener('change', onChangePreferColorScheme);
-    };
-  }, [setThemes]);
-
+  // 최종적으로 제공하는 인터페이스
   const context = useMemo(
     () => ({
       colorTheme: theme,
-      toggleColorTheme,
+      toggleColorTheme: () => {
+        const nextUserTheme = isDarkTheme(theme)
+          ? COLOR_THEME.LIGHT
+          : COLOR_THEME.DARK;
+
+        handleSetColorTheme(nextUserTheme);
+      },
     }),
-    [toggleColorTheme, theme],
+    [theme],
   );
 
   return (

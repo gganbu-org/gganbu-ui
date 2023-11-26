@@ -3,4 +3,8 @@ export const COLOR_THEME = {
   DARK: 'dark',
 } as const;
 
-export const DEFAULT_COLOR_MODE = COLOR_THEME.LIGHT;
+export const COLOR_THEME_SYSTEM = 'system';
+
+export const PREFER_DARK_QUERY = '(prefers-color-scheme: dark)';
+
+export const DEFAULT_COLOR_MODE = COLOR_THEME_SYSTEM;
