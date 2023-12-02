@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
+import { useMediaQuery } from '@hooks/useMediaQuery';
 import { ColorThemeContext } from './colorThemeContext';
-import { useMediaQuery } from '../hooks/useMediaQuery';
 import {
   COLOR_THEME,
   DEFAULT_COLOR_MODE,

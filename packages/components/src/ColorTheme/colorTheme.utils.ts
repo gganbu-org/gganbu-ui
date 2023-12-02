@@ -1,4 +1,4 @@
-import { getMatches } from '../hooks/useMediaQuery';
+import { getMatches } from '@hooks/useMediaQuery';
 import {
   COLOR_THEME,
   COLOR_THEME_SYSTEM,
