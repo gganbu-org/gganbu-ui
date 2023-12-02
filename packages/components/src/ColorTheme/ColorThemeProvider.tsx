@@ -6,7 +6,13 @@ import {
   DEFAULT_COLOR_MODE,
   PREFER_DARK_QUERY,
 } from './colorTheme.constants';
-import { getSystemTheme, isDarkTheme, isSystemTheme } from './colorTheme.utils';
+import {
+  getSystemTheme,
+  getColorTheme,
+  isDarkTheme,
+  isSystemTheme,
+  storageManager,
+} from './colorTheme.utils';
 import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
 interface ColorThemeProviderProps {
@@ -16,16 +22,14 @@ interface ColorThemeProviderProps {
 function ColorThemeProvider(props: ColorThemeProviderProps) {
   const { children } = props;
 
-  const [colorTheme, setColorTheme] =
-    useState<ColorThemeWithSystem>(DEFAULT_COLOR_MODE);
+  const [colorTheme, setColorTheme] = useState<ColorThemeWithSystem>(() =>
+    getColorTheme(storageManager, DEFAULT_COLOR_MODE),
+  );
 
   const handleSetColorTheme = useCallback(
     (nextColorTheme: ColorTheme) => {
-      // 시스템 테마가 바뀌는 경우 핸들링
-      // 토글 버튼을 눌러 바뀌는 경우 핸들링
-
       setColorTheme(nextColorTheme);
-      // 스토리지 관리 기능 추가 시 저장
+      storageManager.set(nextColorTheme);
     },
     [getSystemTheme],
   );
