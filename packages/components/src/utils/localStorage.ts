@@ -1,7 +1,7 @@
 const storage = {
-  get: (key: string): string | null => {
+  get: <T>(key: string): T | null => {
     try {
-      return JSON.parse(localStorage.getItem(key) as string);
+      return JSON.parse(localStorage.getItem(key) || '');
     } catch (err) {
       return null;
     }
