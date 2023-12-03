@@ -6,4 +6,5 @@ export type ColorThemeWithSystem = ColorTheme | 'system';
 export interface ColorThemeContextType {
   colorTheme: ColorTheme;
   toggleColorTheme: () => void;
+  setColorTheme: (colorTheme: ColorTheme) => void;
 }

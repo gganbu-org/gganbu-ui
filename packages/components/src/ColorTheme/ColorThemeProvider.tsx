@@ -53,6 +53,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
 
         handleSetColorTheme(nextUserTheme);
       },
+      setColorTheme: handleSetColorTheme,
     }),
     [theme],
   );
