@@ -1,5 +1,7 @@
 import fs from 'fs';
+import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 interface FindStoriesOptions {
   dir: string;
@@ -21,6 +23,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-dark-mode',
   ],
   framework: {
     name: '@storybook/react-webpack5',
@@ -28,6 +31,18 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag',
+  },
+  webpackFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.plugins = [
+        ...(config.resolve.plugins || []),
+        new TsconfigPathsPlugin({
+          configFile: path.resolve(__dirname, '../tsconfig.json'),
+        }),
+      ];
+    }
+
+    return config;
   },
 };
 export default config;
