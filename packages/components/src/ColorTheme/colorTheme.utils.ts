@@ -1,6 +1,5 @@
-import { getMatches } from '@hooks/useMediaQuery';
-import { isBrowser } from '@utils/assertion';
-import storage from '@utils/localStorage';
+import { isBrowser, localStorage } from '@danji/components/src/utils';
+import { getMatches } from '@danji/components/src/hooks';
 
 import {
   COLOR_THEME,
@@ -16,7 +15,7 @@ interface StorageManager {
 }
 
 const createBrowserStorageManager = (key: string): StorageManager => {
-  const browserStorage = storage;
+  const browserStorage = localStorage;
 
   return {
     get(init) {
