@@ -1,5 +1,5 @@
 import { THEME, isObject, toVarFunc, tokenToCssVar } from '@danji/styled';
-import { ThemeWithCssVars } from '@danji/styled/src/provider.types';
+import { ThemeWithCssVars } from '@danji/styled/src/providers.types';
 import { Transform } from './types';
 
 export const tokens = ['colors', 'sizes'] as const;
