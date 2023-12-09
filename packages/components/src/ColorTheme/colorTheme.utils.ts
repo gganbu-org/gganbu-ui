@@ -1,5 +1,5 @@
-import { isBrowser, localStorage } from '@danji/components/src/utils';
-import { getMatches } from '@danji/components/src/hooks';
+import { isBrowser, localStorage } from '@danji/components/utils';
+import { getMatches } from '@danji/components/hooks';
 
 import {
   COLOR_THEME,

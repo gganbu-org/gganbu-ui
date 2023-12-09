@@ -1,4 +1,4 @@
-import { ThemeWithCssVars } from '@danji/styled/src/providers.types';
+import { ThemeWithCssVars } from '@danji/styled/providers.types';
 
 export type Transform = (
   value: string,

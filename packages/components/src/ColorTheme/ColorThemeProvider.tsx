@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useMediaQuery } from '@danji/components/src/hooks';
+import { useMediaQuery } from '@danji/components/hooks';
 import { ColorThemeContext } from './colorThemeContext';
 import {
   COLOR_THEME,
