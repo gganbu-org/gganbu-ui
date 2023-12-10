@@ -38,8 +38,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.18",
+    "storybook-dark-mode": "^3.0.3",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.0.4"
   },
   "scripts": {

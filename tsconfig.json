@@ -28,7 +28,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "paths": {
-      "@danji/*": ["packages/*/src"]
+      /* packages alias */
+      "@danji/components/*": ["packages/components/src/*"],
+      "@danji/css/*": ["packages/css/src/*"],
+      "@danji/rollup/*": ["packages/rollup/src/*"],
+      "@danji/styled/*": ["packages/styled/src/*"]
     },
 
     /* Advanced Options */

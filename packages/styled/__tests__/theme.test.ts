@@ -1,5 +1,5 @@
-import { join } from '../src';
-import { toCustomProperties, getValueByPath } from '../src/theme';
+import { join } from '@danji/styled/utils';
+import { toCustomProperties, getValueByPath } from '@danji/styled/theme';
 
 describe('toCustomProperties', () => {
   const colors = {
