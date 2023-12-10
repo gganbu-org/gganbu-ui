@@ -1,22 +1,26 @@
 const path = require('path');
+const { lstatSync, readdirSync } = require('fs');
+
+const getPackageList = (basePath: string) =>
+  readdirSync(basePath).filter((name: string) =>
+    lstatSync(path.join(basePath, name)).isDirectory(),
+  );
+
+const basePath = path.resolve(__dirname, '../packages');
+const packages = getPackageList(basePath);
 
 const config = {
-  coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
   preset: 'ts-jest',
   testEnvironment: 'node',
-  transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
-  },
   /* packages alias */
   moduleNameMapper: {
-    '@danji/components(.*)$': path.join(
-      __dirname,
-      '../packages/components/src$1',
+    ...packages.reduce(
+      (acc: Record<string, string>, pkg: string) => ({
+        ...acc,
+        [`@danji/${pkg}(.*)$`]: `<rootDir>/packages/${pkg}/src$1`,
+      }),
+      {},
     ),
-    '@danji/css(.*)$': path.join(__dirname, '../packages/css/src$1'),
-    '@danji/rollup(.*)$': path.join(__dirname, '../packages/rollup/src$1'),
-    '@danji/styled(.*)$': path.join(__dirname, '../packages/styled/src$1'),
   },
 };
 
