@@ -25,3 +25,6 @@ out
 
 # Coverage directory used by tools
 coverage
+
+# Environment variables
+.env

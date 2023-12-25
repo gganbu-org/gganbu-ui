@@ -50,7 +50,8 @@
     "build:all": "lerna run --stream build",
     "clean": "lerna run clean && lerna clean -y",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "cross-env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "eslintConfig": {
     "extends": [
