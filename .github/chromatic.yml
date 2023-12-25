@@ -7,8 +7,11 @@ name: 'Chromatic'
 on:
   pull_request:
     branches:
-      - 'feature/**'
-    types: [opened, synchronize]
+      - 'develop'
+    types:
+      - opened
+      - synchronize
+      - closed
 
 # List of jobs
 jobs:
