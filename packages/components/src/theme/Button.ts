@@ -1,14 +1,18 @@
+import { ThemePropsWithColorTheme } from '@danji/styled';
+import { createColorByColorTheme } from './theme.utils';
 import { getColorByType } from '../Button/button.utils';
 import { Type } from '../Button/button.types';
 
-const variantSolid = (type: Type) => {
-  const c = getColorByType(type);
+const variantSolid = (themeProps: ThemePropsWithColorTheme) => {
+  const { type, colorTheme } = themeProps;
+  const c = getColorByType(type as Type);
+  const getColor = createColorByColorTheme(colorTheme);
 
   return {
-    bg: `${c}.500`,
+    bg: getColor(`${c}.500`, `${c}.300`),
     color: `white`,
     '&:hover': {
-      backgroundColor: `${c}.600`,
+      backgroundColor: getColor(`${c}.600`, `${c}.400`),
     },
   };
 };
