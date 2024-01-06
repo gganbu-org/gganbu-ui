@@ -1,18 +1,22 @@
 import React, { PropsWithChildren } from 'react';
 import type { Preview } from '@storybook/react';
-import { DjProvider, useColorTheme } from '@danji/components';
+import { ColorThemeProvider } from '@danji/components';
 import { DocsContainer } from './DocsContainer';
 import { useDarkMode } from 'storybook-dark-mode';
+import { CssReset, DJ_DEFAULT_THEME, ThemeProvider } from '@danji/styled';
 
-function ThemeSideEffectWrapper(props: PropsWithChildren) {
+function CustomDjProvider(props: PropsWithChildren) {
+  const { children } = props;
   const storybookDarkMode = useDarkMode();
-  const { setColorTheme } = useColorTheme();
 
-  React.useEffect(() => {
-    setColorTheme(storybookDarkMode ? 'dark' : 'light');
-  }, [storybookDarkMode]);
-
-  return <>{props.children}</>;
+  return (
+    <ThemeProvider theme={DJ_DEFAULT_THEME}>
+      <ColorThemeProvider value={storybookDarkMode ? 'dark' : 'light'}>
+        <CssReset />
+        {children}
+      </ColorThemeProvider>
+    </ThemeProvider>
+  );
 }
 
 const preview: Preview = {
@@ -30,11 +34,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <DjProvider>
-        <ThemeSideEffectWrapper>
-          <Story />
-        </ThemeSideEffectWrapper>
-      </DjProvider>
+      <CustomDjProvider>
+        <Story />
+      </CustomDjProvider>
     ),
   ],
 };

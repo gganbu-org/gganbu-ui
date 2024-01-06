@@ -16,11 +16,12 @@ import {
 import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
 interface ColorThemeProviderProps {
+  value?: ColorTheme;
   children?: React.ReactNode;
 }
 
 function ColorThemeProvider(props: ColorThemeProviderProps) {
-  const { children } = props;
+  const { value, children } = props;
 
   const [colorTheme, setColorTheme] = useState<ColorThemeWithSystem>(() =>
     getColorTheme(storageManager, DEFAULT_COLOR_MODE),
@@ -50,18 +51,25 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
 
   // 최종적으로 제공하는 인터페이스
   const context = useMemo(
-    () => ({
-      colorTheme: theme,
-      toggleColorTheme: () => {
-        const nextUserTheme = isDarkTheme(theme)
-          ? COLOR_THEME.LIGHT
-          : COLOR_THEME.DARK;
+    () =>
+      value
+        ? {
+            colorTheme: value,
+            toggleColorTheme: () => {},
+            setColorTheme: () => {},
+          }
+        : {
+            colorTheme: theme,
+            toggleColorTheme: () => {
+              const nextUserTheme = isDarkTheme(theme)
+                ? COLOR_THEME.LIGHT
+                : COLOR_THEME.DARK;
 
-        handleSetColorTheme(nextUserTheme);
-      },
-      setColorTheme: handleSetColorTheme,
-    }),
-    [theme],
+              handleSetColorTheme(nextUserTheme);
+            },
+            setColorTheme: handleSetColorTheme,
+          },
+    [theme, value],
   );
 
   return (
