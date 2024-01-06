@@ -27,6 +27,10 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     getColorTheme(storageManager, DEFAULT_COLOR_MODE),
   );
 
+  const [systemColorTheme, setSystemColorTheme] = useState<ColorTheme>(() =>
+    getSystemTheme(),
+  );
+
   const handleSetColorTheme = useCallback(
     (nextColorTheme: ColorTheme) => {
       setColorTheme(nextColorTheme);
@@ -36,7 +40,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
   );
 
   const theme = isSystemTheme(colorTheme)
-    ? getSystemTheme()
+    ? systemColorTheme
     : (colorTheme as ColorTheme);
 
   useMediaQuery(
@@ -45,7 +49,8 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
       triggerFirstLoad: false,
     },
     (matches) => {
-      handleSetColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
+      if (isSystemTheme(colorTheme))
+        setSystemColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
     },
   );
 
