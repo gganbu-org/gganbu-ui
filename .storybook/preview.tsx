@@ -1,13 +1,27 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import type { Preview } from '@storybook/react';
-import { ColorThemeProvider } from '@danji/components';
-import { DocsContainer } from './DocsContainer';
 import { useDarkMode } from 'storybook-dark-mode';
+import { themes } from '@storybook/theming';
+import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
+
+import { ColorThemeProvider } from '@danji/components';
 import { CssReset, DJ_DEFAULT_THEME, ThemeProvider } from '@danji/styled';
 
 function CustomDjProvider(props: PropsWithChildren) {
   const { children } = props;
   const storybookDarkMode = useDarkMode();
+
+  /**
+   * storybook-dark-mode issue
+   * {@link https://github.com/hipstersmoothie/storybook-dark-mode/issues/235 GitHub}.
+   */
+  useEffect(() => {
+    const backgroundColor = storybookDarkMode
+      ? themes.dark.appBg
+      : themes.light.appBg;
+
+    document.body.style.backgroundColor = backgroundColor || 'inherit';
+  }, [storybookDarkMode]);
 
   return (
     <ThemeProvider theme={DJ_DEFAULT_THEME}>
@@ -29,7 +43,17 @@ const preview: Preview = {
       },
     },
     docs: {
-      container: DocsContainer,
+      /**
+       * storybook-dark-mode issue
+       * {@link https://github.com/hipstersmoothie/storybook-dark-mode/issues/180 GitHub}.
+       */
+      container: (props: DocsContainerProps) => {
+        const isDark = useDarkMode();
+        const currentProps = { ...props };
+        currentProps.theme = isDark ? themes.dark : themes.light;
+
+        return React.createElement(DocsContainer, currentProps);
+      },
     },
   },
   decorators: [
