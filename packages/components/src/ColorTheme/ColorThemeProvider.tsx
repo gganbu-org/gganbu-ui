@@ -38,9 +38,15 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     ? getSystemTheme()
     : (colorTheme as ColorTheme);
 
-  useMediaQuery(PREFER_DARK_QUERY, (matches) => {
-    handleSetColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
-  });
+  useMediaQuery(
+    PREFER_DARK_QUERY,
+    {
+      triggerFirstLoad: false,
+    },
+    (matches) => {
+      handleSetColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
+    },
+  );
 
   // 최종적으로 제공하는 인터페이스
   const context = useMemo(
