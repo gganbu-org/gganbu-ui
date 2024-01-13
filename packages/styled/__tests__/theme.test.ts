@@ -3,6 +3,7 @@ import {
   getValueByPath,
   joinWithHyphen,
   isObject,
+  createCssVars,
 } from '@danji/styled';
 
 describe('toCustomProperties', () => {
@@ -188,6 +189,67 @@ describe('getValueByPath', () => {
     testCases.forEach(({ key, expected, fallback }) => {
       const result = getValueByPath(colors, key, fallback);
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('cssVars', () => {
+    it('should convert tokens to cssVars', () => {
+      const theme = {
+        colors: {
+          gray: {
+            '50': '#f9fafa',
+            '100': '#f1f1f2',
+            '200': '#e6e7e9',
+            '300': '#d2d4d7',
+            '400': '#a9adb2',
+            '500': '#797f88',
+            '600': '#4d5560',
+            '700': '#2e3744',
+            '800': '#19202b',
+            '900': '#141a23',
+          },
+        },
+      };
+
+      const result = createCssVars(theme);
+      expect(result).toMatchInlineSnapshot(`
+        {
+          "--dj-colors-gray-100": "#f1f1f2",
+          "--dj-colors-gray-200": "#e6e7e9",
+          "--dj-colors-gray-300": "#d2d4d7",
+          "--dj-colors-gray-400": "#a9adb2",
+          "--dj-colors-gray-50": "#f9fafa",
+          "--dj-colors-gray-500": "#797f88",
+          "--dj-colors-gray-600": "#4d5560",
+          "--dj-colors-gray-700": "#2e3744",
+          "--dj-colors-gray-800": "#19202b",
+          "--dj-colors-gray-900": "#141a23",
+        }
+      `);
+    });
+
+    it('should convert semantic tokens to cssVars', () => {
+      const theme = {
+        sematicTokens: {
+          text: {
+            primary: {
+              _light: 'black',
+              _dark: 'white',
+            },
+          },
+        },
+      };
+
+      const result = createCssVars(theme);
+
+      expect(result).toMatchInlineSnapshot(`
+        {
+          "--dj-colors-text-primary": "black",
+          "[data-theme=dark]": {
+            "--dj-colors-text-primary": "white",
+          },
+        }
+      `);
     });
   });
 });

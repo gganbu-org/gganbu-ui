@@ -6,7 +6,7 @@ interface CustomPropertiesOptions {
 }
 
 export const toCustomProperties = (
-  obj: JSONObject,
+  obj: JSONObject = {},
   prefix?: string,
   delimiter = '-',
   options: CustomPropertiesOptions = {},
