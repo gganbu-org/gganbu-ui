@@ -1,5 +1,8 @@
-import { join } from '@danji/styled/utils';
-import { toCustomProperties, getValueByPath } from '@danji/styled/theme';
+import {
+  toCustomProperties,
+  getValueByPath,
+  joinWithHyphen,
+} from '@danji/styled';
 
 describe('toCustomProperties', () => {
   const colors = {
@@ -65,7 +68,10 @@ describe('toCustomProperties', () => {
   });
 
   it('should handle prefix', () => {
-    const customProperties = toCustomProperties(colors, join('dj', 'colors'));
+    const customProperties = toCustomProperties(
+      colors,
+      joinWithHyphen('dj', 'colors'),
+    );
 
     expect(customProperties).toEqual({
       'dj-colors-gray-100': '#f8f9fa',
@@ -80,6 +86,28 @@ describe('toCustomProperties', () => {
       'dj-colors-blue': '#007bff',
       'dj-colors-red': '#dc3545',
       'dj-colors-green': '#28a745',
+    });
+  });
+
+  it('should handle delimiter', () => {
+    const delimiterCase = {
+      primary: {
+        blue: '#007bff',
+        red: '#dc3545',
+      },
+    };
+
+    const delimiter = '.';
+
+    const customProperties = toCustomProperties(
+      delimiterCase,
+      'colors',
+      delimiter,
+    );
+
+    expect(customProperties).toEqual({
+      'colors.primary.blue': '#007bff',
+      'colors.primary.red': '#dc3545',
     });
   });
 });

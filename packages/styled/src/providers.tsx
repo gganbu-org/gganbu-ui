@@ -8,7 +8,7 @@ import {
 } from '@emotion/react';
 import { THEME, toCustomProperties, toVarDefinition } from './theme';
 import { CssVariablesProps, ThemeWithCssVars } from './providers.types';
-import { join } from './utils';
+import { joinWithHyphen } from './utils';
 
 const jsx: typeof React.createElement = <P extends object>(
   type: React.FunctionComponent<P> | React.ComponentClass<P> | string,
@@ -37,7 +37,10 @@ export const customTheme = <T extends Record<string, any>>(theme: T) => {
   const { colors } = theme;
 
   const flattenTokens = {
-    ...toCustomProperties(colors, toVarDefinition(join(THEME.KEY, 'colors'))),
+    ...toCustomProperties(
+      colors,
+      toVarDefinition(joinWithHyphen(THEME.KEY, 'colors')),
+    ),
   };
 
   Object.assign(theme, {
