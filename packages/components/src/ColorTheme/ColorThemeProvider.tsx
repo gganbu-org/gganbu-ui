@@ -16,14 +16,19 @@ import {
 import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
 interface ColorThemeProviderProps {
+  value?: ColorTheme;
   children?: React.ReactNode;
 }
 
 function ColorThemeProvider(props: ColorThemeProviderProps) {
-  const { children } = props;
+  const { value, children } = props;
 
   const [colorTheme, setColorTheme] = useState<ColorThemeWithSystem>(() =>
     getColorTheme(storageManager, DEFAULT_COLOR_MODE),
+  );
+
+  const [systemColorTheme, setSystemColorTheme] = useState<ColorTheme>(() =>
+    getSystemTheme(),
   );
 
   const handleSetColorTheme = useCallback(
@@ -35,27 +40,41 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
   );
 
   const theme = isSystemTheme(colorTheme)
-    ? getSystemTheme()
+    ? systemColorTheme
     : (colorTheme as ColorTheme);
 
-  useMediaQuery(PREFER_DARK_QUERY, (matches) => {
-    handleSetColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
-  });
+  useMediaQuery(
+    PREFER_DARK_QUERY,
+    {
+      triggerFirstLoad: false,
+    },
+    (matches) => {
+      if (isSystemTheme(colorTheme))
+        setSystemColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
+    },
+  );
 
   // 최종적으로 제공하는 인터페이스
   const context = useMemo(
-    () => ({
-      colorTheme: theme,
-      toggleColorTheme: () => {
-        const nextUserTheme = isDarkTheme(theme)
-          ? COLOR_THEME.LIGHT
-          : COLOR_THEME.DARK;
+    () =>
+      value
+        ? {
+            colorTheme: value,
+            toggleColorTheme: () => {},
+            setColorTheme: () => {},
+          }
+        : {
+            colorTheme: theme,
+            toggleColorTheme: () => {
+              const nextUserTheme = isDarkTheme(theme)
+                ? COLOR_THEME.LIGHT
+                : COLOR_THEME.DARK;
 
-        handleSetColorTheme(nextUserTheme);
-      },
-      setColorTheme: handleSetColorTheme,
-    }),
-    [theme],
+              handleSetColorTheme(nextUserTheme);
+            },
+            setColorTheme: handleSetColorTheme,
+          },
+    [theme, value],
   );
 
   return (
