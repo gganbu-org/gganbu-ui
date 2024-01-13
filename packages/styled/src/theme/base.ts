@@ -4,14 +4,15 @@ import { JSONObject, JSONValue } from './base.types';
 export const toCustomProperties = (
   obj: Record<string, any>,
   prefix?: string,
+  delimiter = '-',
 ) => {
   const next: Record<string, any> = {};
 
   Object.entries(obj).forEach(([key, value]) => {
-    const name = join(prefix, key);
+    const name = join(delimiter, prefix, key);
 
     if (isObject(value)) {
-      const nestedObj = toCustomProperties(value, name);
+      const nestedObj = toCustomProperties(value, name, delimiter);
       Object.assign(next, nestedObj);
     } else {
       next[name] = value;
