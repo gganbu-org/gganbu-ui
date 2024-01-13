@@ -146,12 +146,3 @@ export const colors = {
     '900': '#123662',
   },
 };
-
-export const sematicTokens = {
-  text: {
-    primary: {
-      _light: 'black',
-      _dark: 'white',
-    },
-  },
-};
