@@ -2,7 +2,6 @@ import {
   toCustomProperties,
   getValueByPath,
   joinWithHyphen,
-  isObject,
 } from '@danji/styled';
 
 describe('toCustomProperties', () => {
@@ -91,13 +90,14 @@ describe('toCustomProperties', () => {
   });
 
   it('should handle delimiter', () => {
-    const delimiter = '.';
     const delimiterCase = {
       primary: {
         blue: '#007bff',
         red: '#dc3545',
       },
     };
+
+    const delimiter = '.';
 
     const customProperties = toCustomProperties(
       delimiterCase,
@@ -108,27 +108,6 @@ describe('toCustomProperties', () => {
     expect(customProperties).toEqual({
       'colors.primary.blue': '#007bff',
       'colors.primary.red': '#dc3545',
-    });
-  });
-
-  it('should handle halt condition', () => {
-    const delimiter = '.';
-    const haltCase = {
-      primary: {
-        blue: '#007bff',
-        red: '#dc3545',
-      },
-    };
-
-    const customProperties = toCustomProperties(haltCase, 'colors', delimiter, {
-      halt: (value) => isObject(value),
-    });
-
-    expect(customProperties).toEqual({
-      'colors.primary': {
-        blue: '#007bff',
-        red: '#dc3545',
-      },
     });
   });
 });
