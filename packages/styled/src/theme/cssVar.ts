@@ -1,9 +1,9 @@
-import { joinWithHyphen } from '../utils';
+import { join } from '../utils';
 
 export const toVarFunc = (value: string) => `var(${value})`;
 
 export const toVarDefinition = (value: string, prefix?: string) =>
-  `--${joinWithHyphen(prefix, value)}`;
+  `--${join(prefix, value)}`;
 
 export const tokenToCssVarFunc = (token: string | number): string =>
   toVarFunc(String(token).replace(/\./g, '-'));
