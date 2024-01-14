@@ -14,10 +14,18 @@ import {
   tokenToCssVar,
   pseudoKeys,
   PseudoKeys,
+  PseudoAliases,
 } from './theme';
-import { isObject } from './utils';
-import { CssVariablesProps, ThemeWithCssVars } from './providers.types';
+import { isNonNull, isObject } from './utils';
+import {
+  CssVariablesProps,
+  DesignToken,
+  DesignTokenObject,
+  DesignTokens,
+  ThemeWithCssVars,
+} from './providers.types';
 import { Dict } from './base.types';
+import { JSONObject } from './theme/base.types';
 
 const jsx: typeof React.createElement = <P extends object>(
   type: React.FunctionComponent<P> | React.ComponentClass<P> | string,
@@ -42,34 +50,31 @@ function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
   );
 }
 
-const createTokensToCssVars = (tokens: Dict) => {
-  const target: Dict = {};
+const createTokensToCssVars = (tokens: DesignTokens) => {
+  const target: JSONObject = {};
 
-  Object.keys(tokens).forEach((token) => {
+  const transformValue = (propertyKey: string, propertyValue: DesignToken) =>
+    Object.entries(propertyValue).reduce((acc, [alias, value]) => {
+      if (!isNonNull(value)) return acc;
+
+      const isDefaultAlias = alias === TOKEN_ALIASES.LIGHT;
+      const pseudoClass = isDefaultAlias
+        ? propertyKey
+        : ((TOKEN_PSEUDO_CLASSES as Dict)[alias] as PseudoAliases) ?? alias;
+
+      acc[pseudoClass] = isDefaultAlias ? value : { [propertyKey]: value };
+
+      return acc;
+    }, {} as JSONObject);
+
+  Object.entries(tokens).forEach(([token, value]) => {
     const key = tokenToCssVar(token, THEME.KEY);
-    const value = tokens[token];
 
     const normalizeValue = isObject(value)
       ? value
       : { [TOKEN_ALIASES.LIGHT]: value };
 
-    const source = Object.entries(normalizeValue).reduce(
-      (acc, [conditionAlias, conditionValue]) => {
-        if (!conditionValue) return acc;
-
-        const isDefaultAlias = conditionAlias === TOKEN_ALIASES.LIGHT;
-        const conditionSelector = isDefaultAlias
-          ? key
-          : (TOKEN_PSEUDO_CLASSES as Dict)[conditionAlias] ?? conditionAlias;
-
-        acc[conditionSelector] = isDefaultAlias
-          ? conditionValue
-          : { [key]: conditionValue };
-
-        return acc;
-      },
-      {} as Dict,
-    );
+    const source = transformValue(key, normalizeValue as DesignToken);
 
     Object.assign(target, source);
   });
@@ -77,9 +82,16 @@ const createTokensToCssVars = (tokens: Dict) => {
   return target;
 };
 
-export const createCssVars = <T extends Dict>(theme: T) => {
+export const createCssVars = <
+  T extends {
+    colors?: DesignTokenObject;
+    sematicTokens?: DesignTokenObject;
+  },
+>(
+  theme: T,
+) => {
   const { colors, sematicTokens } = theme;
-  const cssVars: Dict = {};
+  const cssVars: JSONObject = {};
 
   const tokens = {
     ...toCustomProperties(colors, 'colors', '.'),
@@ -89,7 +101,7 @@ export const createCssVars = <T extends Dict>(theme: T) => {
           pseudoKeys.includes(key as PseudoKeys),
         ),
     }),
-  };
+  } as DesignTokens;
 
   Object.assign(cssVars, createTokensToCssVars(tokens));
 
