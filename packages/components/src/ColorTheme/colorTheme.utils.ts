@@ -34,10 +34,11 @@ const createBrowserStorageManager = (key: string): StorageManager => {
 export const getSystemTheme = () =>
   getMatches(PREFER_DARK_QUERY) ? COLOR_THEME.DARK : COLOR_THEME.LIGHT;
 
-export const isSystemTheme = (theme: ColorThemeWithSystem) =>
+export const isSystemTheme = (theme: ColorThemeWithSystem): theme is 'system' =>
   theme === COLOR_THEME_SYSTEM;
 
-export const isDarkTheme = (theme: ColorTheme) => theme === COLOR_THEME.DARK;
+export const isDarkTheme = (theme: ColorTheme): theme is 'dark' =>
+  theme === COLOR_THEME.DARK;
 
 export const storageManager = createBrowserStorageManager(LOCAL_STORAGE_KEY);
 
@@ -45,3 +46,8 @@ export const getColorTheme = (
   storageManger: StorageManager,
   init: ColorThemeWithSystem,
 ) => storageManger.get(init);
+
+export const setDataset = (theme: ColorTheme) => {
+  if (!isBrowser) return;
+  document.documentElement.setAttribute('data-theme', theme);
+};
