@@ -18,7 +18,7 @@ export const TOKEN_ALIASES = {
 } as const;
 
 export const TOKEN_PSEUDO_CLASSES = {
-  [TOKEN_ALIASES.DARK]: '[data-theme=dark]',
+  [TOKEN_ALIASES.DARK]: '&[data-theme=dark]',
 } as const;
 
 export type PseudoKeys = keyof typeof TOKEN_PSEUDO_CLASSES;
