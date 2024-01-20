@@ -1,5 +1,10 @@
-import { join } from '@danji/styled/utils';
-import { toCustomProperties, getValueByPath } from '@danji/styled/theme';
+import {
+  toCustomProperties,
+  getValueByPath,
+  joinWithHyphen,
+  isObject,
+  createCssVars,
+} from '@danji/styled';
 
 describe('toCustomProperties', () => {
   const colors = {
@@ -65,7 +70,10 @@ describe('toCustomProperties', () => {
   });
 
   it('should handle prefix', () => {
-    const customProperties = toCustomProperties(colors, join('dj', 'colors'));
+    const customProperties = toCustomProperties(
+      colors,
+      joinWithHyphen('dj', 'colors'),
+    );
 
     expect(customProperties).toEqual({
       'dj-colors-gray-100': '#f8f9fa',
@@ -80,6 +88,48 @@ describe('toCustomProperties', () => {
       'dj-colors-blue': '#007bff',
       'dj-colors-red': '#dc3545',
       'dj-colors-green': '#28a745',
+    });
+  });
+
+  it('should handle delimiter', () => {
+    const delimiter = '.';
+    const delimiterCase = {
+      primary: {
+        blue: '#007bff',
+        red: '#dc3545',
+      },
+    };
+
+    const customProperties = toCustomProperties(
+      delimiterCase,
+      'colors',
+      delimiter,
+    );
+
+    expect(customProperties).toEqual({
+      'colors.primary.blue': '#007bff',
+      'colors.primary.red': '#dc3545',
+    });
+  });
+
+  it('should handle halt condition', () => {
+    const delimiter = '.';
+    const haltCase = {
+      primary: {
+        blue: '#007bff',
+        red: '#dc3545',
+      },
+    };
+
+    const customProperties = toCustomProperties(haltCase, 'colors', delimiter, {
+      halt: (value) => isObject(value),
+    });
+
+    expect(customProperties).toEqual({
+      'colors.primary': {
+        blue: '#007bff',
+        red: '#dc3545',
+      },
     });
   });
 });
@@ -139,6 +189,67 @@ describe('getValueByPath', () => {
     testCases.forEach(({ key, expected, fallback }) => {
       const result = getValueByPath(colors, key, fallback);
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('cssVars', () => {
+    it('should convert tokens to cssVars', () => {
+      const theme = {
+        colors: {
+          gray: {
+            '50': '#f9fafa',
+            '100': '#f1f1f2',
+            '200': '#e6e7e9',
+            '300': '#d2d4d7',
+            '400': '#a9adb2',
+            '500': '#797f88',
+            '600': '#4d5560',
+            '700': '#2e3744',
+            '800': '#19202b',
+            '900': '#141a23',
+          },
+        },
+      };
+
+      const result = createCssVars(theme);
+      expect(result).toMatchInlineSnapshot(`
+        {
+          "--dj-colors-gray-100": "#f1f1f2",
+          "--dj-colors-gray-200": "#e6e7e9",
+          "--dj-colors-gray-300": "#d2d4d7",
+          "--dj-colors-gray-400": "#a9adb2",
+          "--dj-colors-gray-50": "#f9fafa",
+          "--dj-colors-gray-500": "#797f88",
+          "--dj-colors-gray-600": "#4d5560",
+          "--dj-colors-gray-700": "#2e3744",
+          "--dj-colors-gray-800": "#19202b",
+          "--dj-colors-gray-900": "#141a23",
+        }
+      `);
+    });
+
+    it('should convert semantic tokens to cssVars', () => {
+      const theme = {
+        sematicTokens: {
+          text: {
+            primary: {
+              _light: 'black',
+              _dark: 'white',
+            },
+          },
+        },
+      };
+
+      const result = createCssVars(theme);
+
+      expect(result).toMatchInlineSnapshot(`
+        {
+          "--dj-colors-text-primary": "black",
+          "[data-theme=dark]": {
+            "--dj-colors-text-primary": "white",
+          },
+        }
+      `);
     });
   });
 });

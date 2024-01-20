@@ -1,22 +1,37 @@
 import { isObject, join, splitBySeparator } from '../utils';
 import { JSONObject, JSONValue } from './base.types';
 
+interface CustomPropertiesOptions {
+  halt?: (value: any) => boolean;
+}
+
 export const toCustomProperties = (
-  obj: Record<string, any>,
+  obj: JSONObject = {},
   prefix?: string,
+  delimiter = '-',
+  options: CustomPropertiesOptions = {},
 ) => {
-  const next: Record<string, any> = {};
+  const { halt } = options;
+  const next: JSONObject = {};
 
-  Object.entries(obj).forEach(([key, value]) => {
-    const name = join(prefix, key);
+  const transformObjectEntry = (key: string, value: any) => {
+    const name = join(delimiter, prefix, key);
 
-    if (isObject(value)) {
-      const nestedObj = toCustomProperties(value, name);
-      Object.assign(next, nestedObj);
+    if (isObject(value) && halt?.(value)) {
+      Object.assign(next, { [name]: value });
     } else {
-      next[name] = value;
+      const nestedObj = isObject(value)
+        ? toCustomProperties(value, name, delimiter, options)
+        : { [name]: value };
+
+      Object.assign(next, nestedObj);
     }
-  });
+  };
+
+  Object.entries(obj).forEach(([key, value]) =>
+    transformObjectEntry(key, value),
+  );
+
   return next;
 };
 

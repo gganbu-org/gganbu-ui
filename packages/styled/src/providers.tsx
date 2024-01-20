@@ -6,9 +6,26 @@ import {
   Theme as EmotionTheme,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
-import { THEME, toCustomProperties, toVarDefinition } from './theme';
-import { CssVariablesProps, ThemeWithCssVars } from './providers.types';
-import { join } from './utils';
+import {
+  THEME,
+  TOKEN_ALIASES,
+  TOKEN_PSEUDO_CLASSES,
+  toCustomProperties,
+  tokenToCssVar,
+  pseudoKeys,
+  PseudoKeys,
+  PseudoAliases,
+} from './theme';
+import { isNonNull, isObject } from './utils';
+import {
+  CssVariablesProps,
+  DesignToken,
+  DesignTokenObject,
+  DesignTokens,
+  ThemeWithCssVars,
+} from './providers.types';
+import { Dict } from './base.types';
+import { JSONObject } from './theme/base.types';
 
 const jsx: typeof React.createElement = <P extends object>(
   type: React.FunctionComponent<P> | React.ComponentClass<P> | string,
@@ -24,7 +41,7 @@ export const Global = ({ styles }: any) =>
 function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
   return (
     <Global
-      styles={(djTheme: any) => {
+      styles={(djTheme: ThemeWithCssVars<EmotionTheme>) => {
         return {
           [selector]: djTheme.cssVars,
         };
@@ -33,15 +50,67 @@ function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
   );
 }
 
-export const customTheme = <T extends Record<string, any>>(theme: T) => {
-  const { colors } = theme;
+const createTokensToCssVars = (tokens: DesignTokens) => {
+  const target: JSONObject = {};
 
-  const flattenTokens = {
-    ...toCustomProperties(colors, toVarDefinition(join(THEME.KEY, 'colors'))),
-  };
+  const transformValue = (propertyKey: string, propertyValue: DesignToken) =>
+    Object.entries(propertyValue).reduce((acc, [alias, value]) => {
+      if (!isNonNull(value)) return acc;
 
+      const isDefaultAlias = alias === TOKEN_ALIASES.LIGHT;
+      const pseudoClass = isDefaultAlias
+        ? propertyKey
+        : ((TOKEN_PSEUDO_CLASSES as Dict)[alias] as PseudoAliases) ?? alias;
+
+      acc[pseudoClass] = isDefaultAlias ? value : { [propertyKey]: value };
+
+      return acc;
+    }, {} as JSONObject);
+
+  Object.entries(tokens).forEach(([token, value]) => {
+    const key = tokenToCssVar(token, THEME.KEY);
+
+    const normalizeValue = isObject(value)
+      ? value
+      : { [TOKEN_ALIASES.LIGHT]: value };
+
+    const source = transformValue(key, normalizeValue as DesignToken);
+
+    Object.assign(target, source);
+  });
+
+  return target;
+};
+
+export const createCssVars = <
+  T extends {
+    colors?: DesignTokenObject;
+    sematicTokens?: DesignTokenObject;
+  },
+>(
+  theme: T,
+) => {
+  const { colors, sematicTokens } = theme;
+  const cssVars: JSONObject = {};
+
+  const tokens = {
+    ...toCustomProperties(colors, 'colors', '.'),
+    ...toCustomProperties(sematicTokens, 'colors', '.', {
+      halt: (value) =>
+        Object.keys(value).every((key) =>
+          pseudoKeys.includes(key as PseudoKeys),
+        ),
+    }),
+  } as DesignTokens;
+
+  Object.assign(cssVars, createTokensToCssVars(tokens));
+
+  return cssVars;
+};
+
+export const customTheme = <T extends Dict>(theme: T) => {
   Object.assign(theme, {
-    cssVars: flattenTokens,
+    cssVars: createCssVars(theme),
   });
 
   return theme as ThemeWithCssVars<T>;
@@ -51,7 +120,7 @@ export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {
   const { theme, children } = props;
 
   return (
-    <EmotionThemeProvider theme={customTheme<EmotionTheme>(theme)}>
+    <EmotionThemeProvider theme={customTheme(theme as EmotionTheme)}>
       <CssVariables />
       {children}
     </EmotionThemeProvider>
