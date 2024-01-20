@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useMediaQuery } from '@danji/components/hooks';
 import { ColorThemeContext } from './colorThemeContext';
 import {
@@ -12,6 +12,7 @@ import {
   isDarkTheme,
   isSystemTheme,
   storageManager,
+  setDataset,
 } from './colorTheme.utils';
 import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
@@ -35,6 +36,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     (nextColorTheme: ColorTheme) => {
       setColorTheme(nextColorTheme);
       storageManager.set(nextColorTheme);
+      setDataset(nextColorTheme);
     },
     [getSystemTheme],
   );
@@ -43,14 +45,27 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     ? systemColorTheme
     : (colorTheme as ColorTheme);
 
+  // data attributes initalize
+  useEffect(() => {
+    const initColorTheme = colorTheme;
+
+    if (isSystemTheme(initColorTheme)) {
+      const systemTheme = getSystemTheme();
+      setDataset(systemTheme);
+    } else {
+      setDataset(initColorTheme);
+    }
+  }, []);
+
   useMediaQuery(
     PREFER_DARK_QUERY,
     {
       triggerFirstLoad: false,
     },
     (matches) => {
-      if (isSystemTheme(colorTheme))
-        setSystemColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
+      const nextColorTheme = matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT;
+      setSystemColorTheme(nextColorTheme);
+      setDataset(nextColorTheme);
     },
   );
 
