@@ -64,6 +64,8 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
       triggerFirstLoad: false,
     },
     (matches) => {
+      if (!isSystemTheme(colorTheme)) return;
+
       const nextColorTheme = matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT;
       setSystemColorTheme(nextColorTheme);
       setDataset(nextColorTheme);
