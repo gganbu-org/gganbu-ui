@@ -89,6 +89,7 @@ const createTokensToCssVars = (tokens: DesignTokens) => {
         acc[pseudoClass] = isDefaultAlias
           ? normalizedValue
           : {
+              ...((target[pseudoClass] || {}) as object),
               [propertyKey]: normalizedValue,
             };
 
