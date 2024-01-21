@@ -1,9 +1,10 @@
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
 import { useColorTheme } from '@danji/components';
-import { ColorTheme } from '@danji/components/ColorTheme/colorTheme.types';
+import { createColorByColorTheme } from '@danji/components/theme/theme.utils';
 import { ThemeWithCssVars } from '../providers.types';
 import { getValueByPath } from './base';
+import { callIfFunc } from '../utils';
 
 /**
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
@@ -15,7 +16,7 @@ interface ThemeProps {
 }
 
 export type ThemePropsWithColorTheme = ThemeProps & {
-  colorTheme: ColorTheme;
+  switcher: (light: string, black: string) => string;
 };
 
 const useTheme = <T extends Record<string, any>>() => {
@@ -29,9 +30,10 @@ const useTheme = <T extends Record<string, any>>() => {
 export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
   const theme = useTheme();
   const { colorTheme } = useColorTheme();
+  const switcher = createColorByColorTheme(colorTheme);
   const styles = {};
   const themeProps = {
-    colorTheme,
+    switcher,
     ...props,
   } as ThemePropsWithColorTheme;
 
@@ -39,8 +41,8 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
 
   if (themeStyleConfig) {
     Object.assign(styles, {
-      ...themeStyleConfig.sizes[themeProps.size],
-      ...themeStyleConfig.variants[themeProps.variant](themeProps),
+      ...callIfFunc(themeStyleConfig.sizes[themeProps.size], themeProps),
+      ...callIfFunc(themeStyleConfig.variants[themeProps.variant], themeProps),
     });
   }
 

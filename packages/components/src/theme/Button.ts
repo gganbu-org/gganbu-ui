@@ -1,24 +1,19 @@
 import { ThemePropsWithColorTheme } from '@danji/styled';
-import { createColorByColorTheme } from './theme.utils';
 import { getColorByType } from '../Button/button.utils';
 import { Type } from '../Button/button.types';
 
-const variantSolid = (themeProps: ThemePropsWithColorTheme) => {
-  const { type, colorTheme } = themeProps;
-  const c = getColorByType(type as Type);
-  const getColor = createColorByColorTheme(colorTheme);
-
-  return {
-    bg: getColor(`${c}.500`, `${c}.300`),
-    color: 'text.primary',
-    '&:hover': {
-      backgroundColor: getColor(`${c}.600`, `${c}.400`),
-    },
-  };
-};
-
 export const variants = {
-  solid: variantSolid,
+  solid: ({ type, switcher: s }: ThemePropsWithColorTheme) => {
+    const c = getColorByType(type as Type);
+
+    return {
+      bg: s(`${c}.500`, `${c}.300`),
+      color: 'text.primary',
+      '&:hover': {
+        backgroundColor: s(`${c}.600`, `${c}.400`),
+      },
+    };
+  },
 };
 
 export const sizes = {
