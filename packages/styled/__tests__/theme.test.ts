@@ -230,11 +230,23 @@ describe('getValueByPath', () => {
 
     it('should convert semantic tokens to cssVars', () => {
       const theme = {
+        colors: {
+          gray: {
+            '50': '#f9fafa',
+          },
+          blue: '#007bff',
+        },
         sematicTokens: {
           text: {
             primary: {
               _light: 'black',
               _dark: 'white',
+            },
+          },
+          background: {
+            primary: {
+              _light: 'gray.50',
+              _dark: 'blue',
             },
           },
         },
@@ -244,10 +256,14 @@ describe('getValueByPath', () => {
 
       expect(result).toMatchInlineSnapshot(`
         {
-          "--dj-colors-text-primary": "black",
-          "[data-theme=dark]": {
+          "&[data-theme=dark]": {
+            "--dj-colors-background-primary": "var(--dj-colors-blue)",
             "--dj-colors-text-primary": "white",
           },
+          "--dj-colors-background-primary": "var(--dj-colors-gray-50)",
+          "--dj-colors-blue": "#007bff",
+          "--dj-colors-gray-50": "#f9fafa",
+          "--dj-colors-text-primary": "black",
         }
       `);
     });

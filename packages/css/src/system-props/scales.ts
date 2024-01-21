@@ -1,5 +1,6 @@
 import { THEME, isObject, toVarFunc, tokenToCssVar } from '@danji/styled';
 import { ThemeWithCssVars } from '@danji/styled/providers.types';
+import { Dict } from '@danji/styled/base.types';
 import { Transform } from './types';
 
 export const tokens = ['colors', 'sizes'] as const;
@@ -11,10 +12,8 @@ export interface ScaleOpts {
   transform?: Transform;
 }
 
-const shouldTransformToVarFunc = (
-  theme: ThemeWithCssVars<Record<string, any>>,
-  cssVar: string,
-) => isObject(theme.cssVars) && cssVar in theme.cssVars;
+export const shouldTransformToVarFunc = (obj: Dict, cssVar: string) =>
+  isObject(obj) && cssVar in obj;
 
 const tokenToCssVarFunc =
   (scale: ThemeScale, value: string) =>
@@ -22,7 +21,7 @@ const tokenToCssVarFunc =
     const prefix = `${THEME.KEY}-${scale}`;
     const cssVar = tokenToCssVar(value, prefix);
 
-    const transformedValue = shouldTransformToVarFunc(theme, cssVar)
+    const transformedValue = shouldTransformToVarFunc(theme.cssVars, cssVar)
       ? toVarFunc(cssVar)
       : value;
 

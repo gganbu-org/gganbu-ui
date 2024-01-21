@@ -10,7 +10,7 @@ const variantSolid = (themeProps: ThemePropsWithColorTheme) => {
 
   return {
     bg: getColor(`${c}.500`, `${c}.300`),
-    color: `white`,
+    color: 'text.primary',
     '&:hover': {
       backgroundColor: getColor(`${c}.600`, `${c}.400`),
     },
