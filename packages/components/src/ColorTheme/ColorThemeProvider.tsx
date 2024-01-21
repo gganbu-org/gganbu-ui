@@ -22,7 +22,7 @@ interface ColorThemeProviderProps {
 }
 
 function ColorThemeProvider(props: ColorThemeProviderProps) {
-  const { value, children } = props;
+  const { value: externalTheme, children } = props;
 
   const [colorTheme, setColorTheme] = useState<ColorThemeWithSystem>(() =>
     getColorTheme(storageManager, DEFAULT_COLOR_MODE),
@@ -45,9 +45,10 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     ? systemColorTheme
     : (colorTheme as ColorTheme);
 
-  // data attributes initalize
+  // data attributes initialize
   useEffect(() => {
     const initColorTheme = colorTheme;
+    if (externalTheme) return;
 
     if (isSystemTheme(initColorTheme)) {
       const systemTheme = getSystemTheme();
@@ -72,9 +73,9 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
   // 최종적으로 제공하는 인터페이스
   const context = useMemo(
     () =>
-      value
+      externalTheme
         ? {
-            colorTheme: value,
+            colorTheme: externalTheme,
             toggleColorTheme: () => {},
             setColorTheme: () => {},
           }
@@ -89,7 +90,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
             },
             setColorTheme: handleSetColorTheme,
           },
-    [theme, value],
+    [theme, externalTheme],
   );
 
   return (

@@ -24,7 +24,7 @@ function CustomDjProvider(props: PropsWithChildren) {
     document.body.style.backgroundColor = backgroundColor || 'inherit';
   }, [storybookDarkMode]);
 
-  // 외부에서 테마 상태를 관리하는 경우에는 외부에서 date-set을 관리
+  // 외부에서 테마 상태를 관리하는 경우에는 외부에서 data attributes를 관리
   useEffect(() => {
     setDataset(theme);
   }, [theme]);
