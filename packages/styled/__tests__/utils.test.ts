@@ -1,4 +1,4 @@
-import { isArray, isObject, splitBySeparator } from '@danji/styled/utils';
+import { isArray, isObject, splitBySeparator } from '@danji/styled';
 
 describe('isArray', () => {
   it('should return true if the value is an array', () => {

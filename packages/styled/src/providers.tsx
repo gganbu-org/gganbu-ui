@@ -6,6 +6,7 @@ import {
   Theme as EmotionTheme,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
+import { shouldTransformToVarFunc } from '@danji/css';
 import {
   THEME,
   TOKEN_ALIASES,
@@ -15,8 +16,9 @@ import {
   pseudoKeys,
   PseudoKeys,
   PseudoAliases,
+  toVarFunc,
 } from './theme';
-import { isNonNull, isObject } from './utils';
+import { isNonNull, isObject, splitBySeparator } from './utils';
 import {
   CssVariablesProps,
   DesignToken,
@@ -53,28 +55,48 @@ function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
 const createTokensToCssVars = (tokens: DesignTokens) => {
   const target: JSONObject = {};
 
-  const transformValue = (propertyKey: string, propertyValue: DesignToken) =>
-    Object.entries(propertyValue).reduce((acc, [alias, value]) => {
-      if (!isNonNull(value)) return acc;
-
-      const isDefaultAlias = alias === TOKEN_ALIASES.LIGHT;
-      const pseudoClass = isDefaultAlias
-        ? propertyKey
-        : ((TOKEN_PSEUDO_CLASSES as Dict)[alias] as PseudoAliases) ?? alias;
-
-      acc[pseudoClass] = isDefaultAlias ? value : { [propertyKey]: value };
-
-      return acc;
-    }, {} as JSONObject);
-
-  Object.entries(tokens).forEach(([token, value]) => {
+  Object.entries(tokens).forEach(([token, rawValue]) => {
     const key = tokenToCssVar(token, THEME.KEY);
 
-    const normalizeValue = isObject(value)
-      ? value
-      : { [TOKEN_ALIASES.LIGHT]: value };
+    const designToken = isObject(rawValue)
+      ? rawValue
+      : { [TOKEN_ALIASES.LIGHT]: rawValue };
 
-    const source = transformValue(key, normalizeValue as DesignToken);
+    const getNormalizedValue = (value: string) => {
+      const separator = '.';
+      const scale = splitBySeparator(token, separator)[0];
+      const valueWithScale = `${scale}${separator}${value}`;
+
+      if (shouldTransformToVarFunc(tokens, valueWithScale)) {
+        const cssVar = tokenToCssVar(valueWithScale, THEME.KEY);
+        return toVarFunc(cssVar);
+      }
+
+      return value;
+    };
+
+    const transformValue = (propertyKey: string, propertyValue: DesignToken) =>
+      Object.entries(propertyValue).reduce((acc, [alias, value]) => {
+        if (!isNonNull(value)) return acc;
+
+        const isDefaultAlias = alias === TOKEN_ALIASES.LIGHT;
+        const pseudoClass = isDefaultAlias
+          ? propertyKey
+          : ((TOKEN_PSEUDO_CLASSES as Dict)[alias] as PseudoAliases) ?? alias;
+
+        const normalizedValue = getNormalizedValue(value);
+
+        acc[pseudoClass] = isDefaultAlias
+          ? normalizedValue
+          : {
+              ...((target[pseudoClass] || {}) as object),
+              [propertyKey]: normalizedValue,
+            };
+
+        return acc;
+      }, {} as JSONObject);
+
+    const source = transformValue(key, designToken);
 
     Object.assign(target, source);
   });

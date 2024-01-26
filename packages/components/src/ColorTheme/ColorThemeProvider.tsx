@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useMediaQuery } from '@danji/components/hooks';
 import { ColorThemeContext } from './colorThemeContext';
 import {
@@ -12,6 +12,7 @@ import {
   isDarkTheme,
   isSystemTheme,
   storageManager,
+  setDataset,
 } from './colorTheme.utils';
 import { ColorTheme, ColorThemeWithSystem } from './colorTheme.types';
 
@@ -21,7 +22,7 @@ interface ColorThemeProviderProps {
 }
 
 function ColorThemeProvider(props: ColorThemeProviderProps) {
-  const { value, children } = props;
+  const { value: externalTheme, children } = props;
 
   const [colorTheme, setColorTheme] = useState<ColorThemeWithSystem>(() =>
     getColorTheme(storageManager, DEFAULT_COLOR_MODE),
@@ -35,6 +36,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     (nextColorTheme: ColorTheme) => {
       setColorTheme(nextColorTheme);
       storageManager.set(nextColorTheme);
+      setDataset(nextColorTheme);
     },
     [getSystemTheme],
   );
@@ -43,23 +45,39 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
     ? systemColorTheme
     : (colorTheme as ColorTheme);
 
+  // data attributes initialize
+  useEffect(() => {
+    const initColorTheme = colorTheme;
+    if (externalTheme) return;
+
+    if (isSystemTheme(initColorTheme)) {
+      const systemTheme = getSystemTheme();
+      setDataset(systemTheme);
+    } else {
+      setDataset(initColorTheme);
+    }
+  }, []);
+
   useMediaQuery(
     PREFER_DARK_QUERY,
     {
       triggerFirstLoad: false,
     },
     (matches) => {
-      if (isSystemTheme(colorTheme))
-        setSystemColorTheme(matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT);
+      if (!isSystemTheme(colorTheme)) return;
+
+      const nextColorTheme = matches ? COLOR_THEME.DARK : COLOR_THEME.LIGHT;
+      setSystemColorTheme(nextColorTheme);
+      setDataset(nextColorTheme);
     },
   );
 
   // 최종적으로 제공하는 인터페이스
   const context = useMemo(
     () =>
-      value
+      externalTheme
         ? {
-            colorTheme: value,
+            colorTheme: externalTheme,
             toggleColorTheme: () => {},
             setColorTheme: () => {},
           }
@@ -74,7 +92,7 @@ function ColorThemeProvider(props: ColorThemeProviderProps) {
             },
             setColorTheme: handleSetColorTheme,
           },
-    [theme, value],
+    [theme, externalTheme],
   );
 
   return (

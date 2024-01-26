@@ -4,12 +4,13 @@ import { useDarkMode } from 'storybook-dark-mode';
 import { themes } from '@storybook/theming';
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 
-import { ColorThemeProvider } from '@danji/components';
+import { ColorThemeProvider, setDataset } from '@danji/components';
 import { CssReset, DJ_DEFAULT_THEME, ThemeProvider } from '@danji/styled';
 
 function CustomDjProvider(props: PropsWithChildren) {
   const { children } = props;
   const storybookDarkMode = useDarkMode();
+  const theme = storybookDarkMode ? 'dark' : 'light';
 
   /**
    * storybook-dark-mode issue
@@ -23,9 +24,14 @@ function CustomDjProvider(props: PropsWithChildren) {
     document.body.style.backgroundColor = backgroundColor || 'inherit';
   }, [storybookDarkMode]);
 
+  // 외부에서 테마 상태를 관리하는 경우에는 외부에서 data attributes를 관리
+  useEffect(() => {
+    setDataset(theme);
+  }, [theme]);
+
   return (
     <ThemeProvider theme={DJ_DEFAULT_THEME}>
-      <ColorThemeProvider value={storybookDarkMode ? 'dark' : 'light'}>
+      <ColorThemeProvider value={theme}>
         <CssReset />
         {children}
       </ColorThemeProvider>
