@@ -1,4 +1,4 @@
-import { isObject, join, splitBySeparator } from '../utils';
+import { isNonNull, isObject, join, splitBySeparator } from '../utils';
 import { JSONObject, JSONValue } from './base.types';
 
 interface CustomPropertiesOptions {
@@ -48,10 +48,11 @@ export const getValueByPath = (
   for (let i = 0; i < properties.length; i += 1) {
     const property = properties[i];
 
-    if (property == null) return fallback;
+    if (!isNonNull(property) || !isObject(current) || !(property in current))
+      return fallback;
 
-    current = current ? (current as any)[property] : undefined;
+    current = current[property];
   }
 
-  return typeof current === 'undefined' ? fallback : current;
+  return current;
 };
