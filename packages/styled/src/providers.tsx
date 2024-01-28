@@ -16,7 +16,7 @@ import {
   pseudoKeys,
   PseudoKeys,
   PseudoAliases,
-  toVarFunc,
+  tokenToVarFunc,
 } from './theme';
 import { isNonNull, isObject, splitBySeparator } from './utils';
 import {
@@ -67,12 +67,11 @@ const createTokensToCssVars = (tokens: DesignTokens) => {
       const scale = splitBySeparator(token, separator)[0];
       const valueWithScale = `${scale}${separator}${value}`;
 
-      if (shouldTransformToVarFunc(tokens, valueWithScale)) {
-        const cssVar = tokenToCssVar(valueWithScale, THEME.KEY);
-        return toVarFunc(cssVar);
-      }
+      const transformedValue = shouldTransformToVarFunc(tokens, valueWithScale)
+        ? tokenToVarFunc(valueWithScale, THEME.KEY)
+        : value;
 
-      return value;
+      return transformedValue;
     };
 
     const transformValue = (propertyKey: string, propertyValue: DesignToken) =>
