@@ -17,12 +17,14 @@ export const toCustomProperties = (
   const transformObjectEntry = (key: string, value: any) => {
     const name = join(delimiter, prefix, key);
 
+    const entry = { [name]: value };
+
     if (isObject(value) && halt?.(value)) {
-      Object.assign(next, { [name]: value });
+      Object.assign(next, entry);
     } else {
       const nestedObj = isObject(value)
         ? toCustomProperties(value, name, delimiter, options)
-        : { [name]: value };
+        : entry;
 
       Object.assign(next, nestedObj);
     }
