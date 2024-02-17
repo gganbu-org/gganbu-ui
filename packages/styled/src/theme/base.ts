@@ -1,4 +1,4 @@
-import { isObject, join, splitBySeparator } from '../utils';
+import { isNonNull, isObject, join, splitBySeparator } from '../utils';
 import { JSONObject, JSONValue } from './base.types';
 
 interface CustomPropertiesOptions {
@@ -17,12 +17,14 @@ export const toCustomProperties = (
   const transformObjectEntry = (key: string, value: any) => {
     const name = join(delimiter, prefix, key);
 
+    const entry = { [name]: value };
+
     if (isObject(value) && halt?.(value)) {
-      Object.assign(next, { [name]: value });
+      Object.assign(next, entry);
     } else {
       const nestedObj = isObject(value)
         ? toCustomProperties(value, name, delimiter, options)
-        : { [name]: value };
+        : entry;
 
       Object.assign(next, nestedObj);
     }
@@ -48,10 +50,11 @@ export const getValueByPath = (
   for (let i = 0; i < properties.length; i += 1) {
     const property = properties[i];
 
-    if (property == null) return fallback;
+    if (!isNonNull(property) || !isObject(current) || !(property in current))
+      return fallback;
 
-    current = current ? (current as any)[property] : undefined;
+    current = current[property];
   }
 
-  return typeof current === 'undefined' ? fallback : current;
+  return current;
 };
