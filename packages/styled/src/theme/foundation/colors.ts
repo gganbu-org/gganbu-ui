@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   whiteAlpha: {
     '50': 'rgba(255, 255, 255, 0.04)',
     '100': 'rgba(255, 255, 255, 0.06)',
@@ -145,11 +145,4 @@ export const colors = {
   },
 };
 
-export const sematicTokens = {
-  text: {
-    primary: {
-      _light: 'whiteAlpha.800',
-      _dark: 'whiteAlpha.900',
-    },
-  },
-};
+export default colors;

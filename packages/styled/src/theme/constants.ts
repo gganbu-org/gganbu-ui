@@ -1,8 +1,9 @@
 import { Theme } from '@danji/components';
-import { colors, sematicTokens } from '../variables';
+import foundation from './foundation';
+import sematicTokens from './semanticTokens';
 
 export const DJ_DEFAULT_THEME = {
-  colors,
+  ...foundation,
   sematicTokens,
   components: Theme,
 } as const;
