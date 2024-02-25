@@ -1,7 +1,8 @@
-import { DJ_DEFAULT_THEME, colors, customTheme } from '@danji/styled';
+import { DJ_DEFAULT_THEME, customTheme } from '@danji/styled';
 import { css } from '@danji/css';
 
 const theme = customTheme(DJ_DEFAULT_THEME);
+const { colors } = DJ_DEFAULT_THEME;
 
 describe('css', () => {
   it('should be return same value if it is not in the theme', () => {
