@@ -41,6 +41,7 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
 
   if (themeStyleConfig) {
     Object.assign(styles, {
+      ...callIfFunc(themeStyleConfig.baseStyles, themeProps),
       ...callIfFunc(themeStyleConfig.sizes[themeProps.size], themeProps),
       ...callIfFunc(themeStyleConfig.variants[themeProps.variant], themeProps),
     });

@@ -2,7 +2,7 @@ import { ThemePropsWithColorTheme } from '@danji/styled';
 import { getColorByType } from '../Button/button.utils';
 import { Type } from '../Button/button.types';
 
-export const variants = {
+const variants = {
   solid: ({ type, switcher: s }: ThemePropsWithColorTheme) => {
     const c = getColorByType(type as Type);
 
@@ -16,7 +16,7 @@ export const variants = {
   },
 };
 
-export const sizes = {
+const sizes = {
   sm: {
     minW: 80,
     h: 40,
@@ -37,7 +37,13 @@ export const sizes = {
   },
 };
 
+const baseStyles = {
+  borderRadius: '0.325rem',
+  cursor: 'pointer',
+};
+
 export const buttonTheme = {
   variants,
   sizes,
+  baseStyles,
 };

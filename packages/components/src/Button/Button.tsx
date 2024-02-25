@@ -5,20 +5,10 @@ import { ButtonOptions } from './button.types';
 const Button = forwardRef<HTMLButtonElement, ButtonOptions>((props, ref) => {
   const { children, type = 'primary', variant = 'solid', size = 'md' } = props;
 
-  const baseStyles = {
-    borderRadius: '0.325rem',
-    cursor: 'pointer',
-  };
-
   const buttonThemeStyles = useThemeStyles('Button', { type, variant, size });
 
-  const styles = {
-    ...baseStyles,
-    ...buttonThemeStyles,
-  };
-
   return (
-    <dj.button styles={styles} ref={ref}>
+    <dj.button styles={buttonThemeStyles} ref={ref}>
       {children}
     </dj.button>
   );
