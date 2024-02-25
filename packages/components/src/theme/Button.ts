@@ -7,10 +7,13 @@ const variants = {
     const c = getColorByType(type as Type);
 
     return {
-      bg: s(`${c}.500`, `${c}.300`),
       color: 'text.primary',
+      bg: s(`${c}.500`, `${c}.300`),
       '&:hover': {
-        backgroundColor: s(`${c}.600`, `${c}.400`),
+        bg: s(`${c}.600`, `${c}.400`),
+      },
+      '&:active': {
+        bg: s(`${c}.700`, `${c}.500`),
       },
     };
   },
@@ -40,6 +43,10 @@ const sizes = {
 const baseStyles = {
   borderRadius: '0.325rem',
   cursor: 'pointer',
+  '&:disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
 };
 
 export const buttonTheme = {
