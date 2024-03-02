@@ -10,9 +10,9 @@ import { callIfFunc } from '../utils';
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
  */
 interface ThemeProps {
-  variant: string;
+  color: string;
   size: string;
-  type: string;
+  variant: string;
 }
 
 export type ThemePropsWithColorTheme = ThemeProps & {

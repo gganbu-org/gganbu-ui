@@ -1,21 +1,8 @@
 import { ThemePropsWithColorTheme } from '@danji/styled';
-import { getColorByType } from '../Button/button.utils';
-import { Type } from '../Button/button.types';
 
-const getColorByType = (type: Type) => {
-  let color;
-
-  switch (type) {
-    case 'secondary':
-      color = 'purple';
-      break;
-    case 'primary':
-    default:
-      color = 'blue';
-      break;
-  }
-
-  return color;
+const colors = {
+  primary: 'blue',
+  secondary: 'purple',
 };
 
 const sizes = {
@@ -46,8 +33,8 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ type, switcher: s }: ThemePropsWithColorTheme) => {
-    const c = getColorByType(type as Type);
+  solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
+    const c = colors[color as Color] || colors.primary;
 
     return {
       color: 'text.primary',
@@ -76,3 +63,7 @@ export const buttonTheme = {
   sizes,
   baseStyles,
 };
+
+export type Color = keyof typeof colors;
+export type Size = keyof typeof sizes;
+export type Variant = keyof typeof variants;

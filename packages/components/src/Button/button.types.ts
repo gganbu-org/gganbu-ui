@@ -1,25 +1,25 @@
-export type Size = 'sm' | 'md' | 'lg';
-export type Type = 'primary' | 'secondary';
-export type Variant = 'solid';
-export type SizeDetail = 'minWidth' | 'height' | 'width' | 'padding';
+import { Color, Size, Variant } from '../theme/Button';
 
-export interface ButtonOptions {
+export interface ButtonProps extends ButtonThemeProps {
   /**
    * The child Node
    */
   children?: React.ReactNode;
+}
+
+interface ButtonThemeProps {
+  /**
+   * The color of the Button
+   * @default primary
+   */
+  color?: Color;
   /**
    * The size of the Button
    * @default md
    */
   size?: Size;
   /**
-   * The size of the Button
-   * @default primary
-   */
-  type?: Type;
-  /**
-   * The size of the Button
+   * The variant of the Button
    * @default solid
    */
   variant?: Variant;
