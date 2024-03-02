@@ -2,6 +2,22 @@ import { ThemePropsWithColorTheme } from '@danji/styled';
 import { getColorByType } from '../Button/button.utils';
 import { Type } from '../Button/button.types';
 
+const getColorByType = (type: Type) => {
+  let color;
+
+  switch (type) {
+    case 'secondary':
+      color = 'purple';
+      break;
+    case 'primary':
+    default:
+      color = 'blue';
+      break;
+  }
+
+  return color;
+};
+
 const sizes = {
   sm: {
     minW: 64,
