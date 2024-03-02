@@ -1,16 +1,16 @@
 import { forwardRef } from 'react';
-import { dj, useThemeStyles } from '@danji/styled';
+import useButton from './useButton';
 import { ButtonProps } from './button.types';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { children, color = 'primary', variant = 'solid', size = 'md' } = props;
-
-  const buttonThemeStyles = useThemeStyles('Button', { color, variant, size });
+  const { Component, styles, children, rest } = useButton({
+    ...props,
+  });
 
   return (
-    <dj.button styles={buttonThemeStyles} ref={ref}>
+    <Component styles={styles} ref={ref} {...rest}>
       {children}
-    </dj.button>
+    </Component>
   );
 });
 
