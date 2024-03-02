@@ -3,9 +3,16 @@ import { ThemeWithCssVars } from '@danji/styled/providers.types';
 import { Dict } from '@danji/styled/base.types';
 import { Transform } from './types';
 
-export const tokens = ['colors', 'sizes'] as const;
-export const scaleTokenMap = new Map(tokens.map((t) => [t, t]));
-export type ThemeScale = (typeof tokens)[number];
+const scaleTokens = [
+  'colors',
+  'sizes',
+  'fontSize',
+  'lineHeight',
+  'fontWeight',
+] as const;
+
+const scaleTokenMap = new Map(scaleTokens.map((t) => [t, t]));
+type ThemeScale = (typeof scaleTokens)[number];
 
 export interface ScaleOpts {
   scale: ThemeScale;
@@ -42,18 +49,21 @@ const createTransform = ({ scale, transform }: ScaleOpts) => {
   return fn;
 };
 
-const toScale = ({ scale, transform }: ScaleOpts) => {
-  const fn = (prop: string) => {
-    return {
-      prop,
-      scale,
-      transform: createTransform({ scale, transform }),
-    };
+const scaleFunc = (prop: string, scale: ThemeScale, transform?: Transform) => {
+  return {
+    prop,
+    scale,
+    transform: createTransform({ scale, transform }),
   };
+};
+
+const toScale = ({ scale, transform }: ScaleOpts) => {
+  const fn = (prop: string) => scaleFunc(prop, scale, transform);
   return fn;
 };
 
 export const scales = {
+  base: scaleFunc,
   colors: toScale({ scale: scaleTokenMap.get('colors') as ThemeScale }),
   sizes: toScale({ scale: scaleTokenMap.get('sizes') as ThemeScale }),
 };

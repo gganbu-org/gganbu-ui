@@ -2,6 +2,33 @@ import { ThemePropsWithColorTheme } from '@danji/styled';
 import { getColorByType } from '../Button/button.utils';
 import { Type } from '../Button/button.types';
 
+const sizes = {
+  sm: {
+    minW: 64,
+    'padding-left': '0.75rem',
+    'padding-right': '0.75rem',
+    h: 32,
+    fontSize: 'sm',
+    lineHeight: 'sm',
+  },
+  md: {
+    minW: 80,
+    'padding-left': '1rem',
+    'padding-right': '1rem',
+    h: 40,
+    fontSize: 'md',
+    lineHeight: 'sm',
+  },
+  lg: {
+    minW: 96,
+    'padding-left': '1.5rem',
+    'padding-right': '1.5rem',
+    h: 48,
+    fontSize: 'lg',
+    lineHeight: 'lg',
+  },
+};
+
 const variants = {
   solid: ({ type, switcher: s }: ThemePropsWithColorTheme) => {
     const c = getColorByType(type as Type);
@@ -16,27 +43,6 @@ const variants = {
         bg: s(`${c}.700`, `${c}.500`),
       },
     };
-  },
-};
-
-const sizes = {
-  sm: {
-    minW: 80,
-    h: 40,
-    w: 80,
-    padding: 5,
-  },
-  md: {
-    minW: 150,
-    h: 45,
-    w: 150,
-    padding: 7,
-  },
-  lg: {
-    minW: 200,
-    h: 55,
-    w: 200,
-    padding: 10,
   },
 };
 
