@@ -13,6 +13,7 @@ const sizes = {
     h: 32,
     fontSize: 'sm',
     lineHeight: 'sm',
+    gap: '0.5rem',
   },
   md: {
     minW: 80,
@@ -21,6 +22,7 @@ const sizes = {
     h: 40,
     fontSize: 'md',
     lineHeight: 'sm',
+    gap: '0.5rem',
   },
   lg: {
     minW: 96,
@@ -29,6 +31,7 @@ const sizes = {
     h: 48,
     fontSize: 'lg',
     lineHeight: 'lg',
+    gap: '0.75rem',
   },
 };
 
@@ -50,6 +53,9 @@ const variants = {
 };
 
 const baseStyles = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   borderRadius: '0.325rem',
   cursor: 'pointer',
   '&:disabled': {

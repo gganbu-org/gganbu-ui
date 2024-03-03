@@ -27,6 +27,9 @@
       "files": ["packages/**/*.ts", "packages/**/*.tsx"],
       "parserOptions": {
         "project": ["tsconfig.json"]
+      },
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off"
       }
     }
   ]

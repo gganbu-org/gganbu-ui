@@ -5,6 +5,14 @@ export interface ButtonProps extends ButtonThemeProps {
    * The child Node
    */
   children?: React.ReactNode;
+  /**
+   * The button start icon.
+   */
+  startIcon?: React.ReactNode;
+  /**
+   * The button end icon.
+   */
+  endIcon?: React.ReactNode;
 }
 
 interface ButtonThemeProps {
