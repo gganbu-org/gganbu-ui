@@ -36,6 +36,10 @@ const meta = {
       },
     },
   },
+  args: {
+    isLoading: false,
+    isDisabled: false,
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
