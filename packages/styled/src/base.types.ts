@@ -1,4 +1,6 @@
-import { CSSObject } from '@danji/css';
+import type { CSSObject as EmotionCssObject } from '@emotion/react';
+
+export type CSSObject = EmotionCssObject;
 
 export type Dict<T = any> = Record<string, T>;
 
