@@ -236,7 +236,7 @@ describe('getValueByPath', () => {
           },
           blue: '#007bff',
         },
-        sematicTokens: {
+        semanticTokens: {
           text: {
             primary: {
               _light: 'black',

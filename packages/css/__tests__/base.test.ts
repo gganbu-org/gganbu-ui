@@ -1,4 +1,5 @@
-import { DJ_DEFAULT_THEME, customTheme } from '@danji/styled';
+import { DJ_DEFAULT_THEME } from '@danji/components';
+import { customTheme } from '@danji/styled';
 import { css } from '@danji/css';
 
 const theme = customTheme(DJ_DEFAULT_THEME);

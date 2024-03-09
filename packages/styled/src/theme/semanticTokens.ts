@@ -1,4 +1,4 @@
-const sematicTokens = {
+const semanticTokens = {
   text: {
     primary: {
       _light: 'whiteAlpha.800',
@@ -7,4 +7,4 @@ const sematicTokens = {
   },
 };
 
-export default sematicTokens;
+export default semanticTokens;

@@ -1,7 +1,2 @@
-import { buttonTheme } from './Button';
-
-const Components = {
-  Button: buttonTheme,
-};
-
-export default Components;
+export { DJ_DEFAULT_THEME } from './theme.constants';
+export { createColorByColorTheme } from './theme.utils';
