@@ -28,21 +28,31 @@ const useButton = (props: ButtonProps) => {
     variant = 'solid',
     startIcon: startIconProp,
     endIcon: endIconProp,
+    isDisabled = false,
+    isLoading = false,
     ...rest
   } = props;
 
   const Component = dj.button;
   const styles = useThemeStyles('Button', { color, variant, size });
+
   const startIcon = createCloneIcon(startIconProp);
   const endIcon = createCloneIcon(endIconProp);
 
+  const disabled = isDisabled || isLoading;
+
+  const getButtonProps = () => ({
+    styles,
+    disabled,
+    rest,
+  });
+
   return {
     Component,
-    styles,
+    getButtonProps,
     startIcon,
     endIcon,
     children,
-    rest,
   };
 };
 

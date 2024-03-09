@@ -38,12 +38,16 @@ const sizes = {
 const variants = {
   solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
     const c = colors[color as Color] || colors.primary;
+    const defaultBg = s(`${c}.500`, `${c}.300`);
 
     return {
       color: 'text.primary',
-      bg: s(`${c}.500`, `${c}.300`),
+      bg: defaultBg,
       '&:hover': {
         bg: s(`${c}.600`, `${c}.400`),
+        '&:disabled': {
+          bg: defaultBg,
+        },
       },
       '&:active': {
         bg: s(`${c}.700`, `${c}.500`),

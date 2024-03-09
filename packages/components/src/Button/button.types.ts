@@ -13,6 +13,16 @@ export interface ButtonProps extends ButtonThemeProps {
    * The button end icon.
    */
   endIcon?: React.ReactNode;
+  /**
+   * Whether the button show a loading spinner.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
+   * Whether the button disabled.
+   * @default false
+   */
+  isDisabled?: boolean;
 }
 
 interface ButtonThemeProps {

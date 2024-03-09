@@ -3,12 +3,11 @@ import useButton from './useButton';
 import { ButtonProps } from './button.types';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { Component, styles, startIcon, endIcon, children, rest } = useButton({
-    ...props,
-  });
+  const { Component, getButtonProps, startIcon, endIcon, children } =
+    useButton(props);
 
   return (
-    <Component styles={styles} ref={ref} {...rest}>
+    <Component ref={ref} {...getButtonProps()}>
       {startIcon}
       {children}
       {endIcon}
