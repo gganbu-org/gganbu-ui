@@ -9,7 +9,7 @@ export interface SpinnerProps extends SpinnerThemeProps {
 
 interface SpinnerThemeProps {
   /**
-   * The size of the Spinner
+   * The size of the spinner
    * @default md
    */
   size?: Size;
