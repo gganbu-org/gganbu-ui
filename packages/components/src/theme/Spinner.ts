@@ -1,4 +1,4 @@
-import { keyframes } from '@danji/styled';
+import { ThemePropsWithColorTheme, keyframes } from '@danji/styled';
 
 const spin = keyframes({
   '0%': {
@@ -8,6 +8,14 @@ const spin = keyframes({
     transform: 'rotate(360deg)',
   },
 });
+
+const colors = {
+  primary: 'blue',
+  secondary: 'purple',
+  success: 'green',
+  warning: 'yellow',
+  danger: 'red',
+};
 
 const sizes = {
   sm: {
@@ -27,6 +35,16 @@ const sizes = {
   },
 };
 
+const variants = {
+  solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
+    const c = colors[color as Color];
+
+    return {
+      color: s(`${c}.500`, `${c}.300`),
+    };
+  },
+};
+
 const baseStyles = {
   display: 'inline-block',
   borderRadius: '50%',
@@ -37,8 +55,10 @@ const baseStyles = {
 };
 
 export const spinnerTheme = {
+  variants,
   sizes,
   baseStyles,
 };
 
+export type Color = keyof typeof colors;
 export type Size = keyof typeof sizes;

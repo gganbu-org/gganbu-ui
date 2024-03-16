@@ -11,9 +11,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const primary: Story = {
+export const Colors: Story = {
   args: {
     size: 'md',
+    color: 'primary',
   },
 };
 
@@ -35,9 +36,9 @@ export const Sizes: Story = {
           gap: '1.5rem',
         }}
       >
-        <Spinner size="sm" color="red.600" />
-        <Spinner size="md" color="blue.600" />
-        <Spinner size="lg" color="green.600" />
+        <Spinner size="sm" color="primary" />
+        <Spinner size="md" color="danger" />
+        <Spinner size="lg" color="success" />
       </div>
     );
   },
