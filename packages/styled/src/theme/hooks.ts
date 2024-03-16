@@ -10,9 +10,9 @@ import { callIfFunc } from '../utils';
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
  */
 interface ThemeProps {
-  color: string;
-  size: string;
-  variant: string;
+  color?: string;
+  size?: string;
+  variant?: string;
 }
 
 export type ThemePropsWithColorTheme = ThemeProps & {
@@ -40,11 +40,33 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
   const themeStyleConfig = getValueByPath(theme, `components.${themeKey}`);
 
   if (themeStyleConfig) {
-    Object.assign(styles, {
-      ...callIfFunc(themeStyleConfig.baseStyles, themeProps),
-      ...callIfFunc(themeStyleConfig.sizes[themeProps.size], themeProps),
-      ...callIfFunc(themeStyleConfig.variants[themeProps.variant], themeProps),
-    });
+    const baseThemeMap = getValueByPath(themeStyleConfig, 'baseStyles');
+    const sizeThemeMap = getValueByPath(themeStyleConfig, 'sizes');
+    const variantThemeMap = getValueByPath(themeStyleConfig, 'variants');
+
+    if (baseThemeMap) {
+      Object.assign(styles, {
+        ...callIfFunc(baseThemeMap, themeProps),
+      });
+    }
+
+    if (sizeThemeMap) {
+      Object.assign(styles, {
+        ...callIfFunc(
+          getValueByPath(sizeThemeMap, themeProps.size),
+          themeProps,
+        ),
+      });
+    }
+
+    if (variantThemeMap) {
+      Object.assign(styles, {
+        ...callIfFunc(
+          getValueByPath(variantThemeMap, themeProps.variant || 'solid'),
+          themeProps,
+        ),
+      });
+    }
   }
 
   return styles;
