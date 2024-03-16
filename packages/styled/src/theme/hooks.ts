@@ -62,7 +62,7 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     if (variantThemeMap) {
       Object.assign(styles, {
         ...callIfFunc(
-          getValueByPath(variantThemeMap, themeProps.variant),
+          getValueByPath(variantThemeMap, themeProps.variant || 'solid'),
           themeProps,
         ),
       });
