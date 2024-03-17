@@ -10,4 +10,6 @@ export const systemProps = _merge(
   typography,
 );
 
+export const stylePropList = Object.keys(systemProps);
+
 export const isStyleProp = (prop: string) => prop in systemProps;

@@ -31,7 +31,7 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
   const theme = useTheme();
   const { colorTheme } = useColorTheme();
   const switcher = createColorByColorTheme(colorTheme);
-  const styles = {};
+  const themeStyles = {};
   const themeProps = {
     switcher,
     ...props,
@@ -45,13 +45,13 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     const variantThemeMap = getValueByPath(themeStyleConfig, 'variants');
 
     if (baseThemeMap) {
-      Object.assign(styles, {
+      Object.assign(themeStyles, {
         ...callIfFunc(baseThemeMap, themeProps),
       });
     }
 
     if (sizeThemeMap) {
-      Object.assign(styles, {
+      Object.assign(themeStyles, {
         ...callIfFunc(
           getValueByPath(sizeThemeMap, themeProps.size),
           themeProps,
@@ -60,7 +60,7 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     }
 
     if (variantThemeMap) {
-      Object.assign(styles, {
+      Object.assign(themeStyles, {
         ...callIfFunc(
           getValueByPath(variantThemeMap, themeProps.variant || 'solid'),
           themeProps,
@@ -69,5 +69,5 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     }
   }
 
-  return styles;
+  return themeStyles;
 };

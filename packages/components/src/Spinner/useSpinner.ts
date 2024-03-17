@@ -22,7 +22,7 @@ const createLabel = (label?: string) =>
     ? createElement(
         dj.span,
         {
-          styles: srOnly,
+          _styles: srOnly,
         },
         label,
       )
@@ -37,7 +37,7 @@ const useSpinner = (props: SpinnerProps) => {
   const label = createLabel(labelProp);
 
   const getSpinnerProps = () => ({
-    styles,
+    _styles: styles,
     rest,
   });
 

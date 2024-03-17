@@ -9,7 +9,7 @@ const createContent = (isLoading: boolean, children: React.ReactNode) =>
     ? createElement(
         dj.span,
         {
-          styles: {
+          _styles: {
             opacity: 0,
           },
         },
@@ -21,7 +21,7 @@ const createSpinner = (size: Size, spinner?: React.ReactNode) =>
   createElement(
     dj.div,
     {
-      styles: {
+      _styles: {
         position: 'absolute',
         display: 'inline-flex',
         flexShrink: 0,
@@ -40,7 +40,7 @@ const createCloneIcon = (icon: React.ReactNode) =>
     ? createElement(
         dj.span,
         {
-          styles: {
+          _styles: {
             display: 'inline-flex',
             flexShrink: 0,
           },
@@ -78,7 +78,7 @@ const useButton = (props: ButtonProps) => {
   const disabled = isDisabled || isLoading;
 
   const getButtonProps = () => ({
-    styles,
+    _styles: styles,
     disabled,
     rest,
   });

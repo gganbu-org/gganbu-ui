@@ -30,5 +30,5 @@ interface CustomComponent<T extends React.ElementType> {
 }
 
 interface DjProps {
-  styles?: CSSObject;
+  _styles?: CSSObject;
 }
