@@ -15,6 +15,7 @@ const colors = {
   success: 'green',
   warning: 'yellow',
   danger: 'red',
+  current: 'currentColor',
 };
 
 const sizes = {
@@ -31,13 +32,15 @@ const sizes = {
   lg: {
     width: '2em',
     height: '2em',
-    borderWidth: '0.25rem',
+    borderWidth: '0.225rem',
   },
 };
 
 const variants = {
   solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
     const c = colors[color as Color];
+
+    if (c === colors.current) return c;
 
     return {
       color: s(`${c}.500`, `${c}.300`),
