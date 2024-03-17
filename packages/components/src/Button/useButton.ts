@@ -1,6 +1,39 @@
 import { cloneElement, createElement, isValidElement } from 'react';
 import { dj, useThemeStyles } from '@danji/styled';
+import { Spinner } from '@danji/components';
+import { Size } from '../theme/Button';
 import { ButtonProps } from './button.types';
+
+const createContent = (isLoading: boolean, children: React.ReactNode) =>
+  isLoading
+    ? createElement(
+        dj.span,
+        {
+          styles: {
+            opacity: 0,
+          },
+        },
+        children,
+      )
+    : children;
+
+const createSpinner = (size: Size, spinner?: React.ReactNode) =>
+  createElement(
+    dj.div,
+    {
+      styles: {
+        position: 'absolute',
+        display: 'inline-flex',
+        flexShrink: 0,
+      },
+    },
+    isValidElement(spinner)
+      ? spinner
+      : createElement(Spinner, {
+          size,
+          color: 'current',
+        }),
+  );
 
 const createCloneIcon = (icon: React.ReactNode) =>
   isValidElement(icon)
@@ -30,6 +63,7 @@ const useButton = (props: ButtonProps) => {
     endIcon: endIconProp,
     isDisabled = false,
     isLoading = false,
+    spinner: spinnnerProp,
     ...rest
   } = props;
 
@@ -39,6 +73,8 @@ const useButton = (props: ButtonProps) => {
   const startIcon = createCloneIcon(startIconProp);
   const endIcon = createCloneIcon(endIconProp);
 
+  const spinner = createSpinner(size, spinnnerProp);
+
   const disabled = isDisabled || isLoading;
 
   const getButtonProps = () => ({
@@ -47,12 +83,18 @@ const useButton = (props: ButtonProps) => {
     rest,
   });
 
+  const buttonContent = createContent(isLoading, [
+    startIcon,
+    children,
+    endIcon,
+  ]);
+
   return {
     Component,
     getButtonProps,
-    startIcon,
-    endIcon,
-    children,
+    buttonContent,
+    isLoading,
+    spinner,
   };
 };
 

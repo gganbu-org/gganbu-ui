@@ -23,6 +23,10 @@ export interface ButtonProps extends ButtonThemeProps {
    * @default false
    */
   isDisabled?: boolean;
+  /**
+   * Replace content with spinner when isLoading is set to true.
+   */
+  spinner?: React.ReactNode;
 }
 
 interface ButtonThemeProps {
