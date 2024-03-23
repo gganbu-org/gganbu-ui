@@ -49,7 +49,7 @@ type Story = StoryObj<typeof meta>;
 export const primary: Story = {
   args: {
     size: 'md',
-    color: 'primary',
+    theme: 'primary',
     variant: 'solid',
     children: 'Button',
   },
@@ -58,6 +58,6 @@ export const primary: Story = {
 export const Secondary: Story = {
   args: {
     ...primary.args,
-    color: 'secondary',
+    theme: 'secondary',
   },
 };

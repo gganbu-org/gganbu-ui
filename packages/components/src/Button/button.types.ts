@@ -1,4 +1,4 @@
-import { Color, Size, Variant } from '../theme/Button';
+import { Theme, Size, Variant } from '../theme/Button';
 
 export interface ButtonProps extends ButtonThemeProps {
   /**
@@ -31,10 +31,10 @@ export interface ButtonProps extends ButtonThemeProps {
 
 interface ButtonThemeProps {
   /**
-   * The color of the Button
+   * The color theme of the Button
    * @default primary
    */
-  color?: Color;
+  theme?: Theme;
   /**
    * The size of the Button
    * @default md

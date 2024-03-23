@@ -1,6 +1,6 @@
-import { ThemePropsWithColorTheme } from '@danji/styled';
+import { ThemePropsWithSwitcher } from '@danji/styled';
 
-const colors = {
+const colorScheme = {
   primary: 'blue',
   secondary: 'purple',
 };
@@ -36,8 +36,8 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
-    const c = colors[color as Color] || colors.primary;
+  solid: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+    const c = colorScheme[theme as Theme];
     const defaultBg = s(`${c}.500`, `${c}.300`);
 
     return {
@@ -74,6 +74,6 @@ export const buttonTheme = {
   baseStyles,
 };
 
-export type Color = keyof typeof colors;
+export type Theme = keyof typeof colorScheme;
 export type Size = keyof typeof sizes;
 export type Variant = keyof typeof variants;

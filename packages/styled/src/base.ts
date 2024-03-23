@@ -12,8 +12,8 @@ export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
    * @todo system props 분리, 스타일 우선순위 정의
    */
   const styled = (props: any) => {
-    const { styles = {}, theme } = props;
-    const cssObject = css(styles)(theme);
+    const { _styles = {}, theme } = props;
+    const cssObject = css(_styles)(theme);
 
     return cssObject;
   };

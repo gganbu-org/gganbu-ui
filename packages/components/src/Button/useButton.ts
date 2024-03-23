@@ -31,7 +31,7 @@ const createSpinner = (size: Size, spinner?: React.ReactNode) =>
       ? spinner
       : createElement(Spinner, {
           size,
-          color: 'current',
+          theme: 'current',
         }),
   );
 
@@ -56,7 +56,7 @@ const createCloneIcon = (icon: React.ReactNode) =>
 const useButton = (props: ButtonProps) => {
   const {
     children,
-    color = 'primary',
+    theme = 'primary',
     size = 'md',
     variant = 'solid',
     startIcon: startIconProp,
@@ -68,7 +68,7 @@ const useButton = (props: ButtonProps) => {
   } = props;
 
   const Component = dj.button;
-  const styles = useThemeStyles('Button', { color, variant, size });
+  const themeStyles = useThemeStyles('Button', { theme, size, variant });
 
   const startIcon = createCloneIcon(startIconProp);
   const endIcon = createCloneIcon(endIconProp);
@@ -78,7 +78,7 @@ const useButton = (props: ButtonProps) => {
   const disabled = isDisabled || isLoading;
 
   const getButtonProps = () => ({
-    _styles: styles,
+    _styles: themeStyles,
     disabled,
     rest,
   });

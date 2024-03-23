@@ -1,4 +1,4 @@
-import { Color, Size } from '../theme/Spinner';
+import { Theme, Size } from '../theme/Spinner';
 
 export interface SpinnerProps extends SpinnerThemeProps {
   /**
@@ -9,10 +9,10 @@ export interface SpinnerProps extends SpinnerThemeProps {
 
 interface SpinnerThemeProps {
   /**
-   * The color of the spinner
+   * The color theme of the spinner
    * @default primary
    */
-  color?: Color;
+  theme?: Theme;
   /**
    * The size of the spinner
    * @default md

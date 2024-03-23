@@ -29,15 +29,15 @@ const createLabel = (label?: string) =>
     : null;
 
 const useSpinner = (props: SpinnerProps) => {
-  const { size = 'md', color = 'primary', label: labelProp, ...rest } = props;
+  const { size = 'md', theme = 'primary', label: labelProp, ...rest } = props;
 
   const Component = dj.div;
 
-  const styles = useThemeStyles('Spinner', { size, color });
+  const themeStyles = useThemeStyles('Spinner', { size, theme });
   const label = createLabel(labelProp);
 
   const getSpinnerProps = () => ({
-    _styles: styles,
+    _styles: themeStyles,
     rest,
   });
 

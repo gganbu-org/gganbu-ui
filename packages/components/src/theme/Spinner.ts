@@ -1,4 +1,4 @@
-import { ThemePropsWithColorTheme, keyframes } from '@danji/styled';
+import { ThemePropsWithSwitcher, keyframes } from '@danji/styled';
 
 const spin = keyframes({
   '0%': {
@@ -9,7 +9,7 @@ const spin = keyframes({
   },
 });
 
-const colors = {
+const colorScheme = {
   primary: 'blue',
   secondary: 'purple',
   success: 'green',
@@ -37,10 +37,10 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ color, switcher: s }: ThemePropsWithColorTheme) => {
-    const c = colors[color as Color];
+  solid: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+    const c = colorScheme[theme as Theme];
 
-    if (c === colors.current) return c;
+    if (c === colorScheme.current) return c;
 
     return {
       color: s(`${c}.500`, `${c}.300`),
@@ -63,5 +63,5 @@ export const spinnerTheme = {
   baseStyles,
 };
 
-export type Color = keyof typeof colors;
+export type Theme = keyof typeof colorScheme;
 export type Size = keyof typeof sizes;

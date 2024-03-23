@@ -1,5 +1,5 @@
 import { CssReset, ThemeProvider } from '@danji/styled';
-import { ColorThemeProvider, DJ_DEFAULT_THEME } from '@danji/components';
+import { ColorSchemeProvider, DJ_DEFAULT_THEME } from '@danji/components';
 
 export interface DjProviderProps {
   theme?: Record<string, any>;
@@ -12,10 +12,10 @@ export function DjProvider(props: DjProviderProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <ColorThemeProvider>
+      <ColorSchemeProvider>
         {defaultCssReset && <CssReset />}
         {children}
-      </ColorThemeProvider>
+      </ColorSchemeProvider>
     </ThemeProvider>
   );
 }

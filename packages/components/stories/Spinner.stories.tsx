@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Colors: Story = {
   args: {
     size: 'md',
-    color: 'primary',
+    theme: 'primary',
   },
 };
 
@@ -26,7 +26,7 @@ export const Sizes: Story = {
    * 👇 To avoid linting issues, it is recommended to use a function with a capitalized name.
    * If you are not concerned with linting, you may use an arrow function.
    */
-  render: function Render({ color }) {
+  render: function Render({ theme }) {
     return (
       <div
         style={{
@@ -36,9 +36,9 @@ export const Sizes: Story = {
           gap: '1.5rem',
         }}
       >
-        <Spinner size="sm" color="primary" />
-        <Spinner size="md" color="danger" />
-        <Spinner size="lg" color="success" />
+        <Spinner size="sm" theme="primary" />
+        <Spinner size="md" theme="danger" />
+        <Spinner size="lg" theme="success" />
       </div>
     );
   },

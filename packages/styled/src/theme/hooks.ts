@@ -1,7 +1,7 @@
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
-import { useColorTheme } from '@danji/components';
-import { createColorByColorTheme } from '@danji/components/theme/theme.utils';
+import { useColorScheme } from '@danji/components';
+import { createColorByColorScheme } from '@danji/components/theme/theme.utils';
 import { ThemeWithCssVars } from '../providers.types';
 import { getValueByPath } from './base';
 import { callIfFunc } from '../utils';
@@ -10,12 +10,12 @@ import { callIfFunc } from '../utils';
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
  */
 interface ThemeProps {
-  color?: string;
+  theme?: string;
   size?: string;
   variant?: string;
 }
 
-export type ThemePropsWithColorTheme = ThemeProps & {
+export type ThemePropsWithSwitcher = ThemeProps & {
   switcher: (light: string, black: string) => string;
 };
 
@@ -28,16 +28,16 @@ const useTheme = <T extends Record<string, any>>() => {
 };
 
 export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
-  const theme = useTheme();
-  const { colorTheme } = useColorTheme();
-  const switcher = createColorByColorTheme(colorTheme);
+  const themeCtx = useTheme();
+  const { colorScheme } = useColorScheme();
+  const switcher = createColorByColorScheme(colorScheme);
   const themeStyles = {};
   const themeProps = {
-    switcher,
     ...props,
-  } as ThemePropsWithColorTheme;
+    switcher,
+  } as ThemePropsWithSwitcher;
 
-  const themeStyleConfig = getValueByPath(theme, `components.${themeKey}`);
+  const themeStyleConfig = getValueByPath(themeCtx, `components.${themeKey}`);
 
   if (themeStyleConfig) {
     const baseThemeMap = getValueByPath(themeStyleConfig, 'baseStyles');

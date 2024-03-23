@@ -1,6 +1,6 @@
-import { isDarkTheme } from '../ColorTheme/colorTheme.utils';
-import { ColorTheme } from '../ColorTheme/colorTheme.types';
+import { isDarkScheme } from '../ColorScheme/colorScheme.utils';
+import { ColorScheme } from '../ColorScheme/colorScheme.types';
 
-export const createColorByColorTheme =
-  (colorTheme: ColorTheme) => (light: string, black: string) =>
-    isDarkTheme(colorTheme) ? black : light;
+export const createColorByColorScheme =
+  (colorScheme: ColorScheme) => (light: string, black: string) =>
+    isDarkScheme(colorScheme) ? black : light;
