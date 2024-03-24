@@ -38,7 +38,7 @@ const useSpinner = (props: SpinnerProps) => {
 
   const getSpinnerProps = () => ({
     _styles: themeStyles,
-    rest,
+    ...rest,
   });
 
   return {

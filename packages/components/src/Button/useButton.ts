@@ -83,7 +83,7 @@ const useButton = (props: ButtonProps) => {
   const getButtonProps = () => ({
     _styles: themeStyles,
     disabled,
-    rest,
+    ...rest,
   });
 
   const buttonContent = createContent(isLoading, [
