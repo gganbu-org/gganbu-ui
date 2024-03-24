@@ -35,7 +35,7 @@ const createSpinner = (size: Size, spinner?: React.ReactNode) =>
         }),
   );
 
-const createCloneIcon = (icon: React.ReactNode) =>
+const createCloneIcon = (icon: React.ReactNode, position: 'start' | 'end') =>
   isValidElement(icon)
     ? createElement(
         dj.span,
@@ -43,6 +43,9 @@ const createCloneIcon = (icon: React.ReactNode) =>
           _styles: {
             display: 'inline-flex',
             flexShrink: 0,
+            ...(position === 'start'
+              ? { marginRight: '0.5rem' }
+              : { marginLeft: '0.5rem' }),
           },
         },
         cloneElement(icon, {
@@ -70,8 +73,8 @@ const useButton = (props: ButtonProps) => {
   const Component = dj.button;
   const themeStyles = useThemeStyles('Button', { theme, size, variant });
 
-  const startIcon = createCloneIcon(startIconProp);
-  const endIcon = createCloneIcon(endIconProp);
+  const startIcon = createCloneIcon(startIconProp, 'start');
+  const endIcon = createCloneIcon(endIconProp, 'end');
 
   const spinner = createSpinner(size, spinnnerProp);
 
