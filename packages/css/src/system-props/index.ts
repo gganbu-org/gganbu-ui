@@ -4,3 +4,4 @@ export { default as color } from './color';
 export { default as size } from './size';
 export { default as typography } from './typography';
 export { shouldTransformToVarFunc } from './scales';
+export { type SystemProps } from './types';

@@ -11,5 +11,3 @@ export const systemProps = _merge(
 );
 
 export const stylePropList = Object.keys(systemProps);
-
-export const isStyleProp = (prop: string) => prop in systemProps;
