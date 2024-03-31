@@ -1,22 +1,28 @@
 import React from 'react';
-import { css } from '@danji/css';
+import { css, stylePropList } from '@danji/css';
 import emotionStyled from '@emotion/styled';
 import { DjComponent } from './base.types';
+import { pick } from './utils';
+
+const styled = (props: any) => {
+  const { _styles = {}, theme, ...rest } = props;
+  const systemProps = pick(rest, stylePropList);
+
+  /**
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#merging_objects_with_same_properties
+   * The properties are overwritten by other objects that have the same properties later in the parameters order.
+   */
+  const styles = Object.assign(_styles, systemProps);
+
+  const cssObject = css(styles)(theme);
+
+  return cssObject;
+};
 
 export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
   if (!tag) {
     throw new Error('Define tag to create styled component');
   }
-
-  /**
-   * @todo system props 분리, 스타일 우선순위 정의
-   */
-  const styled = (props: any) => {
-    const { _styles = {}, theme } = props;
-    const cssObject = css(_styles)(theme);
-
-    return cssObject;
-  };
 
   const Component = emotionStyled(tag as React.ComponentType)(styled);
 
