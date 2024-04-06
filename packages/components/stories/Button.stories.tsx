@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@danji/components';
+import { stylePropList } from '@danji/css';
+import { generateArgTypesToDisable } from './stories.utils';
 
 function AppleIcon() {
   return (
@@ -35,6 +37,7 @@ const meta = {
         AppleIcon: <AppleIcon />,
       },
     },
+    ...generateArgTypesToDisable(stylePropList),
   },
   args: {
     isLoading: false,
