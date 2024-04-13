@@ -51,6 +51,28 @@ const variants = {
       },
     };
   },
+  bordered: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+    const c = colorScheme[theme as Theme];
+    const defaultBg = s(`${c}.500`, `${c}.300`);
+
+    return {
+      color: defaultBg,
+      bg: 'transparent',
+      borderColor: defaultBg,
+      borderWidth: '0.125rem',
+
+      '&:hover': {
+        opacity: 0.8,
+
+        '&:disabled': {
+          opacity: 0.5,
+        },
+      },
+      '&:active': {
+        bg: `${c}.100`,
+      },
+    };
+  },
 };
 
 const baseStyles = {
