@@ -19,13 +19,25 @@
     "import/no-extraneous-dependencies": "off",
     "import/no-relative-packages": "off",
     "import/prefer-default-export": "off",
-    "no-continue": "off"
+    "no-continue": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
       "files": ["packages/**/*.ts", "packages/**/*.tsx"],
       "parserOptions": {
         "project": ["tsconfig.json"]
+      },
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": ["camelCase", "PascalCase", "UPPER_CASE", "_camelCase"],
+            "leadingUnderscore": "allow"
+          }
+        ]
       }
     }
   ]

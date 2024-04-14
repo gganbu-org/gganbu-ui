@@ -1,4 +1,5 @@
-export { default as Theme } from './theme';
-export * from './Button';
-export * from './ColorTheme';
+export * from './theme';
+export * from './ColorScheme';
 export * from './DjProvider';
+export * from './Button';
+export * from './Spinner';

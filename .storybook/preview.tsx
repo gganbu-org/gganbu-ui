@@ -4,8 +4,12 @@ import { useDarkMode } from 'storybook-dark-mode';
 import { themes } from '@storybook/theming';
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 
-import { ColorThemeProvider, setDataset } from '@danji/components';
-import { CssReset, DJ_DEFAULT_THEME, ThemeProvider } from '@danji/styled';
+import {
+  ColorSchemeProvider,
+  DJ_DEFAULT_THEME,
+  setDataset,
+} from '@danji/components';
+import { CssReset, ThemeProvider } from '@danji/styled';
 
 function CustomDjProvider(props: PropsWithChildren) {
   const { children } = props;
@@ -31,10 +35,10 @@ function CustomDjProvider(props: PropsWithChildren) {
 
   return (
     <ThemeProvider theme={DJ_DEFAULT_THEME}>
-      <ColorThemeProvider value={theme}>
+      <ColorSchemeProvider value={theme}>
         <CssReset />
         {children}
-      </ColorThemeProvider>
+      </ColorSchemeProvider>
     </ThemeProvider>
   );
 }

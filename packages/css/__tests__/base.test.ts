@@ -1,4 +1,5 @@
-import { DJ_DEFAULT_THEME, customTheme } from '@danji/styled';
+import { DJ_DEFAULT_THEME } from '@danji/components';
+import { customTheme } from '@danji/styled';
 import { css } from '@danji/css';
 
 const theme = customTheme(DJ_DEFAULT_THEME);
@@ -15,13 +16,27 @@ describe('css', () => {
     });
   });
 
-  it('should convert value to custom property', () => {
+  it('should convert color to custom property', () => {
     const result = css({
       color: 'gray.100',
     })(theme);
 
     expect(result).toEqual({
       color: 'var(--dj-colors-gray-100)',
+    });
+  });
+
+  it('should convert typography to custom property', () => {
+    const result = css({
+      fontSize: 'sm',
+      fontWeight: 'normal',
+      lineHeight: 'sm',
+    })(theme);
+
+    expect(result).toEqual({
+      fontSize: 'var(--dj-fontSize-sm)',
+      fontWeight: 'var(--dj-fontWeight-normal)',
+      lineHeight: 'var(--dj-lineHeight-sm)',
     });
   });
 

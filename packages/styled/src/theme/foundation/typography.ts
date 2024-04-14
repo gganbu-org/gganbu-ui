@@ -5,7 +5,7 @@ const typography = {
     lg: '1rem',
   },
   lineHeight: {
-    sm: '1.25',
+    sm: '1.2',
     lg: '2',
   },
   fontWeight: {

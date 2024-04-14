@@ -1,9 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import { getValueByPath, callIfFunc, isObject } from '@danji/styled';
-import { EmotionCssObject } from './types';
+import type { CSSObject } from '@danji/styled';
 import { systemProps } from './system';
-
-export type CSSObject = EmotionCssObject;
 
 export const css =
   (stylesOrFunc: any) =>
