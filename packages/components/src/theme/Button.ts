@@ -1,4 +1,4 @@
-import { ThemePropsWithSwitcher } from '@danji/styled';
+import { ThemePropsWithUtils } from '@danji/styled';
 
 const colorScheme = {
   primary: 'blue',
@@ -33,7 +33,7 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+  solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
     const c = colorScheme[theme as Theme];
     const defaultBg = s(`${c}.500`, `${c}.300`);
 
@@ -51,7 +51,7 @@ const variants = {
       },
     };
   },
-  bordered: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+  bordered: ({ theme, switcher: s, colorAlpha }: ThemePropsWithUtils) => {
     const c = colorScheme[theme as Theme];
     const defaultBg = s(`${c}.500`, `${c}.300`);
 
@@ -69,7 +69,7 @@ const variants = {
         },
       },
       '&:active': {
-        bg: `${c}.100`,
+        bg: s(`${c}.100`, colorAlpha(`${c}.100`, 0.2)),
       },
     };
   },

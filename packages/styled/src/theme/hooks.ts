@@ -1,7 +1,10 @@
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
-import { useColorScheme } from '@danji/components';
-import { createColorByColorScheme } from '@danji/components/theme/theme.utils';
+import {
+  useColorScheme,
+  createColorByColorScheme,
+  createColorAlpha,
+} from '@danji/components';
 import { ThemeWithCssVars } from '../providers.types';
 import { getValueByPath } from './base';
 import { callIfFunc } from '../utils';
@@ -15,8 +18,9 @@ interface ThemeProps {
   variant?: string;
 }
 
-export type ThemePropsWithSwitcher = ThemeProps & {
+export type ThemePropsWithUtils = ThemeProps & {
   switcher: (light: string, black: string) => string;
+  colorAlpha: (color: string, opacity: number) => string;
 };
 
 const useTheme = <T extends Record<string, any>>() => {
@@ -31,11 +35,14 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
   const themeCtx = useTheme();
   const { colorScheme } = useColorScheme();
   const switcher = createColorByColorScheme(colorScheme);
+  const colorAlpha = createColorAlpha(themeCtx);
+
   const themeStyles = {};
   const themeProps = {
     ...props,
     switcher,
-  } as ThemePropsWithSwitcher;
+    colorAlpha,
+  } as ThemePropsWithUtils;
 
   const themeStyleConfig = getValueByPath(themeCtx, `components.${themeKey}`);
 

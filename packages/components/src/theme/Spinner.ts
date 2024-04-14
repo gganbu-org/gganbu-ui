@@ -1,4 +1,4 @@
-import { ThemePropsWithSwitcher, keyframes } from '@danji/styled';
+import { ThemePropsWithUtils, keyframes } from '@danji/styled';
 
 const spin = keyframes({
   '0%': {
@@ -37,7 +37,7 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ theme, switcher: s }: ThemePropsWithSwitcher) => {
+  solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
     const c = colorScheme[theme as Theme];
 
     if (c === colorScheme.current) return c;
