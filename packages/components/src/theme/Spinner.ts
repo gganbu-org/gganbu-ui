@@ -9,7 +9,7 @@ const spin = keyframes({
   },
 });
 
-const colorScheme = {
+const themes = {
   primary: 'blue',
   secondary: 'purple',
   success: 'green',
@@ -38,9 +38,9 @@ const sizes = {
 
 const variants = {
   solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
-    const c = colorScheme[theme as Theme];
+    const c = themes[theme as Theme];
 
-    if (c === colorScheme.current) return c;
+    if (c === themes.current) return c;
 
     return {
       color: s(`${c}.500`, `${c}.300`),
@@ -63,5 +63,5 @@ export const spinnerTheme = {
   baseStyles,
 };
 
-export type Theme = keyof typeof colorScheme;
+export type Theme = keyof typeof themes;
 export type Size = keyof typeof sizes;
