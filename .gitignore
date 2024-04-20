@@ -26,3 +26,6 @@ out
 
 # Coverage directory used by tools
 coverage
+
+# Turbo
+.turbo
