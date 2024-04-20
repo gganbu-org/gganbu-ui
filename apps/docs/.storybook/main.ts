@@ -3,13 +3,9 @@ import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
-interface FindStoriesOptions {
-  dir: string;
-}
-
-function findStories({ dir = 'components' }: FindStoriesOptions) {
+function findStories() {
   const filePattern = /^.*\.stories\.tsx$/;
-  const pkgStoriesPath = `packages/${dir}/stories`;
+  const pkgStoriesPath = `./stories`;
   const files = fs.readdirSync(`${pkgStoriesPath}`);
 
   return files
@@ -18,7 +14,7 @@ function findStories({ dir = 'components' }: FindStoriesOptions) {
 }
 
 const config: StorybookConfig = {
-  stories: [...findStories({ dir: 'components' })],
+  stories: [...findStories()],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
