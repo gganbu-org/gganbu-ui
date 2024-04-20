@@ -1,5 +1,5 @@
-import { Theme, Size } from '../theme/Spinner';
 import { HTMLDjUIProps } from '@danji/styled';
+import { Theme, Size } from '../theme/Spinner';
 
 interface Props extends SpinnerThemeProps {
   /**

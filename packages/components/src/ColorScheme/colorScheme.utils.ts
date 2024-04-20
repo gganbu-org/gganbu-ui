@@ -1,6 +1,3 @@
-import { isBrowser, localStorage } from '@danji/components/utils';
-import { getMatches } from '@danji/components/hooks';
-
 import {
   COLOR_SCHEME,
   COLOR_SCHEME_SYSTEM,
@@ -8,6 +5,8 @@ import {
   PREFER_DARK_QUERY,
 } from './colorScheme.constants';
 import { ColorScheme, ColorSchemeWithSystem } from './colorScheme.types';
+import { isBrowser, localStorage } from '../utils';
+import { getMatches } from '../hooks';
 
 interface StorageManager {
   get(init: ColorSchemeWithSystem): ColorSchemeWithSystem;

@@ -1,5 +1,5 @@
-import { isNonNull, isObject, join, splitBySeparator } from '../utils';
 import { JSONObject, JSONValue } from './base.types';
+import { isNonNull, isObject, join, splitBySeparator } from '../utils';
 
 interface CustomPropertiesOptions {
   halt?: (value: any) => boolean;

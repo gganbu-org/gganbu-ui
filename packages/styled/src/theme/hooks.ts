@@ -5,9 +5,9 @@ import {
   createColorByColorScheme,
   createColorAlpha,
 } from '@danji/components';
-import { ThemeWithCssVars } from '../providers.types';
 import { getValueByPath } from './base';
 import { callIfFunc } from '../utils';
+import { ThemeWithCssVars } from '../providers.types';
 
 /**
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정

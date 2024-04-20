@@ -1,8 +1,8 @@
 import { cloneElement, createElement, isValidElement } from 'react';
 import { dj, useThemeStyles } from '@danji/styled';
-import { Spinner } from '@danji/components';
-import { Size } from '../theme/Button';
 import { ButtonProps } from './button.types';
+import { Spinner } from '../Spinner';
+import { Size } from '../theme/Button';
 
 const createContent = (isLoading: boolean, children: React.ReactNode) =>
   isLoading

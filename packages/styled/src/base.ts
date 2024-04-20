@@ -1,8 +1,8 @@
 import React from 'react';
-import { css, stylePropList } from '@danji/css';
 import emotionStyled from '@emotion/styled';
-import { DjComponent } from './base.types';
+import { css, stylePropList } from '@danji/css';
 import { pick } from './utils';
+import { DjComponent } from './base.types';
 
 const styled = (props: any) => {
   const { _styles = {}, theme, ...rest } = props;

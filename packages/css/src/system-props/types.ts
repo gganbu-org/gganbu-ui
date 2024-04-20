@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { ThemeWithCssVars } from '@danji/styled/providers.types';
+import { ThemeWithCssVars } from '@danji/styled';
 import { BackgroundCSSProperties } from './background';
 import { ColorCSSProperties } from './color';
 import { SizeCSSProperties } from './size';

@@ -1,6 +1,11 @@
-import { THEME, isObject, toVarFunc, tokenToCssVar } from '@danji/styled';
-import { ThemeWithCssVars } from '@danji/styled/providers.types';
-import { Dict } from '@danji/styled/base.types';
+import {
+  THEME,
+  isObject,
+  toVarFunc,
+  tokenToCssVar,
+  ThemeWithCssVars,
+  Dict,
+} from '@danji/styled';
 import { Transform } from './types';
 
 const scaleTokens = [

@@ -4,4 +4,5 @@ export * from './providers';
 export * from './theme';
 export * from './utils';
 export { default as CssReset } from './reset';
-export type { CSSObject, HTMLDjUIProps } from './base.types';
+export type { ThemeWithCssVars } from './providers.types';
+export type { CSSObject, HTMLDjUIProps, Dict } from './base.types';

@@ -1,6 +1,4 @@
-/* eslint-disable no-restricted-syntax */
-import { getValueByPath, callIfFunc, isObject } from '@danji/styled';
-import type { CSSObject } from '@danji/styled';
+import { getValueByPath, callIfFunc, isObject, CSSObject } from '@danji/styled';
 import { systemProps } from './system';
 
 export const css =
