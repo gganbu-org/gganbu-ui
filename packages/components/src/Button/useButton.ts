@@ -1,6 +1,7 @@
 import { cloneElement, createElement, isValidElement } from 'react';
-import { dj, useThemeStyles } from '@danji/styled';
+import { dj } from '@danji/styled';
 import { ButtonProps } from './button.types';
+import { useThemeStyles } from '../hooks';
 import { Spinner } from '../Spinner';
 import { Size } from '../theme/Button';
 

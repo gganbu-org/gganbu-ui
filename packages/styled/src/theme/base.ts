@@ -1,5 +1,5 @@
-import { JSONObject, JSONValue } from './base.types';
-import { isNonNull, isObject, join, splitBySeparator } from '@danji/utilities';
+import { isObject, join } from '@danji/utilities';
+import { JSONObject } from './base.types';
 
 interface CustomPropertiesOptions {
   halt?: (value: any) => boolean;
@@ -35,28 +35,6 @@ export const toCustomProperties = (
   );
 
   return next;
-};
-
-export const getValueByPath = (
-  object: JSONObject,
-  path: string | number | undefined,
-  fallback?: unknown,
-): any => {
-  const properties =
-    path && typeof path === 'string' ? splitBySeparator(path, '.') : [path];
-
-  let current: JSONValue = object;
-
-  for (let i = 0; i < properties.length; i += 1) {
-    const property = properties[i];
-
-    if (!isNonNull(property) || !isObject(current) || !(property in current))
-      return fallback;
-
-    current = current[property];
-  }
-
-  return current;
 };
 
 export const getColorAlpha = (color: string, opacity: number) => {

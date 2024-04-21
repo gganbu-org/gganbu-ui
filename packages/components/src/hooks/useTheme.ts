@@ -5,9 +5,8 @@ import {
   createColorByColorScheme,
   createColorAlpha,
 } from '@danji/components';
-import { getValueByPath } from './base';
-import { callIfFunc } from '@danji/utilities';
-import { ThemeWithCssVars } from '../providers.types';
+import { djTheme } from '@danji/css';
+import { callIfFunc, getValueByPath } from '@danji/utilities';
 
 /**
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
@@ -23,12 +22,12 @@ export type ThemePropsWithUtils = ThemeProps & {
   colorAlpha: (color: string, opacity: number) => string;
 };
 
-const useTheme = <T extends Record<string, any>>() => {
+const useTheme = () => {
   const ctx = useContext(EmotionThemeContext);
 
   if (ctx === null || ctx === undefined) throw new Error('useTheme error');
 
-  return ctx as ThemeWithCssVars<T>;
+  return ctx as djTheme;
 };
 
 export const useThemeStyles = (themeKey: string, props: ThemeProps) => {

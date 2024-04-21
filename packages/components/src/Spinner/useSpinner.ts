@@ -1,6 +1,7 @@
 import { createElement } from 'react';
-import { dj, useThemeStyles } from '@danji/styled';
+import { dj } from '@danji/styled';
 import { SpinnerProps } from './spinner.types';
+import { useThemeStyles } from '../hooks';
 
 /**
  * @todo 유틸 클래스 system prop으로 전달가능하도록 타입, 로직 추가.

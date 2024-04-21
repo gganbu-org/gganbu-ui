@@ -1,4 +1,4 @@
-import { ThemePropsWithUtils } from '@danji/styled';
+import { ThemePropsWithUtils } from '../hooks';
 
 const themes = {
   primary: 'blue',

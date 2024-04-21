@@ -6,25 +6,27 @@ import {
   Theme as EmotionTheme,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
-import { shouldTransformToVarFunc } from '@danji/css';
+import {
+  shouldTransformToVarFunc,
+  tokenToCssVar,
+  tokenToVarFunc,
+  djTheme,
+} from '@danji/css';
 import { isNonNull, isObject, splitBySeparator } from '@danji/utilities';
 import {
   THEME,
   TOKEN_ALIASES,
   TOKEN_PSEUDO_CLASSES,
   toCustomProperties,
-  tokenToCssVar,
   pseudoKeys,
   PseudoKeys,
   PseudoAliases,
-  tokenToVarFunc,
 } from './theme';
 import {
   CssVariablesProps,
   DesignToken,
   DesignTokenObject,
   DesignTokens,
-  ThemeWithCssVars,
 } from './providers.types';
 import { Dict } from './base.types';
 import { JSONObject } from './theme/base.types';
@@ -43,9 +45,9 @@ export const Global = ({ styles }: any) =>
 function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
   return (
     <Global
-      styles={(djTheme: ThemeWithCssVars<EmotionTheme>) => {
+      styles={(theme: djTheme) => {
         return {
-          [selector]: djTheme.cssVars,
+          [selector]: theme.cssVars,
         };
       }}
     />
@@ -136,7 +138,7 @@ export const customTheme = <T extends Dict>(theme: T) => {
     cssVars: createCssVars(theme),
   });
 
-  return theme as ThemeWithCssVars<T>;
+  return theme as djTheme;
 };
 
 export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {

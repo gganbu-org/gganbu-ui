@@ -1,4 +1,5 @@
-import { ThemePropsWithUtils, keyframes } from '@danji/styled';
+import { keyframes } from '@danji/styled';
+import { ThemePropsWithUtils } from '../hooks';
 
 const spin = keyframes({
   '0%': {

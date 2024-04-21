@@ -1,32 +1,30 @@
-import { getValueByPath, CSSObject } from '@danji/styled';
-import { callIfFunc, isObject } from '@danji/utilities';
+import { callIfFunc, isObject, getValueByPath } from '@danji/utilities';
 import { systemProps } from './system';
+import { djTheme } from './system-props/types';
 
-export const css =
-  (stylesOrFunc: any) =>
-  (theme: any): CSSObject => {
-    const computedCSS: CSSObject = {};
-    const styles = callIfFunc(stylesOrFunc, theme);
+export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {
+  const computedCSS: Record<string, any> = {};
+  const styles = callIfFunc(stylesOrFunc, theme);
 
-    for (const [key, valueOrFunc] of Object.entries(styles)) {
-      const val = callIfFunc(valueOrFunc, theme);
+  for (const [key, valueOrFunc] of Object.entries(styles)) {
+    const val = callIfFunc(valueOrFunc, theme);
 
-      if (isObject(val)) {
-        const nestedStyles = val;
-        computedCSS[key] = css(nestedStyles)(theme);
-        continue;
-      }
-
-      const systemProp = getValueByPath(systemProps as any, key);
-
-      if (!systemProp) {
-        computedCSS[key] = val as any;
-        continue;
-      }
-
-      const alias = systemProp.prop;
-      computedCSS[alias] = systemProp.transform(val)(theme);
+    if (isObject(val)) {
+      const nestedStyles = val;
+      computedCSS[key] = css(nestedStyles)(theme);
+      continue;
     }
 
-    return computedCSS;
-  };
+    const systemProp = getValueByPath(systemProps as any, key);
+
+    if (!systemProp) {
+      computedCSS[key] = val as any;
+      continue;
+    }
+
+    const alias = systemProp.prop;
+    computedCSS[alias] = systemProp.transform(val)(theme);
+  }
+
+  return computedCSS;
+};
