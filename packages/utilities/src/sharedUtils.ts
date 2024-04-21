@@ -1,5 +1,4 @@
-import { isFunction, isNonNull } from './assertion';
-import { Dict } from '../base.types';
+import { isFunction } from './assertion';
 
 type AnyFunction = (...args: any[]) => any;
 
@@ -12,17 +11,3 @@ export const pipe =
   <T>(f: AnyFunction, ...fs: readonly AnyFunction[]): AnyFunction =>
   (...as: T[]): T =>
     fs.reduce((value, func) => func(value), f(...as));
-
-export const pick = <T extends Dict, K extends keyof T>(object: T, keys: K[]) =>
-  keys.reduce((obj, key) => {
-    const value = object[key];
-
-    if (isNonNull(value)) {
-      return {
-        ...obj,
-        [key]: value,
-      };
-    }
-
-    return obj;
-  }, {});

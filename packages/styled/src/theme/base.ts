@@ -1,5 +1,5 @@
 import { JSONObject, JSONValue } from './base.types';
-import { isNonNull, isObject, join, splitBySeparator } from '../utils';
+import { isNonNull, isObject, join, splitBySeparator } from '@danji/utilities';
 
 interface CustomPropertiesOptions {
   halt?: (value: any) => boolean;

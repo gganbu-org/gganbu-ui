@@ -1,4 +1,5 @@
-import { getValueByPath, callIfFunc, isObject, CSSObject } from '@danji/styled';
+import { getValueByPath, CSSObject } from '@danji/styled';
+import { callIfFunc, isObject } from '@danji/utilities';
 import { systemProps } from './system';
 
 export const css =

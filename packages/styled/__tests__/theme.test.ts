@@ -1,10 +1,9 @@
 import {
   toCustomProperties,
   getValueByPath,
-  joinWithHyphen,
-  isObject,
   createCssVars,
 } from '@danji/styled';
+import { joinWithHyphen, isObject } from '@danji/utilities';
 
 describe('toCustomProperties', () => {
   const colors = {

@@ -1,4 +1,4 @@
-import { joinWithHyphen, pipe } from '../utils';
+import { joinWithHyphen, pipe } from '@danji/utilities';
 
 export const toVarFunc = (value: string) => `var(${value})`;
 

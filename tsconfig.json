@@ -32,7 +32,8 @@
       "@danji/components/*": ["packages/components/src/*"],
       "@danji/css/*": ["packages/css/src/*"],
       "@danji/rollup/*": ["packages/rollup/src/*"],
-      "@danji/styled/*": ["packages/styled/src/*"]
+      "@danji/styled/*": ["packages/styled/src/*"],
+      "@danji/utilities/*": ["packages/utilities/src/*"]
     },
 
     /* Advanced Options */

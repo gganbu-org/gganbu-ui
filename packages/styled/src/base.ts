@@ -1,7 +1,7 @@
 import React from 'react';
 import emotionStyled from '@emotion/styled';
 import { css, stylePropList } from '@danji/css';
-import { pick } from './utils';
+import { pick } from '@danji/utilities';
 import { DjComponent } from './base.types';
 
 const styled = (props: any) => {

@@ -6,7 +6,7 @@ import {
   createColorAlpha,
 } from '@danji/components';
 import { getValueByPath } from './base';
-import { callIfFunc } from '../utils';
+import { callIfFunc } from '@danji/utilities';
 import { ThemeWithCssVars } from '../providers.types';
 
 /**

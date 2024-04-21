@@ -7,6 +7,7 @@ import {
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
 import { shouldTransformToVarFunc } from '@danji/css';
+import { isNonNull, isObject, splitBySeparator } from '@danji/utilities';
 import {
   THEME,
   TOKEN_ALIASES,
@@ -18,7 +19,6 @@ import {
   PseudoAliases,
   tokenToVarFunc,
 } from './theme';
-import { isNonNull, isObject, splitBySeparator } from './utils';
 import {
   CssVariablesProps,
   DesignToken,

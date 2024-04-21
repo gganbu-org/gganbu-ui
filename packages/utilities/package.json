@@ -1,0 +1,15 @@
+{
+  "name": "@danji/utilities",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

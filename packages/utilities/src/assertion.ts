@@ -1,3 +1,5 @@
+export const isBrowser = typeof window !== 'undefined';
+
 export const isNonNull = <T>(val: T | null | undefined): val is T =>
   val !== null && val !== undefined;
 
