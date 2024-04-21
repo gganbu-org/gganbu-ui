@@ -24,6 +24,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-storybook": "^0.6.12",
+    "hygen": "^6.2.11",
     "jest": "^29.5.0",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
@@ -37,6 +38,7 @@
     "test": "turbo run test",
     "build": "turbo build --filter=!@danji/docs --filter=!@danji/rollup",
     "clean": "turbo run clean && rm -rf node_modules",
-    "release": "turbo build --filter=!@danji/docs --filter=!@danji/rollup"
+    "release": "turbo build --filter=!@danji/docs --filter=!@danji/rollup",
+    "create:package": "yarn hygen generator create-package with-prompt"
   }
 }
