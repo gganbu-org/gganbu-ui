@@ -38,7 +38,7 @@
     "test": "turbo run test",
     "build": "turbo build --filter=!@danji/docs --filter=!@danji/rollup",
     "clean": "turbo run clean && rm -rf node_modules",
-    "release": "turbo build --filter=!@danji/docs --filter=!@danji/rollup",
+    "create:graph": "turbo build --graph=dependency-graph.png",
     "create:package": "yarn hygen generator create-package with-prompt"
   }
 }
