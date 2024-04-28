@@ -1,5 +1,6 @@
 import { CssReset, ThemeProvider } from '@danji/styled';
-import { ColorSchemeProvider, DJ_DEFAULT_THEME } from '@danji/components';
+import { DJ_DEFAULT_THEME } from '../theme';
+import { ColorSchemeProvider } from '../ColorScheme';
 
 export interface DjProviderProps {
   theme?: Record<string, any>;

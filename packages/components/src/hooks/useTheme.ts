@@ -1,12 +1,10 @@
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import { useContext } from 'react';
-import {
-  useColorScheme,
-  createColorByColorScheme,
-  createColorAlpha,
-} from '@danji/components';
+
 import { djTheme } from '@danji/css';
 import { callIfFunc, getValueByPath } from '@danji/utilities';
+import { createColorByColorScheme, createColorAlpha } from '../theme';
+import { useColorScheme } from '../ColorScheme';
 
 /**
  * @todo 각 컴포넌트 사이즈, 타입에 정의 매칭되도록 수정
