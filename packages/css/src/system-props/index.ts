@@ -4,4 +4,5 @@ export { default as color } from './color';
 export { default as size } from './size';
 export { default as typography } from './typography';
 export { shouldTransformToVarFunc } from './scales';
-export type { SystemProps, djTheme } from './types';
+export type * from './types';
+export type { AliasesCSSProperties } from './aliases';

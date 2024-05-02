@@ -34,7 +34,7 @@ interface CustomComponent<T extends React.ElementType> {
   displayName?: string;
 }
 
-interface DjProps {
+export interface DjProps {
   _styles?: CSSObject;
 }
 

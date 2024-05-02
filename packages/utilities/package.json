@@ -5,10 +5,17 @@
   "author": "Danji-ya <erangerang15@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "test": "jest",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
   },
   "devDependencies": {},
   "dependencies": {}

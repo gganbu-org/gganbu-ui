@@ -5,36 +5,28 @@
   "author": "Danji-ya <erangerang15@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "src/index.ts",
-  "exports": {
-    ".": {
-      "require": "./src/index.ts",
-      "import": "./src/index.ts"
-    }
-  },
-  "publishConfig": {
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "typings": "dist/index.d.ts"
-  },
-  "directories": {
-    "src": "src",
-    "test": "__tests__"
-  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "files": [
-    "src"
+    "dist/**"
   ],
   "scripts": {
     "test": "jest",
-    "clean": "rm -rf dist",
-    "build": "npm run clean && npm run build:types && npm run build:prod",
-    "build:dev": "cross-env NODE_ENV=development rollup -cw --bundleConfigAsCjs",
-    "build:prod": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs",
-    "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
   },
-  "devDependencies": {},
-  "dependencies": {
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11"
+  },
+  "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0"
+  },
+  "dependencies": {
+    "@danji/css": "^0.0.0",
+    "@danji/utilities": "^0.0.0"
   }
 }

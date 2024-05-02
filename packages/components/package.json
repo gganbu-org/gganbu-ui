@@ -5,15 +5,29 @@
   "author": "Danji-ya <erangerang15@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "src/index.ts",
-  "directories": {
-    "src": "src"
-  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "files": [
-    "src"
+    "dist/**"
   ],
+  "scripts": {
+    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify --external react",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "@emotion/react": ">=11"
+  },
   "devDependencies": {
     "@types/react": "^18.2.7",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "@emotion/react": "^11.11.1"
+  },
+  "dependencies": {
+    "@danji/css": "^0.0.0",
+    "@danji/styled": "^0.0.0",
+    "@danji/utilities": "^0.0.0"
   }
 }

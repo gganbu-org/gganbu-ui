@@ -1,7 +1,7 @@
 import { HTMLDjUIProps } from '@danji/styled';
 import { Theme, Size } from '../theme/Spinner';
 
-interface Props extends SpinnerThemeProps {
+export interface Props extends SpinnerThemeProps {
   /**
    * Place hidden label text inside the spinner for screen reader users.
    */

@@ -1,7 +1,7 @@
 import { HTMLDjUIProps } from '@danji/styled';
 import { Theme, Size, Variant } from '../theme/Button';
 
-interface Props extends ButtonThemeProps {
+export interface Props extends ButtonThemeProps {
   /**
    * The child Node
    */
