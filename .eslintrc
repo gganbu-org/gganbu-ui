@@ -14,13 +14,14 @@
   },
   "extends": [
     "airbnb",
+    "plugin:@typescript-eslint/recommended",
     "airbnb-typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:prettier/recommended"
   ],
   "rules": {
+    "no-undef": "error",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "import/no-extraneous-dependencies": "off",
