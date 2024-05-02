@@ -14,7 +14,7 @@ import {
   setDataset,
 } from './colorScheme.utils';
 import { ColorScheme, ColorSchemeWithSystem } from './colorScheme.types';
-import { useMediaQuery } from '../hooks';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface ColorSchemeProviderProps {
   value?: ColorScheme;

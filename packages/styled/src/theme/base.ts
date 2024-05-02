@@ -44,7 +44,7 @@ export const getColorAlpha = (color: string, opacity: number) => {
 };
 
 export const isHexColor = (hex: string) => {
-  const reg = new RegExp('^#[0-9A-F]{6}[0-9a-f]{0,2}$', 'i');
+  const reg = /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i;
 
   return typeof hex === 'string' && reg.test(hex);
 };

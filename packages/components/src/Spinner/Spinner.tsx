@@ -12,4 +12,6 @@ const Spinner = forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
   );
 });
 
+Spinner.displayName = 'Spinner';
+
 export default Spinner;

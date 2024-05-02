@@ -7,11 +7,18 @@
     "browser": true,
     "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "airbnb",
     "airbnb-typescript",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -20,7 +27,8 @@
     "import/no-relative-packages": "off",
     "import/prefer-default-export": "off",
     "no-continue": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "no-restricted-syntax": "off"
   },
   "overrides": [
     {

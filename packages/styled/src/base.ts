@@ -26,10 +26,10 @@ export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
 
   const Component = emotionStyled(tag as React.ComponentType)(styled);
 
-  return React.forwardRef((props, ref) =>
-    React.createElement(Component, {
+  return React.forwardRef(function Comp(props, ref) {
+    return React.createElement(Component, {
       ref,
       ...props,
-    }),
-  ) as DjComponent<T>;
+    });
+  }) as DjComponent<T>;
 };

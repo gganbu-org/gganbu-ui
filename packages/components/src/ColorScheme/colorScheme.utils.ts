@@ -6,7 +6,7 @@ import {
   PREFER_DARK_QUERY,
 } from './colorScheme.constants';
 import { ColorScheme, ColorSchemeWithSystem } from './colorScheme.types';
-import { getMatches } from '../hooks';
+import { getMatches } from '../hooks/useMediaQuery';
 
 interface StorageManager {
   get(init: ColorSchemeWithSystem): ColorSchemeWithSystem;

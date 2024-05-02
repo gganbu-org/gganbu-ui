@@ -3,7 +3,10 @@ import { useContext } from 'react';
 
 import { djTheme } from '@danji/css';
 import { callIfFunc, getValueByPath } from '@danji/utilities';
-import { createColorByColorScheme, createColorAlpha } from '../theme';
+import {
+  createColorByColorScheme,
+  createColorAlpha,
+} from '../theme/theme.utils';
 import { useColorScheme } from '../ColorScheme';
 
 /**
