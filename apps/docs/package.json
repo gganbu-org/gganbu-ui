@@ -11,6 +11,11 @@
     "preview": "serve storybook-static",
     "clean": "rm -rf node_modules"
   },
+  "dependencies": {
+    "@danji/components": "^0.0.0",
+    "@danji/styled": "^0.0.0",
+    "@danji/css": "^0.0.0"
+  },
   "devDependencies": {
     "serve": "^14.2.1",
     "@storybook/addon-essentials": "^7.0.18",
