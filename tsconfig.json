@@ -34,5 +34,5 @@
     "skipLibCheck": true,
     "isolatedModules": true
   },
-  "exclude": ["**/dist/**, **/node_modules", "**/*.stories.tsx", "__tests__"]
+  "exclude": ["**/dist/**, **/node_modules", "__tests__"]
 }

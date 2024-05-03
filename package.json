@@ -38,16 +38,17 @@
     "typescript": "^5.0.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "lint-staged -c ./configs/lint-staged.lint.config.js",
-      "lint-staged -c ./configs/lint-staged.test.config.js"
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "scripts": {
+    "prepare": "husky",
     "multitask": "turbo run lint test build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "build": "turbo build --filter=!@danji/docs",
+    "build": "turbo build",
     "clean": "turbo run clean && rm -rf node_modules",
     "create:graph": "turbo build --graph=dependency-graph.png",
     "create:package": "yarn hygen generator create-package with-prompt"
