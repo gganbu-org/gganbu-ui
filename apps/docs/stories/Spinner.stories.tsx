@@ -11,40 +11,50 @@ const meta = {
   argTypes: {
     ...generateArgTypesToDisable(stylePropList),
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: 'flex',
+          gap: '4px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Spinner>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Colors: Story = {
+export const basic: Story = {
   args: {
     size: 'md',
     theme: 'primary',
   },
 };
 
-export const Sizes: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  /**
-   * 👇 To avoid linting issues, it is recommended to use a function with a capitalized name.
-   * If you are not concerned with linting, you may use an arrow function.
-   */
-  render: function Render({ theme }) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '1.5rem',
-        }}
-      >
-        <Spinner size="sm" theme="primary" />
-        <Spinner size="md" theme="danger" />
-        <Spinner size="lg" theme="success" />
-      </div>
-    );
-  },
-};
+export const theme = () => (
+  <>
+    <Spinner key="bordered" theme="primary" />
+    <Spinner key="solid" theme="secondary" />
+    <Spinner key="solid" theme="success" />
+    <Spinner key="solid" theme="danger" />
+    <Spinner key="solid" theme="warning" />
+    <Spinner key="solid" theme="current" />
+  </>
+);
+
+export const size = () => (
+  <>
+    <Spinner size="sm" theme="primary" />
+    <Spinner size="md" theme="danger" />
+    <Spinner size="lg" theme="success" />
+  </>
+);
+
+export const label = () => <Spinner label="label" />;

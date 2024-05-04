@@ -43,13 +43,27 @@ const meta = {
     isLoading: false,
     isDisabled: false,
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: 'flex',
+          gap: '4px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const primary: Story = {
+export const basic: Story = {
   args: {
     size: 'md',
     theme: 'primary',
@@ -58,9 +72,60 @@ export const primary: Story = {
   },
 };
 
-export const Secondary: Story = {
-  args: {
-    ...primary.args,
-    theme: 'secondary',
-  },
-};
+export const variant = () => (
+  <>
+    <Button key="solid" variant="solid">
+      Solid
+    </Button>
+    <Button key="bordered" variant="bordered">
+      Bordered
+    </Button>
+  </>
+);
+
+export const theme = () => (
+  <>
+    <Button key="primary" theme="primary">
+      Primary
+    </Button>
+    <Button key="secondary" theme="secondary">
+      Secondary
+    </Button>
+  </>
+);
+
+export const size = () => (
+  <>
+    <Button key="sm" size="sm">
+      SM
+    </Button>
+    <Button key="md" size="md">
+      MD
+    </Button>
+    <Button key="lg" size="lg">
+      LG
+    </Button>
+  </>
+);
+
+export const disabled = () => <Button disabled>Button</Button>;
+
+export const loading = () => <Button isLoading>loading...</Button>;
+
+export const icon = () => (
+  <>
+    <Button key="startIcon" startIcon={<AppleIcon />}>
+      Apple
+    </Button>
+    <Button key="endIcon" endIcon={<AppleIcon />}>
+      Apple
+    </Button>
+    <Button
+      key="multipleIcon"
+      startIcon={<AppleIcon />}
+      endIcon={<AppleIcon />}
+    >
+      Apple
+    </Button>
+  </>
+);
