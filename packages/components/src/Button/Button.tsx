@@ -1,8 +1,8 @@
-import { forwardRef } from 'react';
+import { forwardRef } from '@danji/styled';
 import useButton from './useButton';
 import { ButtonProps } from './button.types';
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+const Button = forwardRef<'button', ButtonProps>((props, ref) => {
   const { Component, getButtonProps, buttonContent, isLoading, spinner } =
     useButton(props);
 

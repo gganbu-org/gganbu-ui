@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef as reactForwardRef } from 'react';
 import {
   Global as EmotionGlobal,
   jsx as emotionJsx,
@@ -28,7 +28,7 @@ import {
   DesignTokenObject,
   DesignTokens,
 } from './providers.types';
-import { Dict } from './base.types';
+import { As, Dict, MergeProps, PropsOf } from './base.types';
 import { JSONObject } from './theme/base.types';
 
 const jsx: typeof React.createElement = <P extends object>(
@@ -150,4 +150,13 @@ export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {
       {children}
     </EmotionThemeProvider>
   );
+}
+
+export function forwardRef<Component extends As, Props extends object>(
+  component: React.ForwardRefRenderFunction<
+    any,
+    MergeProps<PropsOf<Component>, Props>
+  >,
+) {
+  return reactForwardRef(component);
 }
