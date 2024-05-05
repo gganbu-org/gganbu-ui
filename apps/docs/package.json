@@ -9,7 +9,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build --docs",
     "preview": "serve storybook-static",
-    "clean": "rm-rf .turbo && rm -rf node_modules && rm -rf storybook-static"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf storybook-static"
   },
   "dependencies": {
     "@danji/components": "^0.0.0",
