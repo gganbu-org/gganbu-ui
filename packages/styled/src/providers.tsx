@@ -1,7 +1,8 @@
-import React, { forwardRef as reactForwardRef } from 'react';
+import React, { useContext, forwardRef as reactForwardRef } from 'react';
 import {
   Global as EmotionGlobal,
   jsx as emotionJsx,
+  ThemeContext as EmotionThemeContext,
   ThemeProvider as EmotionThemeProvider,
   Theme as EmotionTheme,
   ThemeProviderProps as EmotionThemeProviderProps,
@@ -139,6 +140,14 @@ export const customTheme = <T extends Dict>(theme: T) => {
   });
 
   return theme as djTheme;
+};
+
+export const useTheme = () => {
+  const ctx = useContext(EmotionThemeContext);
+
+  if (ctx === null || ctx === undefined) throw new Error('useTheme error');
+
+  return ctx as djTheme;
 };
 
 export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {
