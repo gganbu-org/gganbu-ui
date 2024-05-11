@@ -1,6 +1,5 @@
-import { isObject } from '@danji/utilities';
 import { Transform, djTheme } from './types';
-import { toVarFunc, tokenToCssVar } from '../cssVar';
+import { toVarFunc, tokenToCssVar, shouldTransformToVarFunc } from '../cssVar';
 
 const scaleTokens = [
   'colors',
@@ -12,15 +11,11 @@ const scaleTokens = [
 
 const scaleTokenMap = new Map(scaleTokens.map((t) => [t, t]));
 type ThemeScale = (typeof scaleTokens)[number];
-type Dict = Record<string, any>;
 
 export interface ScaleOpts {
   scale: ThemeScale;
   transform?: Transform;
 }
-
-export const shouldTransformToVarFunc = (obj: Dict, cssVar: string) =>
-  isObject(obj) && cssVar in obj;
 
 const getNormalizedValue =
   (scale: ThemeScale, value: string) => (theme: djTheme) => {

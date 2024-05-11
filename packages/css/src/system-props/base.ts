@@ -1,5 +1,9 @@
 import _merge from 'lodash.merge';
-import { aliases, background, color, size, typography } from './system-props';
+import aliases from './aliases';
+import background from './background';
+import color from './color';
+import size from './size';
+import typography from './typography';
 
 export const systemProps = _merge(
   {},

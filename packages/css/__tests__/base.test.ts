@@ -1,11 +1,12 @@
-import { DJ_DEFAULT_THEME } from '@danji/components';
-import { customTheme } from '@danji/styled';
-import { css } from '@danji/css';
+import { createCssVars, css, DJ_DEFAULT_THEME } from '@danji/css';
 
-const theme = customTheme(DJ_DEFAULT_THEME);
-const { colors } = DJ_DEFAULT_THEME;
+const theme = Object.assign(DJ_DEFAULT_THEME, {
+  cssVars: createCssVars(DJ_DEFAULT_THEME),
+});
 
 describe('css', () => {
+  const { colors } = DJ_DEFAULT_THEME;
+
   it('should be return same value if it is not in the theme', () => {
     const result = css({
       color: 'gray',

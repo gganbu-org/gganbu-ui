@@ -19,8 +19,6 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T>;
 
 export type CSSObject = EmotionCssObject;
 
-export type Dict<T = any> = Record<string, T>;
-
 export type DOMElements = keyof JSX.IntrinsicElements;
 
 export type Factory = {
