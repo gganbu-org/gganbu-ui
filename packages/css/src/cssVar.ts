@@ -10,7 +10,7 @@ import {
   THEME,
   TOKEN_ALIASES,
   TOKEN_PSEUDO_CLASSES,
-  pseudoKeys,
+  PSEUDO_KEYS,
   PseudoKeys,
   PseudoAliases,
 } from './theme';
@@ -140,7 +140,7 @@ export const createCssVars = <
     ...toCustomProperties(semanticTokens, 'colors', '.', {
       halt: (value) =>
         Object.keys(value).every((key) =>
-          pseudoKeys.includes(key as PseudoKeys),
+          PSEUDO_KEYS.includes(key as PseudoKeys),
         ),
     }),
   } as DesignTokens;

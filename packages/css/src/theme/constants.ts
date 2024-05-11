@@ -15,14 +15,14 @@ export const TOKEN_PSEUDO_CLASSES = {
   [TOKEN_ALIASES.DARK]: '&[data-theme=dark]',
 } as const;
 
-export type PseudoKeys = keyof typeof TOKEN_PSEUDO_CLASSES;
-
-export type PseudoAliases = (typeof TOKEN_ALIASES)[keyof typeof TOKEN_ALIASES];
-
-export const pseudoKeys = Object.values(TOKEN_ALIASES);
+export const PSEUDO_KEYS = Object.values(TOKEN_ALIASES);
 
 export const DJ_DEFAULT_THEME = {
   key: THEME.KEY,
   ...foundation,
   semanticTokens,
 } as const;
+
+export type PseudoKeys = keyof typeof TOKEN_PSEUDO_CLASSES;
+
+export type PseudoAliases = (typeof TOKEN_ALIASES)[keyof typeof TOKEN_ALIASES];
