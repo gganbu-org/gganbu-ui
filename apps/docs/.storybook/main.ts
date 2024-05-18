@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path, { dirname, join } from 'path';
-import type { StorybookConfig } from '@storybook/react-webpack5';
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import type { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 function findStories() {
   const filePattern = /^.*\.stories\.tsx$/;
@@ -15,32 +16,26 @@ function findStories() {
 
 const config: StorybookConfig = {
   stories: [...findStories()],
+
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('storybook-dark-mode'),
     getAbsolutePath('@chromatic-com/storybook'),
-    '@storybook/addon-webpack5-compiler-swc',
   ],
+
   framework: {
-    name: getAbsolutePath('@storybook/react-webpack5'),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  docs: {
-    autodocs: false,
-  },
-  webpackFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.plugins = [
-        ...(config.resolve.plugins || []),
-        new TsconfigPathsPlugin({
-          configFile: path.resolve(__dirname, '../tsconfig.json'),
-        }),
-      ];
-    }
 
-    return config;
+  docs: {},
+
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      plugins: [viteTsconfigPaths()], // 자체적으로 루트에 있는 tsconfig.json을 참조
+    });
   },
 };
 export default config;
