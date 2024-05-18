@@ -23,7 +23,7 @@ export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {
     }
 
     const alias = systemProp.prop;
-    computedCSS[alias] = systemProp.transform(val)(theme);
+    computedCSS[alias] = systemProp.transform?.(val)(theme) ?? val;
   }
 
   return computedCSS;
