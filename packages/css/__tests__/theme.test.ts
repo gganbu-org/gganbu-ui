@@ -1,4 +1,4 @@
-import { toCustomProperties, createCssVars } from '@danji/styled';
+import { createCssVars, toCustomProperties } from '@danji/css';
 import { joinWithHyphen, isObject, getValueByPath } from '@danji/utilities';
 
 describe('toCustomProperties', () => {

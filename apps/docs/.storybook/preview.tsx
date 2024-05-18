@@ -6,7 +6,7 @@ import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 
 import {
   ColorSchemeProvider,
-  DJ_DEFAULT_THEME,
+  DJ_THEME_WITH_COMPONENT,
   setDataset,
 } from '@danji/components';
 import { CssReset, ThemeProvider } from '@danji/styled';
@@ -34,7 +34,7 @@ function CustomDjProvider(props: PropsWithChildren) {
   }, [theme]);
 
   return (
-    <ThemeProvider theme={DJ_DEFAULT_THEME}>
+    <ThemeProvider theme={DJ_THEME_WITH_COMPONENT}>
       <ColorSchemeProvider value={theme}>
         <CssReset />
         {children}

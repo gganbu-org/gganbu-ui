@@ -1,7 +1,4 @@
-import { ThemeContext as EmotionThemeContext } from '@emotion/react';
-import { useContext } from 'react';
-
-import { djTheme } from '@danji/css';
+import { useTheme } from '@danji/styled';
 import { callIfFunc, getValueByPath } from '@danji/utilities';
 import {
   createColorByColorScheme,
@@ -21,16 +18,6 @@ interface ThemeProps {
 export type ThemePropsWithUtils = ThemeProps & {
   switcher: (light: string, black: string) => string;
   colorAlpha: (color: string, opacity: number) => string;
-};
-
-const useTheme = () => {
-  const ctx = useContext(
-    EmotionThemeContext as unknown as React.Context<undefined>,
-  );
-
-  if (ctx === null || ctx === undefined) throw new Error('useTheme error');
-
-  return ctx as djTheme;
 };
 
 export const useThemeStyles = (themeKey: string, props: ThemeProps) => {

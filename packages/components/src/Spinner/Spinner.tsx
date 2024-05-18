@@ -1,8 +1,8 @@
-import { forwardRef } from 'react';
+import { forwardRef } from '@danji/styled';
 import useSpinner from './useSpinner';
 import { SpinnerProps } from './spinner.types';
 
-const Spinner = forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
+const Spinner = forwardRef<'div', SpinnerProps>((props, ref) => {
   const { Component, label, getSpinnerProps } = useSpinner(props);
 
   return (

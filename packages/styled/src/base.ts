@@ -19,7 +19,7 @@ const styled = (props: any) => {
   return cssObject;
 };
 
-export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
+export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
   if (!tag) {
     throw new Error('Define tag to create styled component');
   }

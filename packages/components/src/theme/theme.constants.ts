@@ -1,5 +1,4 @@
-import { THEME, foundation, semanticTokens } from '@danji/styled';
-
+import { DJ_DEFAULT_THEME } from '@danji/styled';
 import { buttonTheme } from './Button';
 import { spinnerTheme } from './Spinner';
 
@@ -8,9 +7,7 @@ const Components = {
   Spinner: spinnerTheme,
 };
 
-export const DJ_DEFAULT_THEME = {
-  key: THEME.KEY,
-  ...foundation,
-  semanticTokens,
+export const DJ_THEME_WITH_COMPONENT = {
+  ...DJ_DEFAULT_THEME,
   components: Components,
 } as const;

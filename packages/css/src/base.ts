@@ -1,5 +1,5 @@
 import { callIfFunc, isObject, getValueByPath } from '@danji/utilities';
-import { systemProps } from './system';
+import { systemProps } from './system-props/base';
 import { djTheme } from './system-props/types';
 
 export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {

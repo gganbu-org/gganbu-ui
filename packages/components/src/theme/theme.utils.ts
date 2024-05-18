@@ -1,5 +1,4 @@
-import { getColorAlpha, isHexColor } from '@danji/styled';
-import { getValueByPath } from '@danji/utilities';
+import { getValueByPath, getColorAlpha, isHexColor } from '@danji/utilities';
 import { isDarkScheme } from '../ColorScheme/colorScheme.utils';
 import { ColorScheme } from '../ColorScheme/colorScheme.types';
 

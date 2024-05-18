@@ -1,13 +1,23 @@
 import type { CSSObject as EmotionCssObject } from '@emotion/react';
 import { SystemProps } from '@danji/css';
 
+export type OmitProps<Target, Props extends keyof any> = Omit<Target, Props>;
+
+export type RightJoinProps<
+  Props extends object,
+  OverrideProps extends object,
+> = OmitProps<Props, keyof OverrideProps> & OverrideProps;
+
+export type MergeProps<
+  OriginalProps extends object,
+  AdditionalProps extends object,
+> = RightJoinProps<OriginalProps, AdditionalProps>;
+
 export type As = React.ElementType;
 
 export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T>;
 
 export type CSSObject = EmotionCssObject;
-
-export type Dict<T = any> = Record<string, T>;
 
 export type DOMElements = keyof JSX.IntrinsicElements;
 
