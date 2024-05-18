@@ -24,7 +24,9 @@ export type ThemePropsWithUtils = ThemeProps & {
 };
 
 const useTheme = () => {
-  const ctx = useContext(EmotionThemeContext);
+  const ctx = useContext(
+    EmotionThemeContext as unknown as React.Context<undefined>,
+  );
 
   if (ctx === null || ctx === undefined) throw new Error('useTheme error');
 
