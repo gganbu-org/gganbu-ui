@@ -35,9 +35,9 @@ describe('css', () => {
     })(theme);
 
     expect(result).toEqual({
-      fontSize: 'var(--dj-fontSize-sm)',
-      fontWeight: 'var(--dj-fontWeight-normal)',
-      lineHeight: 'var(--dj-lineHeight-sm)',
+      fontSize: 'var(--dj-fontSizes-sm)',
+      fontWeight: 'var(--dj-fontWeights-normal)',
+      lineHeight: 'var(--dj-lineHeights-sm)',
     });
   });
 

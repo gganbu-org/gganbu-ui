@@ -4,9 +4,9 @@ import { toVarFunc, tokenToCssVar, shouldTransformToVarFunc } from '../cssVar';
 const scaleTokens = [
   'colors',
   'sizes',
-  'fontSize',
-  'lineHeight',
-  'fontWeight',
+  'fontSizes',
+  'lineHeights',
+  'fontWeights',
 ] as const;
 
 const scaleTokenMap = new Map(scaleTokens.map((t) => [t, t]));
@@ -41,11 +41,13 @@ const createTransform = ({ scale, transform }: ScaleOpts) => {
   return fn;
 };
 
-const scaleFunc = (prop: string, scale: ThemeScale, transform?: Transform) => {
+const scaleFunc = (prop: string, scale?: ThemeScale, transform?: Transform) => {
   return {
     prop,
     scale,
-    transform: createTransform({ scale, transform }),
+    ...(scale && {
+      transform: createTransform({ scale, transform }),
+    }),
   };
 };
 

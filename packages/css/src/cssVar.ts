@@ -126,16 +126,20 @@ export const createCssVars = <
   T extends {
     colors?: DesignTokenObject;
     semanticTokens?: DesignTokenObject;
-    typography?: DesignTokenObject;
+    fontSizes?: DesignTokenObject;
+    lineHeights?: DesignTokenObject;
+    fontWeights?: DesignTokenObject;
   },
 >(
   theme: T,
 ) => {
-  const { colors, semanticTokens, typography } = theme;
+  const { colors, semanticTokens, fontSizes, lineHeights, fontWeights } = theme;
   const cssVars: JSONObject = {};
 
   const tokens = {
-    ...toCustomProperties(typography, '', '.'),
+    ...toCustomProperties(fontSizes, 'fontSizes', '.'),
+    ...toCustomProperties(lineHeights, 'lineHeights', '.'),
+    ...toCustomProperties(fontWeights, 'fontWeights', '.'),
     ...toCustomProperties(colors, 'colors', '.'),
     ...toCustomProperties(semanticTokens, 'colors', '.', {
       halt: (value) =>

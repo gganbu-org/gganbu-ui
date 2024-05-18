@@ -3,7 +3,7 @@ import typography from './typography';
 
 const foundation = {
   colors,
-  typography,
+  ...typography,
 };
 
 export default foundation;
