@@ -4,9 +4,11 @@ import {
   jsx as emotionJsx,
   ThemeContext as EmotionThemeContext,
   ThemeProvider as EmotionThemeProvider,
+  CacheProvider as EmotionCacheProvider,
   Theme as EmotionTheme,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
+import createEmotionCache from '@emotion/cache';
 import { createCssVars, djTheme } from '@danji/css';
 import { CssVariablesProps } from './providers.types';
 import { As, MergeProps, PropsOf } from './base.types';
@@ -68,4 +70,12 @@ export function forwardRef<Component extends As, Props extends object>(
   >,
 ) {
   return reactForwardRef(component);
+}
+
+export const defaultCache = createEmotionCache({ key: 'dj', prepend: true });
+
+export function CacheProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <EmotionCacheProvider value={defaultCache}>{children}</EmotionCacheProvider>
+  );
 }
