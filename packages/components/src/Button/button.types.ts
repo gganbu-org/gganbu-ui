@@ -15,6 +15,11 @@ interface Props extends HTMLDjUIProps<'button'> {
    */
   endIcon?: React.ReactNode;
   /**
+   * The spacing of the icon
+   * @default 0.5rem
+   */
+  iconSpacing?: string;
+  /**
    * Whether the button show a loading spinner.
    * @default false
    */

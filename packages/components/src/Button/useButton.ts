@@ -1,61 +1,16 @@
-import { cloneElement, createElement, isValidElement } from 'react';
+import { cloneElement, isValidElement } from 'react';
 import { dj } from '@danji/styled';
 import { ButtonProps } from './button.types';
 import { useThemeStyles } from '../hooks';
-import { Spinner } from '../Spinner';
-import { Size } from '../theme/Button';
 
-const createContent = (isLoading: boolean, children: React.ReactNode) =>
-  isLoading
-    ? createElement(
-        dj.span,
-        {
-          _styles: {
-            opacity: 0,
-          },
-        },
-        children,
-      )
-    : children;
-
-const createSpinner = (size: Size, spinner?: React.ReactNode) =>
-  createElement(
-    dj.div,
-    {
-      _styles: {
-        position: 'absolute',
-        display: 'inline-flex',
-        flexShrink: 0,
-      },
-    },
-    isValidElement(spinner)
-      ? spinner
-      : createElement(Spinner, {
-          size,
-          theme: 'current',
-        }),
-  );
-
-const createCloneIcon = (icon: React.ReactNode, position: 'start' | 'end') =>
+const createCloneIcon = (icon?: React.ReactNode) =>
   isValidElement(icon)
-    ? createElement(
-        dj.span,
-        {
-          _styles: {
-            display: 'inline-flex',
-            flexShrink: 0,
-            ...(position === 'start'
-              ? { marginRight: '0.5rem' }
-              : { marginLeft: '0.5rem' }),
-          },
-        },
-        cloneElement(icon, {
-          // @ts-ignore
-          'aria-hidden': true,
-          focusable: false,
-        }),
-      )
-    : null;
+    ? cloneElement(icon, {
+        // @ts-ignore
+        'aria-hidden': true,
+        focusable: false,
+      })
+    : icon;
 
 const useButton = (props: ButtonProps) => {
   const {
@@ -65,21 +20,19 @@ const useButton = (props: ButtonProps) => {
     variant = 'solid',
     startIcon: startIconProp,
     endIcon: endIconProp,
+    iconSpacing = '0.5rem',
     isDisabled = false,
     isLoading = false,
-    spinner: spinnnerProp,
+    spinner,
     ...rest
   } = props;
 
   const Component = dj.button;
+  const disabled = isDisabled || isLoading;
   const themeStyles = useThemeStyles('Button', { theme, size, variant });
 
-  const startIcon = createCloneIcon(startIconProp, 'start');
-  const endIcon = createCloneIcon(endIconProp, 'end');
-
-  const spinner = createSpinner(size, spinnnerProp);
-
-  const disabled = isDisabled || isLoading;
+  const startIcon = createCloneIcon(startIconProp);
+  const endIcon = createCloneIcon(endIconProp);
 
   const getButtonProps = () => ({
     _styles: themeStyles,
@@ -87,18 +40,16 @@ const useButton = (props: ButtonProps) => {
     ...rest,
   });
 
-  const buttonContent = createContent(isLoading, [
-    startIcon,
-    children,
-    endIcon,
-  ]);
-
   return {
     Component,
     getButtonProps,
-    buttonContent,
+    startIcon,
+    children,
+    endIcon,
+    iconSpacing,
     isLoading,
     spinner,
+    spinnerSize: size,
   };
 };
 
