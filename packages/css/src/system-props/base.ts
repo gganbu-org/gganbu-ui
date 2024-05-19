@@ -2,7 +2,10 @@ import _merge from 'lodash.merge';
 import aliases from './aliases';
 import background from './background';
 import color from './color';
-import size from './size';
+import content from './content';
+import flex from './flex';
+import position from './position';
+import space from './space';
 import typography from './typography';
 
 export const systemProps = _merge(
@@ -10,8 +13,11 @@ export const systemProps = _merge(
   aliases,
   background,
   color,
-  size,
   typography,
+  content,
+  flex,
+  position,
+  space,
 );
 
 export const stylePropList = Object.keys(systemProps);

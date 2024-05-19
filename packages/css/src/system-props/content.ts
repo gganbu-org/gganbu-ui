@@ -1,6 +1,7 @@
 import { scales as s } from './scales';
 
-const size = {
+const content = {
+  display: s.base('display'),
   width: s.sizes('width'),
   height: s.sizes('height'),
   minWidth: s.sizes('minWidth'),
@@ -9,4 +10,4 @@ const size = {
   maxHeight: s.sizes('maxHeight'),
 };
 
-export default size;
+export default content;

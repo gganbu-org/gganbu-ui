@@ -29,22 +29,20 @@ export type DjComponents = {
   [T in DOMElements]: DjComponent<T>;
 };
 
-export type DjComponent<T extends React.ElementType> = CustomComponent<T>;
+export type DjComponent<T extends As> = CustomComponent<T>;
 
-type PropsWithChildren<T> = T & { children?: React.ReactNode | undefined };
-
-interface CustomComponent<T extends React.ElementType> {
+interface CustomComponent<Component extends As> {
   (
-    props: PropsWithChildren<React.ComponentProps<T>> & DjProps,
-    context?: any,
+    props: MergeProps<React.ComponentProps<Component>, DjProps>,
+    deprecatedLegacyContext?: any,
   ): JSX.Element | null;
-  propTypes?: React.WeakValidationMap<any>;
-  contextTypes?: React.ValidationMap<any>;
-  defaultProps?: Partial<any>;
-  displayName?: string;
+  propTypes?: React.WeakValidationMap<any> | undefined;
+  contextTypes?: React.ValidationMap<any> | undefined;
+  defaultProps?: Partial<any> | undefined;
+  displayName?: string | undefined;
 }
 
-export interface DjProps {
+export interface DjProps extends SystemProps {
   _styles?: CSSObject;
 }
 
