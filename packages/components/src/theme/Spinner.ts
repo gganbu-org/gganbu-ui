@@ -31,8 +31,8 @@ const sizes = {
     borderWidth: '0.1875rem',
   },
   lg: {
-    width: '2em',
-    height: '2em',
+    width: '1.75em',
+    height: '1.75em',
     borderWidth: '0.225rem',
   },
 };
