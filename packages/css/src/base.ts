@@ -1,9 +1,10 @@
+import _merge from 'lodash.merge';
 import { callIfFunc, isObject, getValueByPath } from '@danji/utilities';
-import { systemProps } from './system-props/base';
-import { djTheme } from './system-props/types';
+import { systemProps, type djTheme } from './system-props';
 
 export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {
   const computedCSS: Record<string, any> = {};
+
   const styles = callIfFunc(stylesOrFunc, theme);
 
   for (const [key, valueOrFunc] of Object.entries(styles)) {
@@ -11,14 +12,18 @@ export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {
 
     if (isObject(val)) {
       const nestedStyles = val;
-      computedCSS[key] = css(nestedStyles)(theme);
+
+      computedCSS[key] = _merge(
+        computedCSS[key] ?? {},
+        css(nestedStyles)(theme),
+      );
       continue;
     }
 
-    const systemProp = getValueByPath(systemProps as any, key);
+    const systemProp = getValueByPath(systemProps, key);
 
     if (!systemProp) {
-      computedCSS[key] = val as any;
+      computedCSS[key] = val;
       continue;
     }
 
