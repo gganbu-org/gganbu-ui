@@ -6,10 +6,12 @@
   "homepage": "",
   "license": "ISC",
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build --docs",
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build",
+    "build-storybook": "storybook build",
     "preview": "serve storybook-static",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf storybook-static"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf storybook-static",
+    "chromatic": "dotenv -e apps/docs/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@danji/components": "^0.0.0",
@@ -22,18 +24,17 @@
     "@storybook/addon-essentials": "^8.1.1",
     "@storybook/addon-interactions": "^8.1.1",
     "@storybook/addon-links": "^8.1.1",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
     "@storybook/blocks": "^8.1.1",
     "@storybook/cli": "^8.1.1",
     "@storybook/react": "^8.1.1",
-    "@storybook/react-vite": "8.1.1",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@storybook/react-webpack5": "^8.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "serve": "^14.2.1",
     "storybook": "^8.0.9",
     "storybook-dark-mode": "^4.0.1",
-    "vite": "^5.2.0",
-    "vite-tsconfig-paths": "4.3.2"
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "eslintConfig": {
     "extends": [
