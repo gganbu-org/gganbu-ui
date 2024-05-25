@@ -41,7 +41,11 @@ const variants = {
   solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
     const c = themes[theme as Theme];
 
-    if (c === themes.current) return c;
+    if (c === themes.current) {
+      return {
+        color: c,
+      };
+    }
 
     return {
       color: s(`${c}.500`, `${c}.300`),
