@@ -1,3 +1,4 @@
+import _merge from 'lodash.merge';
 import {
   joinWithHyphen,
   pipe,
@@ -15,12 +16,9 @@ import {
   PseudoAliases,
 } from './theme';
 import { JSONObject } from './base.types';
-import {
-  DesignToken,
-  DesignTokenObject,
-  DesignTokens,
-  Dict,
-} from './cssVar.types';
+import { DesignToken, DesignTokens, Dict } from './cssVar.types';
+import { SCALE_TOKENS } from './system-props/constants';
+import { Theme } from './system-props/types';
 
 export const toCustomProperties = (
   obj: JSONObject = {},
@@ -122,34 +120,31 @@ const createTokensToCssVars = (tokens: DesignTokens) => {
   return target;
 };
 
-export const createCssVars = <
-  T extends {
-    colors?: DesignTokenObject;
-    semanticTokens?: DesignTokenObject;
-    fontSizes?: DesignTokenObject;
-    lineHeights?: DesignTokenObject;
-    fontWeights?: DesignTokenObject;
-  },
->(
-  theme: T,
-) => {
-  const { colors, semanticTokens, fontSizes, lineHeights, fontWeights } = theme;
-  const cssVars: JSONObject = {};
+export const createCssVars = (theme: Theme) => {
+  let cssVars: JSONObject = {};
 
-  const tokens = {
-    ...toCustomProperties(fontSizes, 'fontSizes', '.'),
-    ...toCustomProperties(lineHeights, 'lineHeights', '.'),
-    ...toCustomProperties(fontWeights, 'fontWeights', '.'),
-    ...toCustomProperties(colors, 'colors', '.'),
-    ...toCustomProperties(semanticTokens, 'colors', '.', {
+  const scaleTokens = SCALE_TOKENS.reduce((acc, scale) => {
+    return {
+      ...acc,
+      ...toCustomProperties(theme[scale], scale, '.'),
+    };
+  }, {});
+
+  const semanticTokens = toCustomProperties(
+    theme.semanticTokens,
+    'colors',
+    '.',
+    {
       halt: (value) =>
         Object.keys(value).every((key) =>
           PSEUDO_KEYS.includes(key as PseudoKeys),
         ),
-    }),
-  } as DesignTokens;
+    },
+  );
 
-  Object.assign(cssVars, createTokensToCssVars(tokens));
+  const tokens = _merge(scaleTokens, semanticTokens) as DesignTokens;
+
+  cssVars = _merge(cssVars, createTokensToCssVars(tokens));
 
   return cssVars;
 };
