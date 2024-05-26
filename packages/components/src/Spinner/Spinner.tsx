@@ -1,4 +1,4 @@
-import { forwardRef } from '@danji/styled';
+import { dj, forwardRef } from '@danji/styled';
 import useSpinner from './useSpinner';
 import { SpinnerProps } from './spinner.types';
 
@@ -7,7 +7,7 @@ const Spinner = forwardRef<'div', SpinnerProps>((props, ref) => {
 
   return (
     <Component ref={ref} {...getSpinnerProps()}>
-      {label}
+      {label && <dj.span srOnly>{label}</dj.span>}
     </Component>
   );
 });
