@@ -1,34 +1,39 @@
 import _merge from 'lodash.merge';
 import { callIfFunc, isObject, getValueByPath } from '@danji/utilities';
 import { systemProps, type djTheme } from './system-props';
+import { Dict } from './cssVar.types';
 
-export const css = (stylesOrFunc: Record<string, any>) => (theme: djTheme) => {
-  const computedCSS: Record<string, any> = {};
+export const css = (stylesOrFunc: Dict) => (theme: djTheme) => {
+  let computedCSS: Dict = {};
 
   const styles = callIfFunc(stylesOrFunc, theme);
+  const mergeCSS = (target: Dict, source: Dict) =>
+    _merge(target, css(source)(theme));
 
   for (const [key, valueOrFunc] of Object.entries(styles)) {
     const val = callIfFunc(valueOrFunc, theme);
+    const systemProp = getValueByPath(systemProps, key);
 
     if (isObject(val)) {
       const nestedStyles = val;
-
-      computedCSS[key] = _merge(
-        computedCSS[key] ?? {},
-        css(nestedStyles)(theme),
-      );
+      computedCSS[key] = mergeCSS(computedCSS[key] ?? {}, nestedStyles);
       continue;
     }
-
-    const systemProp = getValueByPath(systemProps, key);
 
     if (!systemProp) {
       computedCSS[key] = val;
       continue;
     }
 
-    const alias = systemProp.prop;
-    computedCSS[alias] = systemProp.transform?.(val)(theme) ?? val;
+    const transformedValue = systemProp.transform?.(val)(theme) ?? val;
+
+    if (isObject(transformedValue)) {
+      computedCSS = mergeCSS(computedCSS, transformedValue);
+      continue;
+    }
+
+    const alias = systemProp.prop || key;
+    computedCSS[alias] = transformedValue;
   }
 
   return computedCSS;

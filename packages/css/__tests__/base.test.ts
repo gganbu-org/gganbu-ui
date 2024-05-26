@@ -53,6 +53,26 @@ describe('css', () => {
     });
   });
 
+  it('should convert utility to value', () => {
+    const result = css({
+      srOnly: true,
+    })(theme);
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "borderWidth": 0,
+        "clip": "rect(0, 0, 0, 0)",
+        "height": "1px",
+        "margin": "-1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "whiteSpace": "nowrap",
+        "width": "1px",
+      }
+    `);
+  });
+
   it('should convert nested object to style object', () => {
     const result = css({
       bg: '#fff',

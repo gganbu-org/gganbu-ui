@@ -1,4 +1,23 @@
 import * as CSS from 'csstype';
+import { SCALE_TOKENS } from './constants';
+import { DesignTokenObject } from '../cssVar.types';
+
+export type ThemeScale = (typeof SCALE_TOKENS)[number];
+
+export type TransformWithoutTheme = (value: string, scale?: ThemeScale) => any;
+
+export type TransformWithTheme = (
+  value: string,
+  scale?: ThemeScale,
+) => (theme: djTheme) => any;
+
+export type Transform = TransformWithoutTheme | TransformWithTheme;
+
+export interface ConfigOpts {
+  prop?: string;
+  scale?: ThemeScale;
+  transform?: Transform;
+}
 
 export interface BackgroundCSSProperties {
   /**
@@ -197,6 +216,13 @@ export interface TypographyCSSProperties {
   fontWeight?: CSS.Property.FontWeight | string;
 }
 
+export interface UtilityCSSProperties {
+  /**
+   * Utility for improving accessibility with screen readers.
+   */
+  srOnly?: boolean;
+}
+
 export interface AliasesCSSProperties {
   /**
    * The background-color CSS property sets the background color of an element.
@@ -272,9 +298,14 @@ export type ThemeWithCssVars<T> = T & {
   cssVars: Record<string, any>;
 };
 
-export type djTheme = ThemeWithCssVars<Record<string, any>>;
+export type djTheme = ThemeWithCssVars<Theme>;
 
-export type Transform = (value: string) => (theme: djTheme) => any;
+export type Theme = {
+  [K in ThemeScale]?: DesignTokenObject;
+} & {
+  key?: string;
+  semanticTokens?: DesignTokenObject;
+};
 
 export interface OverwriteCSSProperties
   extends BackgroundCSSProperties,
@@ -283,7 +314,8 @@ export interface OverwriteCSSProperties
     FlexCSSProperties,
     PositionCSSProperties,
     SpaceCSSProperties,
-    TypographyCSSProperties {}
+    TypographyCSSProperties,
+    UtilityCSSProperties {}
 
 export interface DjCSSProperties
   extends Omit<CSS.Properties, keyof OverwriteCSSProperties>,

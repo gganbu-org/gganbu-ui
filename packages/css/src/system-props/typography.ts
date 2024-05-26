@@ -1,9 +1,9 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const typography = {
-  fontSize: s.base('fontSize', 'fontSizes'),
-  lineHeight: s.base('lineHeight', 'lineHeights'),
-  fontWeight: s.base('fontWeight', 'fontWeights'),
+  fontSize: c.fontSizes('fontSize'),
+  lineHeight: c.lineHeights('lineHeight'),
+  fontWeight: c.fontWeights('fontWeight'),
 };
 
 export default typography;

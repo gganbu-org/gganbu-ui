@@ -1,13 +1,13 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const content = {
-  display: s.base('display'),
-  width: s.sizes('width'),
-  height: s.sizes('height'),
-  minWidth: s.sizes('minWidth'),
-  minHeight: s.sizes('minHeight'),
-  maxWidth: s.sizes('maxWidth'),
-  maxHeight: s.sizes('maxHeight'),
+  display: c.toBase('display'),
+  width: c.toBase('width'),
+  height: c.toBase('height'),
+  minWidth: c.toBase('minWidth'),
+  minHeight: c.toBase('minHeight'),
+  maxWidth: c.toBase('maxWidth'),
+  maxHeight: c.toBase('maxHeight'),
 };
 
 export default content;

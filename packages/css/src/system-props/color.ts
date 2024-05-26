@@ -1,10 +1,10 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const color = {
-  color: s.colors('color'),
-  textColor: s.colors('textColor'),
-  borderColor: s.colors('borderColor'),
-  opacity: s.base('opacity'),
+  color: c.colors('color'),
+  textColor: c.colors('textColor'),
+  borderColor: c.colors('borderColor'),
+  opacity: c.toBase('opacity'),
 };
 
 export default color;

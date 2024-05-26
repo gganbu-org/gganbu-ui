@@ -1,12 +1,12 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const position = {
-  position: s.base('position'),
-  top: s.sizes('top'),
-  right: s.sizes('right'),
-  bottom: s.sizes('bottom'),
-  left: s.sizes('left'),
-  zIndex: s.base('zIndex'),
+  position: c.toBase('position'),
+  top: c.toBase('top'),
+  right: c.toBase('right'),
+  bottom: c.toBase('bottom'),
+  left: c.toBase('left'),
+  zIndex: c.toBase('zIndex'),
 };
 
 export default position;

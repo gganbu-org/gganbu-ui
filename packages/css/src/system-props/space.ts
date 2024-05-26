@@ -1,16 +1,16 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const space = {
-  margin: s.base('margin'),
-  marginTop: s.base('marginTop'),
-  marginRight: s.base('marginRight'),
-  marginBottom: s.base('marginBottom'),
-  marginLeft: s.base('marginLeft'),
-  padding: s.base('padding'),
-  paddingTop: s.base('paddingTop'),
-  paddingRight: s.base('paddingRight'),
-  paddingBottom: s.base('paddingBottom'),
-  paddingLeft: s.base('paddingLeft'),
+  margin: c.toBase('margin'),
+  marginTop: c.toBase('marginTop'),
+  marginRight: c.toBase('marginRight'),
+  marginBottom: c.toBase('marginBottom'),
+  marginLeft: c.toBase('marginLeft'),
+  padding: c.toBase('padding'),
+  paddingTop: c.toBase('paddingTop'),
+  paddingRight: c.toBase('paddingRight'),
+  paddingBottom: c.toBase('paddingBottom'),
+  paddingLeft: c.toBase('paddingLeft'),
 };
 
 export default space;

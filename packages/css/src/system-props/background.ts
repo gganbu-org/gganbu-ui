@@ -1,7 +1,7 @@
-import { scales as s } from './scales';
+import { config as c } from './config';
 
 const background = {
-  backgroundColor: s.colors('backgroundColor'),
+  backgroundColor: c.colors('backgroundColor'),
 };
 
 export default background;
