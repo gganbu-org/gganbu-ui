@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const basic: Story = {
   args: {
     size: 'md',
-    theme: 'primary',
+    theme: 'success',
   },
 };
 
