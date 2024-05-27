@@ -1,6 +1,6 @@
+import { getValueByPath, getColorAlpha, isHexColor } from '@danji/utilities';
 import { isDarkScheme } from '../ColorScheme/colorScheme.utils';
 import { ColorScheme } from '../ColorScheme/colorScheme.types';
-import { getColorAlpha, getValueByPath, isHexColor } from '@danji/styled';
 
 export const createColorByColorScheme =
   (colorScheme: ColorScheme) => (light: string, black: string) =>

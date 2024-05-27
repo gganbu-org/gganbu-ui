@@ -1,3 +1,5 @@
 import { useMatchMedia, useMediaQuery, getMatches } from './useMediaQuery';
+import { ThemePropsWithUtils, useThemeStyles } from './useTheme';
 
-export { useMatchMedia, useMediaQuery, getMatches };
+export type { ThemePropsWithUtils };
+export { useMatchMedia, useMediaQuery, getMatches, useThemeStyles };
