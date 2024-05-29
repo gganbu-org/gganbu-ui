@@ -1,23 +1,13 @@
 import type { CSSObject as EmotionCssObject } from '@emotion/react';
 import { SystemProps } from '@danji/css';
 
-export type OmitProps<Target, Props extends keyof any> = Omit<Target, Props>;
-
-export type RightJoinProps<
-  Props extends object,
-  OverrideProps extends object,
-> = OmitProps<Props, keyof OverrideProps> & OverrideProps;
-
-export type MergeProps<
-  OriginalProps extends object,
-  AdditionalProps extends object,
-> = RightJoinProps<OriginalProps, AdditionalProps>;
-
 export type As = React.ElementType;
 
 export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T>;
 
 export type CSSObject = EmotionCssObject;
+
+export type Dict<T = any> = Record<string, T>;
 
 export type DOMElements = keyof JSX.IntrinsicElements;
 
@@ -29,20 +19,22 @@ export type DjComponents = {
   [T in DOMElements]: DjComponent<T>;
 };
 
-export type DjComponent<T extends As> = CustomComponent<T>;
+export type DjComponent<T extends React.ElementType> = CustomComponent<T>;
 
-interface CustomComponent<Component extends As> {
+type PropsWithChildren<T> = T & { children?: React.ReactNode | undefined };
+
+interface CustomComponent<T extends React.ElementType> {
   (
-    props: MergeProps<React.ComponentProps<Component>, DjProps>,
-    deprecatedLegacyContext?: any,
+    props: PropsWithChildren<React.ComponentProps<T>> & DjProps,
+    context?: any,
   ): JSX.Element | null;
-  propTypes?: React.WeakValidationMap<any> | undefined;
-  contextTypes?: React.ValidationMap<any> | undefined;
-  defaultProps?: Partial<any> | undefined;
-  displayName?: string | undefined;
+  propTypes?: React.WeakValidationMap<any>;
+  contextTypes?: React.ValidationMap<any>;
+  defaultProps?: Partial<any>;
+  displayName?: string;
 }
 
-export interface DjProps extends SystemProps {
+interface DjProps {
   _styles?: CSSObject;
 }
 

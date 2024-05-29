@@ -14,9 +14,9 @@ export const useMatchMedia = (
   const { triggerFirstLoad } = options;
   const [matches, setMatches] = useState<boolean>(getMatches(query));
 
-  useEffect(() => {
-    const handleChange = () => setMatches(getMatches(query));
+  const handleChange = () => setMatches(getMatches(query));
 
+  useEffect(() => {
     if (triggerFirstLoad) handleChange();
 
     const matchMedia = window.matchMedia(query);

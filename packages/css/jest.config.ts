@@ -2,14 +2,15 @@ import sharedConfigs from '../../configs/jest.config';
 
 export default {
   ...sharedConfigs,
+  rootDir: '../../',
   collectCoverage: true,
   coverageProvider: 'v8',
-  coverageDirectory: './coverage/',
+  coverageDirectory: '<rootDir>/packages/css/coverage/',
   transform: {
     '^.+\\.(ts|tsx)?$': [
       'ts-jest',
       {
-        tsconfig: './tsconfig.json',
+        tsconfig: '<rootDir>/packages/css/tsconfig.json',
       },
     ],
   },

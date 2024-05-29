@@ -1,26 +1,16 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "plugins": ["@typescript-eslint"],
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "extends": [
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
     "airbnb-typescript",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
   "rules": {
@@ -30,8 +20,7 @@
     "import/no-relative-packages": "off",
     "import/prefer-default-export": "off",
     "no-continue": "off",
-    "react/jsx-props-no-spreading": "off",
-    "no-restricted-syntax": "off"
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
@@ -41,7 +30,14 @@
       },
       "rules": {
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/naming-convention": "off"
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": ["camelCase", "PascalCase", "UPPER_CASE", "_camelCase"],
+            "leadingUnderscore": "allow"
+          }
+        ]
       }
     }
   ]

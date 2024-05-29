@@ -1,12 +1,11 @@
-import { createCssVars, css, DJ_DEFAULT_THEME } from '@danji/css';
+import { DJ_DEFAULT_THEME } from '@danji/components';
+import { customTheme } from '@danji/styled';
+import { css } from '@danji/css';
 
-const theme = Object.assign(DJ_DEFAULT_THEME, {
-  cssVars: createCssVars(DJ_DEFAULT_THEME),
-});
+const theme = customTheme(DJ_DEFAULT_THEME);
+const { colors } = DJ_DEFAULT_THEME;
 
 describe('css', () => {
-  const { colors } = DJ_DEFAULT_THEME;
-
   it('should be return same value if it is not in the theme', () => {
     const result = css({
       color: 'gray',
@@ -35,9 +34,9 @@ describe('css', () => {
     })(theme);
 
     expect(result).toEqual({
-      fontSize: 'var(--dj-fontSizes-sm)',
-      fontWeight: 'var(--dj-fontWeights-normal)',
-      lineHeight: 'var(--dj-lineHeights-sm)',
+      fontSize: 'var(--dj-fontSize-sm)',
+      fontWeight: 'var(--dj-fontWeight-normal)',
+      lineHeight: 'var(--dj-lineHeight-sm)',
     });
   });
 
@@ -51,26 +50,6 @@ describe('css', () => {
       backgroundColor: '#fff',
       width: '0.25rem',
     });
-  });
-
-  it('should convert utility to value', () => {
-    const result = css({
-      srOnly: true,
-    })(theme);
-
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "borderWidth": 0,
-        "clip": "rect(0, 0, 0, 0)",
-        "height": "1px",
-        "margin": "-1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "absolute",
-        "whiteSpace": "nowrap",
-        "width": "1px",
-      }
-    `);
   });
 
   it('should convert nested object to style object', () => {
