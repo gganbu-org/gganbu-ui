@@ -1,4 +1,5 @@
-import { ThemePropsWithUtils, keyframes } from '@danji/styled';
+import { keyframes } from '@danji/styled';
+import { ThemePropsWithUtils } from '../hooks';
 
 const spin = keyframes({
   '0%': {
@@ -30,8 +31,8 @@ const sizes = {
     borderWidth: '0.1875rem',
   },
   lg: {
-    width: '2em',
-    height: '2em',
+    width: '1.75em',
+    height: '1.75em',
     borderWidth: '0.225rem',
   },
 };
@@ -40,7 +41,11 @@ const variants = {
   solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
     const c = themes[theme as Theme];
 
-    if (c === themes.current) return c;
+    if (c === themes.current) {
+      return {
+        color: c,
+      };
+    }
 
     return {
       color: s(`${c}.500`, `${c}.300`),

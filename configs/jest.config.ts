@@ -17,7 +17,7 @@ const config = {
     ...packages.reduce(
       (acc: Record<string, string>, pkg: string) => ({
         ...acc,
-        [`@danji/${pkg}(.*)$`]: `<rootDir>/packages/${pkg}/src$1`,
+        [`@danji/${pkg}(.*)$`]: `<rootDir>/../${pkg}/src$1`,
       }),
       {},
     ),
