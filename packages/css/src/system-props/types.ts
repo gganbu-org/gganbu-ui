@@ -9,7 +9,7 @@ export type TransformWithoutTheme = (value: string, scale?: ThemeScale) => any;
 export type TransformWithTheme = (
   value: string,
   scale?: ThemeScale,
-) => (theme: djTheme) => any;
+) => (theme: gganbuTheme) => any;
 
 export type Transform = TransformWithoutTheme | TransformWithTheme;
 
@@ -298,7 +298,7 @@ export type ThemeWithCssVars<T> = T & {
   cssVars: Record<string, any>;
 };
 
-export type djTheme = ThemeWithCssVars<Theme>;
+export type gganbuTheme = ThemeWithCssVars<Theme>;
 
 export type Theme = {
   [K in ThemeScale]?: DesignTokenObject;
@@ -317,7 +317,7 @@ export interface OverwriteCSSProperties
     TypographyCSSProperties,
     UtilityCSSProperties {}
 
-export interface DjCSSProperties
+export interface GganbuCSSProperties
   extends Omit<CSS.Properties, keyof OverwriteCSSProperties>,
     OverwriteCSSProperties,
     AliasesCSSProperties {}

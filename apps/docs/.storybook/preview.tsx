@@ -6,12 +6,12 @@ import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 
 import {
   ColorSchemeProvider,
-  DJ_THEME_WITH_COMPONENT,
+  GGANBU_THEME_WITH_COMPONENT,
   setDataset,
-} from '@danji/components';
-import { CssReset, ThemeProvider } from '@danji/styled';
+} from '@gganbu/components';
+import { CssReset, ThemeProvider } from '@gganbu/styled';
 
-function CustomDjProvider(props: PropsWithChildren) {
+function CustomGganbuProvider(props: PropsWithChildren) {
   const { children } = props;
   const storybookDarkMode = useDarkMode();
   const theme = storybookDarkMode ? 'dark' : 'light';
@@ -34,7 +34,7 @@ function CustomDjProvider(props: PropsWithChildren) {
   }, [theme]);
 
   return (
-    <ThemeProvider theme={DJ_THEME_WITH_COMPONENT}>
+    <ThemeProvider theme={GGANBU_THEME_WITH_COMPONENT}>
       <ColorSchemeProvider value={theme}>
         <CssReset />
         {children}
@@ -67,9 +67,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <CustomDjProvider>
+      <CustomGganbuProvider>
         <Story />
-      </CustomDjProvider>
+      </CustomGganbuProvider>
     ),
   ],
 };

@@ -1,5 +1,5 @@
-import { createCssVars, toCustomProperties } from '@danji/css';
-import { joinWithHyphen, isObject, getValueByPath } from '@danji/utilities';
+import { createCssVars, toCustomProperties } from '@gganbu/css';
+import { joinWithHyphen, isObject, getValueByPath } from '@gganbu/utilities';
 
 describe('toCustomProperties', () => {
   const colors = {
@@ -67,22 +67,22 @@ describe('toCustomProperties', () => {
   it('should handle prefix', () => {
     const customProperties = toCustomProperties(
       colors,
-      joinWithHyphen('dj', 'colors'),
+      joinWithHyphen('gb', 'colors'),
     );
 
     expect(customProperties).toEqual({
-      'dj-colors-gray-100': '#f8f9fa',
-      'dj-colors-gray-200': '#e9ecef',
-      'dj-colors-gray-300': '#dee2e6',
-      'dj-colors-gray-400': '#ced4da',
-      'dj-colors-gray-500': '#adb5bd',
-      'dj-colors-gray-600': '#6c757d',
-      'dj-colors-gray-700': '#495057',
-      'dj-colors-gray-800': '#343a40',
-      'dj-colors-gray-900': '#212529',
-      'dj-colors-blue': '#007bff',
-      'dj-colors-red': '#dc3545',
-      'dj-colors-green': '#28a745',
+      'gb-colors-gray-100': '#f8f9fa',
+      'gb-colors-gray-200': '#e9ecef',
+      'gb-colors-gray-300': '#dee2e6',
+      'gb-colors-gray-400': '#ced4da',
+      'gb-colors-gray-500': '#adb5bd',
+      'gb-colors-gray-600': '#6c757d',
+      'gb-colors-gray-700': '#495057',
+      'gb-colors-gray-800': '#343a40',
+      'gb-colors-gray-900': '#212529',
+      'gb-colors-blue': '#007bff',
+      'gb-colors-red': '#dc3545',
+      'gb-colors-green': '#28a745',
     });
   });
 
@@ -209,16 +209,16 @@ describe('getValueByPath', () => {
       const result = createCssVars(theme);
       expect(result).toMatchInlineSnapshot(`
         {
-          "--dj-colors-gray-100": "#f1f1f2",
-          "--dj-colors-gray-200": "#e6e7e9",
-          "--dj-colors-gray-300": "#d2d4d7",
-          "--dj-colors-gray-400": "#a9adb2",
-          "--dj-colors-gray-50": "#f9fafa",
-          "--dj-colors-gray-500": "#797f88",
-          "--dj-colors-gray-600": "#4d5560",
-          "--dj-colors-gray-700": "#2e3744",
-          "--dj-colors-gray-800": "#19202b",
-          "--dj-colors-gray-900": "#141a23",
+          "--gb-colors-gray-100": "#f1f1f2",
+          "--gb-colors-gray-200": "#e6e7e9",
+          "--gb-colors-gray-300": "#d2d4d7",
+          "--gb-colors-gray-400": "#a9adb2",
+          "--gb-colors-gray-50": "#f9fafa",
+          "--gb-colors-gray-500": "#797f88",
+          "--gb-colors-gray-600": "#4d5560",
+          "--gb-colors-gray-700": "#2e3744",
+          "--gb-colors-gray-800": "#19202b",
+          "--gb-colors-gray-900": "#141a23",
         }
       `);
     });
@@ -252,13 +252,13 @@ describe('getValueByPath', () => {
       expect(result).toMatchInlineSnapshot(`
         {
           "&[data-theme=dark]": {
-            "--dj-colors-background-primary": "var(--dj-colors-blue)",
-            "--dj-colors-text-primary": "white",
+            "--gb-colors-background-primary": "var(--gb-colors-blue)",
+            "--gb-colors-text-primary": "white",
           },
-          "--dj-colors-background-primary": "var(--dj-colors-gray-50)",
-          "--dj-colors-blue": "#007bff",
-          "--dj-colors-gray-50": "#f9fafa",
-          "--dj-colors-text-primary": "black",
+          "--gb-colors-background-primary": "var(--gb-colors-gray-50)",
+          "--gb-colors-blue": "#007bff",
+          "--gb-colors-gray-50": "#f9fafa",
+          "--gb-colors-text-primary": "black",
         }
       `);
     });

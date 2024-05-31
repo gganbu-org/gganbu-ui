@@ -1,5 +1,5 @@
-import { useTheme } from '@danji/styled';
-import { callIfFunc, getValueByPath } from '@danji/utilities';
+import { useTheme } from '@gganbu/styled';
+import { callIfFunc, getValueByPath } from '@gganbu/utilities';
 import {
   createColorByColorScheme,
   createColorAlpha,

@@ -1,10 +1,10 @@
 import React from 'react';
 import emotionStyled from '@emotion/styled';
-import { css, stylePropList } from '@danji/css';
-import { pick } from '@danji/utilities';
-import { DjComponent } from './base.types';
+import { css, stylePropList } from '@gganbu/css';
+import { pick } from '@gganbu/utilities';
+import { GganbuComponent } from './base.types';
 
-const djProps = new Set([...stylePropList, '_styles']);
+const gganbuProps = new Set([...stylePropList, '_styles']);
 
 const styled = (props: any) => {
   const { _styles = {}, theme, ...rest } = props;
@@ -26,7 +26,7 @@ export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
     throw new Error('Define tag to create styled component');
   }
 
-  const shouldForwardProp = (prop: string) => !djProps.has(prop);
+  const shouldForwardProp = (prop: string) => !gganbuProps.has(prop);
 
   const Component = emotionStyled(tag as React.ComponentType, {
     shouldForwardProp,
@@ -37,5 +37,5 @@ export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
       ref,
       ...props,
     });
-  }) as DjComponent<T>;
+  }) as GganbuComponent<T>;
 };

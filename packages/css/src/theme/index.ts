@@ -3,7 +3,7 @@ export {
   TOKEN_ALIASES,
   TOKEN_PSEUDO_CLASSES,
   PSEUDO_KEYS,
-  DJ_DEFAULT_THEME,
+  GGANBU_DEFAULT_THEME,
 } from './constants';
 export { default as foundation } from './foundation';
 export { default as semanticTokens } from './semanticTokens';

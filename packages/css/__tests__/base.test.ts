@@ -1,11 +1,11 @@
-import { createCssVars, css, DJ_DEFAULT_THEME } from '@danji/css';
+import { createCssVars, css, GGANBU_DEFAULT_THEME } from '@gganbu/css';
 
-const theme = Object.assign(DJ_DEFAULT_THEME, {
-  cssVars: createCssVars(DJ_DEFAULT_THEME),
+const theme = Object.assign(GGANBU_DEFAULT_THEME, {
+  cssVars: createCssVars(GGANBU_DEFAULT_THEME),
 });
 
 describe('css', () => {
-  const { colors } = DJ_DEFAULT_THEME;
+  const { colors } = GGANBU_DEFAULT_THEME;
 
   it('should be return same value if it is not in the theme', () => {
     const result = css({
@@ -23,7 +23,7 @@ describe('css', () => {
     })(theme);
 
     expect(result).toEqual({
-      color: 'var(--dj-colors-gray-100)',
+      color: 'var(--gb-colors-gray-100)',
     });
   });
 
@@ -35,9 +35,9 @@ describe('css', () => {
     })(theme);
 
     expect(result).toEqual({
-      fontSize: 'var(--dj-fontSizes-sm)',
-      fontWeight: 'var(--dj-fontWeights-normal)',
-      lineHeight: 'var(--dj-lineHeights-sm)',
+      fontSize: 'var(--gb-fontSizes-sm)',
+      fontWeight: 'var(--gb-fontWeights-normal)',
+      lineHeight: 'var(--gb-lineHeights-sm)',
     });
   });
 
@@ -84,7 +84,7 @@ describe('css', () => {
     expect(result).toEqual({
       backgroundColor: '#fff',
       '&:hover': {
-        backgroundColor: 'var(--dj-colors-gray-100)',
+        backgroundColor: 'var(--gb-colors-gray-100)',
       },
     });
   });

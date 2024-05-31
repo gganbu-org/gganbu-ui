@@ -1,5 +1,5 @@
 {
-  "name": "@danji/docs",
+  "name": "@gganbu/docs",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Danji-ya <erangerang15@gmail.com>",
@@ -14,9 +14,9 @@
     "chromatic": "dotenv -e apps/docs/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
-    "@danji/components": "^0.0.0",
-    "@danji/css": "^0.0.0",
-    "@danji/styled": "^0.0.0",
+    "@gganbu/components": "^0.0.0",
+    "@gganbu/css": "^0.0.0",
+    "@gganbu/styled": "^0.0.0",
     "@storybook/test": "^8.0.9"
   },
   "devDependencies": {

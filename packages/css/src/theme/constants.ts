@@ -2,7 +2,7 @@ import foundation from './foundation';
 import semanticTokens from './semanticTokens';
 
 export const THEME = {
-  KEY: 'dj',
+  KEY: 'gb',
   DEFAULT_KEY: '__default',
 } as const;
 
@@ -17,7 +17,7 @@ export const TOKEN_PSEUDO_CLASSES = {
 
 export const PSEUDO_KEYS = Object.values(TOKEN_ALIASES);
 
-export const DJ_DEFAULT_THEME = {
+export const GGANBU_DEFAULT_THEME = {
   key: THEME.KEY,
   ...foundation,
   semanticTokens,

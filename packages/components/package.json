@@ -1,5 +1,5 @@
 {
-  "name": "@danji/components",
+  "name": "@gganbu/components",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Danji-ya <erangerang15@gmail.com>",
@@ -26,8 +26,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@danji/styled": "^0.0.0",
-    "@danji/utilities": "^0.0.0"
+    "@gganbu/styled": "^0.0.0",
+    "@gganbu/utilities": "^0.0.0"
   },
   "publishConfig": {
     "access": "public",

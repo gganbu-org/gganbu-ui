@@ -1,4 +1,4 @@
-import { getValueByPath, getColorAlpha, isHexColor } from '@danji/utilities';
+import { getValueByPath, getColorAlpha, isHexColor } from '@gganbu/utilities';
 import { isDarkScheme } from '../ColorScheme/colorScheme.utils';
 import { ColorScheme } from '../ColorScheme/colorScheme.types';
 

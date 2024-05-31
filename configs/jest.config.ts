@@ -1,5 +1,5 @@
-const path = require('path');
-const { lstatSync, readdirSync } = require('fs');
+import path from 'path';
+import { lstatSync, readdirSync } from 'fs';
 
 const getPackageList = (basePath: string) =>
   readdirSync(basePath).filter((name: string) =>
@@ -17,7 +17,7 @@ const config = {
     ...packages.reduce(
       (acc: Record<string, string>, pkg: string) => ({
         ...acc,
-        [`@danji/${pkg}(.*)$`]: `<rootDir>/../${pkg}/src$1`,
+        [`@gganbu/${pkg}(.*)$`]: `<rootDir>/../${pkg}/src$1`,
       }),
       {},
     ),

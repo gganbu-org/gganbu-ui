@@ -1,5 +1,5 @@
 import type { CSSObject as EmotionCssObject } from '@emotion/react';
-import { SystemProps } from '@danji/css';
+import { SystemProps } from '@gganbu/css';
 
 export type OmitProps<Target, Props extends keyof any> = Omit<Target, Props>;
 
@@ -22,18 +22,18 @@ export type CSSObject = EmotionCssObject;
 export type DOMElements = keyof JSX.IntrinsicElements;
 
 export type Factory = {
-  (tag: DOMElements): DjComponent<DOMElements>;
+  (tag: DOMElements): GganbuComponent<DOMElements>;
 };
 
-export type DjComponents = {
-  [T in DOMElements]: DjComponent<T>;
+export type GganbuComponents = {
+  [T in DOMElements]: GganbuComponent<T>;
 };
 
-export type DjComponent<T extends As> = CustomComponent<T>;
+export type GganbuComponent<T extends As> = CustomComponent<T>;
 
 interface CustomComponent<Component extends As> {
   (
-    props: MergeProps<React.ComponentProps<Component>, DjProps>,
+    props: MergeProps<React.ComponentProps<Component>, GganbuProps>,
     deprecatedLegacyContext?: any,
   ): JSX.Element | null;
   propTypes?: React.WeakValidationMap<any> | undefined;
@@ -42,11 +42,11 @@ interface CustomComponent<Component extends As> {
   displayName?: string | undefined;
 }
 
-export interface DjProps extends SystemProps {
+export interface GganbuProps extends SystemProps {
   _styles?: CSSObject;
 }
 
-export type HTMLDjUIProps<
+export type HTMLGganbuUIProps<
   T extends As,
   OmitKeys extends keyof any = never,
 > = Omit<PropsOf<T>, 'ref' | keyof SystemProps | OmitKeys> & SystemProps;

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { genComponentStyle } from '../src/base';
-import { dj } from '../src/factory';
+import { gb } from '../src/factory';
 
 describe('genComponentStyle function', () => {
   it('should throw an error if tag is not defined', () => {
@@ -26,10 +26,10 @@ describe('genComponentStyle function', () => {
   });
 });
 
-describe('dj created DOM', () => {
-  it('should create a DjComponent with the specified tag when tag is defined', () => {
-    const StyledDiv = dj.div;
-    const StyledButton = dj.button;
+describe('gb created DOM', () => {
+  it('should create a GganbuComponent with the specified tag when tag is defined', () => {
+    const StyledDiv = gb.div;
+    const StyledButton = gb.button;
 
     const { container: divContainer } = render(<StyledDiv />);
     expect(divContainer.querySelector('div')).toBeInTheDocument();
@@ -38,9 +38,9 @@ describe('dj created DOM', () => {
     expect(buttonContainer.querySelector('button')).toBeInTheDocument();
   });
 
-  it('should reuse cached DjComponent when the same tag is requested', () => {
-    const StyledDiv1 = dj.div;
-    const StyledDiv2 = dj.div;
+  it('should reuse cached GganbuComponent when the same tag is requested', () => {
+    const StyledDiv1 = gb.div;
+    const StyledDiv2 = gb.div;
 
     expect(StyledDiv1).toBe(StyledDiv2);
   });

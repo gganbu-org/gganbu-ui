@@ -1,6 +1,6 @@
 # `css`
 
-> TODO: custom object를 danji design system에 제공할 형태로 가공한다.
+> TODO: custom object를 design system에 제공할 형태로 가공한다.
 
 ## Usage
 
