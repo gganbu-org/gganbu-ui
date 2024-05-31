@@ -1,7 +1,7 @@
 import { HTMLDjUIProps } from '@danji/styled';
 import { Theme, Size, Variant } from '../theme/Button';
 
-interface Props extends ButtonThemeProps {
+interface Props extends HTMLDjUIProps<'button'> {
   /**
    * The child Node
    */
@@ -14,6 +14,11 @@ interface Props extends ButtonThemeProps {
    * The button end icon.
    */
   endIcon?: React.ReactNode;
+  /**
+   * The spacing of the icon
+   * @default 0.5rem
+   */
+  iconSpacing?: string;
   /**
    * Whether the button show a loading spinner.
    * @default false
@@ -48,4 +53,4 @@ interface ButtonThemeProps {
   variant?: Variant;
 }
 
-export type ButtonProps = Props & HTMLDjUIProps<'button'>;
+export interface ButtonProps extends Props, ButtonThemeProps {}
