@@ -5,34 +5,15 @@
   "author": "Danji-ya <erangerang15@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "./src/index.ts",
-  "sideEffects": false,
+  "main": "src/index.ts",
+  "directories": {
+    "src": "src"
+  },
   "files": [
-    "dist/**"
+    "src"
   ],
-  "scripts": {
-    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify --external react",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
   "devDependencies": {
-    "@types/react": "^18.2.25",
-    "@types/react-dom": "^18.2.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@danji/styled": "^0.0.0",
-    "@danji/utilities": "^0.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "@types/react": "^18.2.7",
+    "react": "^18.2.0"
   }
 }

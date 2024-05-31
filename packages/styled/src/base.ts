@@ -1,10 +1,8 @@
 import React from 'react';
-import emotionStyled from '@emotion/styled';
 import { css, stylePropList } from '@danji/css';
-import { pick } from '@danji/utilities';
+import emotionStyled from '@emotion/styled';
 import { DjComponent } from './base.types';
-
-const djProps = new Set([...stylePropList, '_styles']);
+import { pick } from './utils';
 
 const styled = (props: any) => {
   const { _styles = {}, theme, ...rest } = props;
@@ -21,21 +19,17 @@ const styled = (props: any) => {
   return cssObject;
 };
 
-export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
+export const genComponentStyle = <T extends React.ElementType>(tag: T) => {
   if (!tag) {
     throw new Error('Define tag to create styled component');
   }
 
-  const shouldForwardProp = (prop: string) => !djProps.has(prop);
+  const Component = emotionStyled(tag as React.ComponentType)(styled);
 
-  const Component = emotionStyled(tag as React.ComponentType, {
-    shouldForwardProp,
-  })(styled);
-
-  return React.forwardRef(function Comp(props, ref) {
-    return React.createElement(Component, {
+  return React.forwardRef((props, ref) =>
+    React.createElement(Component, {
       ref,
       ...props,
-    });
-  }) as DjComponent<T>;
+    }),
+  ) as DjComponent<T>;
 };

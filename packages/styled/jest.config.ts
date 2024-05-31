@@ -2,16 +2,16 @@ import sharedConfigs from '../../configs/jest.config';
 
 export default {
   ...sharedConfigs,
-  testEnvironment: 'jsdom',
   preset: 'ts-jest',
+  rootDir: '../../',
   collectCoverage: true,
   coverageProvider: 'v8',
-  coverageDirectory: './coverage/',
+  coverageDirectory: '<rootDir>/packages/styled/coverage/',
   transform: {
     '^.+\\.(ts|tsx)?$': [
       'ts-jest',
       {
-        tsconfig: './tsconfig.json',
+        tsconfig: '<rootDir>/packages/styled/tsconfig.json',
       },
     ],
   },

@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useMediaQuery } from '@danji/components/hooks';
 import { ColorSchemeContext } from './colorSchemeContext';
 import {
   COLOR_SCHEME,
@@ -14,7 +15,6 @@ import {
   setDataset,
 } from './colorScheme.utils';
 import { ColorScheme, ColorSchemeWithSystem } from './colorScheme.types';
-import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface ColorSchemeProviderProps {
   value?: ColorScheme;

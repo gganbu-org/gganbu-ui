@@ -5,41 +5,36 @@
   "author": "Danji-ya <erangerang15@gmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "./src/index.ts",
-  "sideEffects": false,
+  "main": "src/index.ts",
+  "exports": {
+    ".": {
+      "require": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "typings": "dist/index.d.ts"
+  },
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
   "files": [
-    "dist/**"
+    "src"
   ],
   "scripts": {
     "test": "jest",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run build:types && npm run build:prod",
+    "build:dev": "cross-env NODE_ENV=development rollup -cw --bundleConfigAsCjs",
+    "build:prod": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs",
+    "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly"
   },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18",
-    "@emotion/react": ">=11",
-    "@emotion/styled": ">=11",
-    "@emotion/cache": ">=11"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.25",
-    "@types/react-dom": "^18.2.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@emotion/cache": "^11.11.0"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@danji/css": "^0.0.0",
-    "@danji/utilities": "^0.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0"
   }
 }

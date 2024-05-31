@@ -1,17 +1,15 @@
-import { dj, forwardRef } from '@danji/styled';
+import { forwardRef } from 'react';
 import useSpinner from './useSpinner';
 import { SpinnerProps } from './spinner.types';
 
-const Spinner = forwardRef<'div', SpinnerProps>((props, ref) => {
+const Spinner = forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
   const { Component, label, getSpinnerProps } = useSpinner(props);
 
   return (
     <Component ref={ref} {...getSpinnerProps()}>
-      {label && <dj.span srOnly>{label}</dj.span>}
+      {label}
     </Component>
   );
 });
-
-Spinner.displayName = 'Spinner';
 
 export default Spinner;
