@@ -19,11 +19,11 @@
     "esModuleInterop": true,
     "paths": {
       /* packages alias */
-      "@danji/components/*": ["packages/components/src/*"],
-      "@danji/css/*": ["packages/css/src/*"],
-      "@danji/rollup/*": ["packages/rollup/src/*"],
-      "@danji/styled/*": ["packages/styled/src/*"],
-      "@danji/utilities/*": ["packages/utilities/src/*"]
+      "@gganbu/components/*": ["packages/components/src/*"],
+      "@gganbu/css/*": ["packages/css/src/*"],
+      "@gganbu/rollup/*": ["packages/rollup/src/*"],
+      "@gganbu/styled/*": ["packages/styled/src/*"],
+      "@gganbu/utilities/*": ["packages/utilities/src/*"]
     },
 
     /* Advanced Options */

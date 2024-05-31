@@ -1,7 +1,7 @@
-import { HTMLDjUIProps } from '@danji/styled';
+import { HTMLGganbuUIProps } from '@gganbu/styled';
 import { Theme, Size, Variant } from '../theme/Button';
 
-interface Props extends HTMLDjUIProps<'button'> {
+interface Props extends HTMLGganbuUIProps<'button'> {
   /**
    * The child Node
    */

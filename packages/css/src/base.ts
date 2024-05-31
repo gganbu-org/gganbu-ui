@@ -1,9 +1,9 @@
 import _merge from 'lodash.merge';
-import { callIfFunc, isObject, getValueByPath } from '@danji/utilities';
-import { systemProps, type djTheme } from './system-props';
+import { callIfFunc, isObject, getValueByPath } from '@gganbu/utilities';
+import { systemProps, type gganbuTheme } from './system-props';
 import { Dict } from './cssVar.types';
 
-export const css = (stylesOrFunc: Dict) => (theme: djTheme) => {
+export const css = (stylesOrFunc: Dict) => (theme: gganbuTheme) => {
   let computedCSS: Dict = {};
 
   const styles = callIfFunc(stylesOrFunc, theme);

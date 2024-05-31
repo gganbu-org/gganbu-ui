@@ -1,16 +1,16 @@
-import { CssReset, ThemeProvider } from '@danji/styled';
-import { DJ_THEME_WITH_COMPONENT } from '../theme';
+import { CssReset, ThemeProvider } from '@gganbu/styled';
+import { GGANBU_THEME_WITH_COMPONENT } from '../theme';
 import { ColorSchemeProvider } from '../ColorScheme';
 
-export interface DjProviderProps {
+export interface GganbuProviderProps {
   theme?: Record<string, any>;
   defaultCssReset?: boolean;
   children?: React.ReactNode;
 }
 
-export function DjProvider(props: DjProviderProps) {
+export function GganbuProvider(props: GganbuProviderProps) {
   const {
-    theme = DJ_THEME_WITH_COMPONENT,
+    theme = GGANBU_THEME_WITH_COMPONENT,
     defaultCssReset = true,
     children,
   } = props;

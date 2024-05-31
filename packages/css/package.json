@@ -1,5 +1,5 @@
 {
-  "name": "@danji/css",
+  "name": "@gganbu/css",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Danji-ya <erangerang15@gmail.com>",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
-    "@danji/utilities": "^0.0.0"
+    "@gganbu/utilities": "^0.0.0"
   },
   "publishConfig": {
     "access": "public",

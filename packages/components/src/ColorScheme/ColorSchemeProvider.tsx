@@ -32,14 +32,11 @@ function ColorSchemeProvider(props: ColorSchemeProviderProps) {
     getSystemScheme(),
   );
 
-  const handleSetColorScheme = useCallback(
-    (nextColorScheme: ColorScheme) => {
-      setColorScheme(nextColorScheme);
-      storageManager.set(nextColorScheme);
-      setDataset(nextColorScheme);
-    },
-    [getSystemScheme],
-  );
+  const handleSetColorScheme = useCallback((nextColorScheme: ColorScheme) => {
+    setColorScheme(nextColorScheme);
+    storageManager.set(nextColorScheme);
+    setDataset(nextColorScheme);
+  }, []);
 
   const internalColorSheme = isSystemScheme(colorScheme)
     ? systemColorScheme
@@ -92,7 +89,7 @@ function ColorSchemeProvider(props: ColorSchemeProviderProps) {
             },
             setColorScheme: handleSetColorScheme,
           },
-    [internalColorSheme, externalColorScheme],
+    [internalColorSheme, externalColorScheme, handleSetColorScheme],
   );
 
   return (

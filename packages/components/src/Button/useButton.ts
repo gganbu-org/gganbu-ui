@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement } from 'react';
-import { dj } from '@danji/styled';
+import { gb } from '@gganbu/styled';
 import { ButtonProps } from './button.types';
 import { useThemeStyles } from '../hooks';
 
@@ -27,7 +27,7 @@ const useButton = (props: ButtonProps) => {
     ...rest
   } = props;
 
-  const Component = dj.button;
+  const Component = gb.button;
   const disabled = isDisabled || isLoading;
   const themeStyles = useThemeStyles('Button', { theme, size, variant });
 

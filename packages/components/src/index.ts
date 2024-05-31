@@ -1,5 +1,5 @@
 export * from './theme';
 export * from './ColorScheme';
-export * from './DjProvider';
+export * from './GganbuProvider';
 export * from './Button';
 export * from './Spinner';

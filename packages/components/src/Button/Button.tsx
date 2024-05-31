@@ -1,16 +1,16 @@
-import { HTMLDjUIProps, dj, forwardRef } from '@danji/styled';
+import { HTMLGganbuUIProps, gb, forwardRef } from '@gganbu/styled';
 import useButton from './useButton';
 import { ButtonProps } from './button.types';
 import { Spinner } from '../Spinner';
 import { Wrapper } from '../Wrapper';
 
-function ButtonIcon(props: HTMLDjUIProps<'span'>) {
+function ButtonIcon(props: HTMLGganbuUIProps<'span'>) {
   const { children, ...rest } = props;
 
   return (
-    <dj.span display="inline-flex" alignSelf="center" flexShrink={0} {...rest}>
+    <gb.span display="inline-flex" alignSelf="center" flexShrink={0} {...rest}>
       {children}
-    </dj.span>
+    </gb.span>
   );
 }
 
@@ -30,19 +30,19 @@ const Button = forwardRef<'button', ButtonProps>((props, ref) => {
   return (
     <Component ref={ref} {...getButtonProps()}>
       {isLoading && (
-        <dj.span
+        <gb.span
           display="inline-flex"
           alignSelf="center"
           flexShrink={0}
           position="absolute"
         >
           {spinner}
-        </dj.span>
+        </gb.span>
       )}
       <Wrapper
         condition={isLoading}
         wrapper={(buttonContent) => (
-          <dj.span opacity={0}>{buttonContent}</dj.span>
+          <gb.span opacity={0}>{buttonContent}</gb.span>
         )}
       >
         <>

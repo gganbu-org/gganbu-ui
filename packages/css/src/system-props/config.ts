@@ -1,25 +1,26 @@
-import { callIfFunc } from '@danji/utilities';
-import type { ThemeScale, ConfigOpts, Transform, djTheme } from './types';
+import { callIfFunc } from '@gganbu/utilities';
+import type { ThemeScale, ConfigOpts, Transform, gganbuTheme } from './types';
 import { SCALE_TOKENS } from './constants';
 import { shouldTransformToVarFunc, toVarFunc, tokenToCssVar } from '../cssVar';
 
 export const scaleTokenMap = new Map(SCALE_TOKENS.map((st) => [st, st]));
 
 const t = {
-  valuetoVarFunc: (value: string, scale?: ThemeScale) => (theme: djTheme) => {
-    const prefix = `${theme.key}-${scale}`;
-    const cssVar = tokenToCssVar(value, prefix);
+  valuetoVarFunc:
+    (value: string, scale?: ThemeScale) => (theme: gganbuTheme) => {
+      const prefix = `${theme.key}-${scale}`;
+      const cssVar = tokenToCssVar(value, prefix);
 
-    const transformedValue = shouldTransformToVarFunc(theme.cssVars, cssVar)
-      ? toVarFunc(cssVar)
-      : value;
+      const transformedValue = shouldTransformToVarFunc(theme.cssVars, cssVar)
+        ? toVarFunc(cssVar)
+        : value;
 
-    return transformedValue;
-  },
+      return transformedValue;
+    },
 };
 
 const createTransform = (transform?: Transform, scale?: ThemeScale) => {
-  const fn = (val: string) => (theme: djTheme) => {
+  const fn = (val: string) => (theme: gganbuTheme) => {
     const valueOrFunc = transform?.(val, scale) ?? val;
     const value = callIfFunc(valueOrFunc, theme);
 

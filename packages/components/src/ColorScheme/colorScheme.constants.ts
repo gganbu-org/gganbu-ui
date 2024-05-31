@@ -9,4 +9,4 @@ export const PREFER_DARK_QUERY = '(prefers-color-scheme: dark)';
 
 export const DEFAULT_COLOR_MODE = COLOR_SCHEME_SYSTEM;
 
-export const LOCAL_STORAGE_KEY = 'dj-color-scheme';
+export const LOCAL_STORAGE_KEY = 'gb-color-scheme';

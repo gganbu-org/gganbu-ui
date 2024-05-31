@@ -6,7 +6,7 @@ import {
   isObject,
   splitBySeparator,
   join,
-} from '@danji/utilities';
+} from '@gganbu/utilities';
 import {
   THEME,
   TOKEN_ALIASES,

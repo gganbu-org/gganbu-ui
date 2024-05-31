@@ -1,4 +1,4 @@
-import { DJ_DEFAULT_THEME } from '@danji/styled';
+import { GGANBU_DEFAULT_THEME } from '@gganbu/styled';
 import { buttonTheme } from './Button';
 import { spinnerTheme } from './Spinner';
 
@@ -7,7 +7,7 @@ const Components = {
   Spinner: spinnerTheme,
 };
 
-export const DJ_THEME_WITH_COMPONENT = {
-  ...DJ_DEFAULT_THEME,
+export const GGANBU_THEME_WITH_COMPONENT = {
+  ...GGANBU_DEFAULT_THEME,
   components: Components,
 } as const;

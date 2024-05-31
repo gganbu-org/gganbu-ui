@@ -9,7 +9,7 @@ import {
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
 import createEmotionCache from '@emotion/cache';
-import { createCssVars, djTheme } from '@danji/css';
+import { createCssVars, gganbuTheme } from '@gganbu/css';
 import { CssVariablesProps } from './providers.types';
 import { As, MergeProps, PropsOf } from './base.types';
 
@@ -27,7 +27,7 @@ export const Global = ({ styles }: any) =>
 function CssVariables({ selector = ':root' }: CssVariablesProps): JSX.Element {
   return (
     <Global
-      styles={(theme: djTheme) => {
+      styles={(theme: gganbuTheme) => {
         return {
           [selector]: theme.cssVars,
         };
@@ -41,7 +41,7 @@ const customTheme = <T extends object>(theme: T) => {
     cssVars: createCssVars(theme),
   });
 
-  return theme as djTheme;
+  return theme as gganbuTheme;
 };
 
 export const useTheme = () => {
@@ -49,7 +49,7 @@ export const useTheme = () => {
 
   if (ctx === null || ctx === undefined) throw new Error('useTheme error');
 
-  return ctx as djTheme;
+  return ctx as gganbuTheme;
 };
 
 export function ThemeProvider(props: EmotionThemeProviderProps): JSX.Element {
@@ -72,7 +72,7 @@ export function forwardRef<Component extends As, Props extends object>(
   return reactForwardRef(component);
 }
 
-export const defaultCache = createEmotionCache({ key: 'dj', prepend: true });
+export const defaultCache = createEmotionCache({ key: 'gb', prepend: true });
 
 export function CacheProvider({ children }: { children: React.ReactNode }) {
   return (

@@ -1,4 +1,4 @@
-import { isBrowser, localStorage } from '@danji/utilities';
+import { isBrowser, localStorage } from '@gganbu/utilities';
 import {
   COLOR_SCHEME,
   COLOR_SCHEME_SYSTEM,

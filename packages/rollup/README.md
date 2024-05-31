@@ -1,4 +1,4 @@
-# @danji/rollup
+# @gganbu/rollup
 
 🍣 We use rollup to bundle the libraries
 
@@ -9,13 +9,13 @@ Just add it to your devDependencies
 Using npm:
 
 ```console
-npm install @danji/rollup -D
+npm install @gganbu/rollup -D
 ```
 
 Using yarn:
 
 ```console
-yarn add @danji/rollup -D
+yarn add @gganbu/rollup -D
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ yarn add @danji/rollup -D
 Create rollup.config.js in your project as simple as follow:
 
 ```javascript
-import { generateConfig } from '@danji/rollup';
+import { generateConfig } from '@gganbu/rollup';
 
 export default generateConfig({
   packageDir: __dirname,

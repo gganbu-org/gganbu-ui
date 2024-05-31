@@ -1,8 +1,13 @@
 import { genComponentStyle } from './base';
-import { DjComponent, DOMElements, DjComponents, Factory } from './base.types';
+import {
+  GganbuComponent,
+  DOMElements,
+  GganbuComponents,
+  Factory,
+} from './base.types';
 
-const createDjComponentFactory = () => {
-  const cache = new Map<DOMElements, DjComponent<DOMElements>>();
+const createGganbuComponentFactory = () => {
+  const cache = new Map<DOMElements, GganbuComponent<DOMElements>>();
 
   const proxyComp = new Proxy(genComponentStyle, {
     get(_target, tag: DOMElements) {
@@ -10,9 +15,9 @@ const createDjComponentFactory = () => {
 
       return cache.get(tag);
     },
-  }) as Factory & DjComponents;
+  }) as Factory & GganbuComponents;
 
   return proxyComp;
 };
 
-export const dj = createDjComponentFactory();
+export const gb = createGganbuComponentFactory();
