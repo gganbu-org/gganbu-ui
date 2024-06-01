@@ -32,7 +32,7 @@ jobs:
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: apps/docs
+          workingDir: apps/storybook
           onlyChanged: true # 👈 Required option to enable TurboSnap / 터보스냅이 필요할지는 테스트 여부에 따라 상이할 예정
           exitZeroOnChanges: true # 👈 Option to prevent the workflow from failing
           autoAcceptChanges: 'master' # 👈 Option to accept all changes on master

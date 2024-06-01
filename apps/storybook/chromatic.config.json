@@ -3,6 +3,6 @@
   "autoAcceptChanges": "master",
   "onlyChanged": true,
   "exitOnceUploaded": true,
-  "storybookBaseDir": "apps/docs",
+  "storybookBaseDir": "apps/storybook",
   "zip": true
 }

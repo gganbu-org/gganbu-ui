@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path, { dirname, join } from 'path';
+import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
