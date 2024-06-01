@@ -1,5 +1,5 @@
 {
-  "name": "@gganbu/docs",
+  "name": "@gganbu/storybook",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Danji-ya <erangerang15@gmail.com>",
@@ -11,7 +11,7 @@
     "build-storybook": "storybook build",
     "preview": "serve storybook-static",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf storybook-static",
-    "chromatic": "dotenv -e apps/docs/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+    "chromatic": "dotenv -e apps/storybook/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@gganbu/components": "^0.0.0",

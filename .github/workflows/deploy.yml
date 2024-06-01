@@ -33,7 +33,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: |
-            apps/docs/**
+            apps/storybook/**
 
   chromatic:
     name: Run visual tests

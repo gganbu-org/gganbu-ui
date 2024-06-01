@@ -10,6 +10,5 @@ export const generateArgTypesToDisable = <T extends string>(args: T[]) =>
   args.reduce<ArgTypes>((argTypes, propName) => {
     const value = { table: { disable: true } };
 
-    argTypes[propName] = value;
-    return argTypes;
+    return { ...argTypes, [propName]: value };
   }, {});
