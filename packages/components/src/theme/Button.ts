@@ -3,6 +3,9 @@ import { ThemePropsWithUtils } from '../hooks';
 const themes = {
   primary: 'blue',
   secondary: 'purple',
+  success: 'green',
+  warning: 'yellow',
+  danger: 'red',
 };
 
 const sizes = {

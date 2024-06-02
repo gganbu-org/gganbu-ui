@@ -91,6 +91,15 @@ export const theme = () => (
     <Button key="secondary" theme="secondary">
       Secondary
     </Button>
+    <Button key="success" theme="success">
+      Success
+    </Button>
+    <Button key="warning" theme="warning">
+      Warning
+    </Button>
+    <Button key="danger" theme="danger">
+      Danger
+    </Button>
   </>
 );
 
