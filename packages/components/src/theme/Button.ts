@@ -3,6 +3,9 @@ import { ThemePropsWithUtils } from '../hooks';
 const themes = {
   primary: 'blue',
   secondary: 'purple',
+  success: 'green',
+  warning: 'yellow',
+  danger: 'red',
 };
 
 const sizes = {
@@ -33,43 +36,61 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
-    const c = themes[theme as Theme];
-    const defaultBg = s(`${c}.500`, `${c}.300`);
+  solid: ({ theme }: ThemePropsWithUtils) => {
+    const defaultBg = `background.base.${theme}`;
 
     return {
       color: 'text.primary',
       bg: defaultBg,
       '&:hover': {
-        bg: s(`${c}.600`, `${c}.400`),
-        '&:disabled': {
-          bg: defaultBg,
-        },
+        bg: `background.hover.${theme}`,
       },
       '&:active': {
-        bg: s(`${c}.700`, `${c}.500`),
+        bg: `background.active.${theme}`,
       },
     };
   },
   bordered: ({ theme, switcher: s, colorAlpha }: ThemePropsWithUtils) => {
     const c = themes[theme as Theme];
-    const defaultBg = s(`${c}.500`, `${c}.300`);
+    const defaultBg = `background.base.${theme}`;
 
     return {
       color: defaultBg,
       bg: 'transparent',
       borderColor: defaultBg,
       borderWidth: '0.125rem',
-
       '&:hover': {
         opacity: 0.8,
-
-        '&:disabled': {
-          opacity: 0.5,
-        },
       },
       '&:active': {
         bg: s(`${c}.100`, colorAlpha(`${c}.100`, 0.2)),
+      },
+    };
+  },
+  link: ({ theme }: ThemePropsWithUtils) => ({
+    color: `background.base.${theme}`,
+    bg: 'transparent',
+    border: 'transparent',
+    padding: 0,
+    height: 'auto',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+    '&:active': {
+      color: `background.active.${theme}`,
+    },
+  }),
+  ghost: ({ theme, switcher: s, colorAlpha }: ThemePropsWithUtils) => {
+    const c = themes[theme as Theme];
+
+    return {
+      color: `background.base.${theme}`,
+      bg: 'transparent',
+      '&:hover': {
+        bg: s(`${c}.100`, colorAlpha(`${c}.300`, 0.1)),
+      },
+      '&:active': {
+        bg: s(`${c}.200`, colorAlpha(`${c}.400`, 0.2)),
       },
     };
   },
@@ -83,7 +104,7 @@ const baseStyles = {
   cursor: 'pointer',
   '&:disabled': {
     opacity: 0.5,
-    cursor: 'not-allowed',
+    pointerEvents: 'none',
   },
 };
 

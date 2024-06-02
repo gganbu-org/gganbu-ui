@@ -77,8 +77,14 @@ export const variant = () => (
     <Button key="solid" variant="solid">
       Solid
     </Button>
+    <Button key="ghost" variant="ghost">
+      Ghost
+    </Button>
     <Button key="bordered" variant="bordered">
       Bordered
+    </Button>
+    <Button key="link" variant="link">
+      Link
     </Button>
   </>
 );
@@ -90,6 +96,15 @@ export const theme = () => (
     </Button>
     <Button key="secondary" theme="secondary">
       Secondary
+    </Button>
+    <Button key="success" theme="success">
+      Success
+    </Button>
+    <Button key="warning" theme="warning">
+      Warning
+    </Button>
+    <Button key="danger" theme="danger">
+      Danger
     </Button>
   </>
 );

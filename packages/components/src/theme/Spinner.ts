@@ -38,7 +38,7 @@ const sizes = {
 };
 
 const variants = {
-  solid: ({ theme, switcher: s }: ThemePropsWithUtils) => {
+  solid: ({ theme }: ThemePropsWithUtils) => {
     const c = themes[theme as Theme];
 
     if (c === themes.current) {
@@ -48,7 +48,7 @@ const variants = {
     }
 
     return {
-      color: s(`${c}.500`, `${c}.300`),
+      color: `background.base.${theme}`,
     };
   },
 };
