@@ -77,8 +77,14 @@ export const variant = () => (
     <Button key="solid" variant="solid">
       Solid
     </Button>
+    <Button key="ghost" variant="ghost">
+      Ghost
+    </Button>
     <Button key="bordered" variant="bordered">
       Bordered
+    </Button>
+    <Button key="link" variant="link">
+      Link
     </Button>
   </>
 );

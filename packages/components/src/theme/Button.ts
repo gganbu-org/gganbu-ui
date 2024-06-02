@@ -44,9 +44,6 @@ const variants = {
       bg: defaultBg,
       '&:hover': {
         bg: `background.hover.${theme}`,
-        '&:disabled': {
-          bg: defaultBg,
-        },
       },
       '&:active': {
         bg: `background.active.${theme}`,
@@ -62,16 +59,38 @@ const variants = {
       bg: 'transparent',
       borderColor: defaultBg,
       borderWidth: '0.125rem',
-
       '&:hover': {
         opacity: 0.8,
-
-        '&:disabled': {
-          opacity: 0.5,
-        },
       },
       '&:active': {
         bg: s(`${c}.100`, colorAlpha(`${c}.100`, 0.2)),
+      },
+    };
+  },
+  link: ({ theme }: ThemePropsWithUtils) => ({
+    color: `background.base.${theme}`,
+    bg: 'transparent',
+    border: 'transparent',
+    padding: 0,
+    height: 'auto',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+    '&:active': {
+      color: `background.active.${theme}`,
+    },
+  }),
+  ghost: ({ theme, switcher: s, colorAlpha }: ThemePropsWithUtils) => {
+    const c = themes[theme as Theme];
+
+    return {
+      color: `background.base.${theme}`,
+      bg: 'transparent',
+      '&:hover': {
+        bg: s(`${c}.100`, colorAlpha(`${c}.300`, 0.1)),
+      },
+      '&:active': {
+        bg: s(`${c}.200`, colorAlpha(`${c}.400`, 0.2)),
       },
     };
   },
@@ -85,7 +104,7 @@ const baseStyles = {
   cursor: 'pointer',
   '&:disabled': {
     opacity: 0.5,
-    cursor: 'not-allowed',
+    pointerEvents: 'none',
   },
 };
 
