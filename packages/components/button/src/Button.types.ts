@@ -1,5 +1,5 @@
-import { HTMLGganbuUIProps } from '@gganbu/styled';
-import { Theme, Size, Variant } from '../../src/theme/Button';
+import { HTMLGganbuUIProps } from '@gganbu-org/styled';
+import { ButtonTheme, ButtonSize, ButtonVariant } from '@gganbu-org/theme';
 
 export interface ButtonWrapperProps {
   condition: boolean;
@@ -46,17 +46,17 @@ interface ButtonThemeProps {
    * The color theme of the Button
    * @default primary
    */
-  theme?: Theme;
+  theme?: ButtonTheme;
   /**
    * The size of the Button
    * @default md
    */
-  size?: Size;
+  size?: ButtonSize;
   /**
    * The variant of the Button
    * @default solid
    */
-  variant?: Variant;
+  variant?: ButtonVariant;
 }
 
 export interface ButtonProps extends Props, ButtonThemeProps {}

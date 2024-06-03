@@ -1,4 +1,4 @@
-import { gb, forwardRef } from '@gganbu/styled';
+import { gb, forwardRef } from '@gganbu-org/styled';
 import useSpinner from './useSpinner';
 import { SpinnerProps } from './Spinner.types';
 

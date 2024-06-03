@@ -1,6 +1,7 @@
-import { gb } from '@gganbu/styled';
+import { gb } from '@gganbu-org/styled';
+import { useThemeStyles } from '@gganbu-org/theme';
+
 import { SpinnerProps } from './Spinner.types';
-import { useThemeStyles } from '../../src/hooks';
 
 const useSpinner = (props: SpinnerProps) => {
   const { size = 'md', theme = 'primary', label, ...rest } = props;
