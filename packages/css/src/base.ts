@@ -1,5 +1,7 @@
 import _merge from 'lodash.merge';
-import { callIfFunc, isObject, getValueByPath } from '@gganbu/utilities';
+
+import { callIfFunc, isObject, getValueByPath } from '@gganbu-org/utilities';
+
 import { systemProps, type gganbuTheme } from './system-props';
 import { Dict } from './cssVar.types';
 

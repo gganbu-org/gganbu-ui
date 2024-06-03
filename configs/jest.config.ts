@@ -17,7 +17,7 @@ const config = {
     ...packages.reduce(
       (acc: Record<string, string>, pkg: string) => ({
         ...acc,
-        [`@gganbu/${pkg}(.*)$`]: `<rootDir>/../${pkg}/src$1`,
+        [`@gganbu-org/${pkg}(.*)$`]: `<rootDir>/../${pkg}/src$1`,
       }),
       {},
     ),

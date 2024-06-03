@@ -1,4 +1,5 @@
-import { callIfFunc } from '@gganbu/utilities';
+import { callIfFunc } from '@gganbu-org/utilities';
+
 import type { ThemeScale, ConfigOpts, Transform, gganbuTheme } from './types';
 import { SCALE_TOKENS } from './constants';
 import { shouldTransformToVarFunc, toVarFunc, tokenToCssVar } from '../cssVar';

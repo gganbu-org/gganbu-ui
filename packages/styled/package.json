@@ -1,5 +1,5 @@
 {
-  "name": "@gganbu/styled",
+  "name": "@gganbu-org/styled",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Danji-ya <erangerang15@gmail.com>",
@@ -33,8 +33,8 @@
     "@emotion/cache": "^11.11.0"
   },
   "dependencies": {
-    "@gganbu/css": "^0.0.0",
-    "@gganbu/utilities": "^0.0.0"
+    "@gganbu-org/css": "file:../css",
+    "@gganbu-org/utilities": "file:../utilities"
   },
   "publishConfig": {
     "access": "public",

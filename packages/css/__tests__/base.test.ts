@@ -1,4 +1,4 @@
-import { createCssVars, css, GGANBU_DEFAULT_THEME } from '@gganbu/css';
+import { createCssVars, css, GGANBU_DEFAULT_THEME } from '@gganbu-org/css';
 
 const theme = Object.assign(GGANBU_DEFAULT_THEME, {
   cssVars: createCssVars(GGANBU_DEFAULT_THEME),

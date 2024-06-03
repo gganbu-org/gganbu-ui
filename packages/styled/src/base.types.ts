@@ -1,5 +1,5 @@
 import type { CSSObject as EmotionCssObject } from '@emotion/react';
-import { SystemProps } from '@gganbu/css';
+import { SystemProps } from '@gganbu-org/css';
 
 export type OmitProps<Target, Props extends keyof any> = Omit<Target, Props>;
 

@@ -1,5 +1,9 @@
-import { createCssVars, toCustomProperties } from '@gganbu/css';
-import { joinWithHyphen, isObject, getValueByPath } from '@gganbu/utilities';
+import { createCssVars, toCustomProperties } from '@gganbu-org/css';
+import {
+  joinWithHyphen,
+  isObject,
+  getValueByPath,
+} from '@gganbu-org/utilities';
 
 describe('toCustomProperties', () => {
   const colors = {

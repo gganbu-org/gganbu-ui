@@ -6,7 +6,8 @@ import {
   isObject,
   splitBySeparator,
   join,
-} from '@gganbu/utilities';
+} from '@gganbu-org/utilities';
+
 import {
   THEME,
   TOKEN_ALIASES,

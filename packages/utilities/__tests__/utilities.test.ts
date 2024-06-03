@@ -1,4 +1,4 @@
-import { isArray, isObject, splitBySeparator } from '@gganbu/utilities';
+import { isArray, isObject, splitBySeparator } from '@gganbu-org/utilities';
 
 describe('isArray', () => {
   it('should return true if the value is an array', () => {

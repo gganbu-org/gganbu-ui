@@ -1,7 +1,7 @@
 import React from 'react';
 import emotionStyled from '@emotion/styled';
-import { css, stylePropList } from '@gganbu/css';
-import { pick } from '@gganbu/utilities';
+import { css, stylePropList } from '@gganbu-org/css';
+import { pick } from '@gganbu-org/utilities';
 import { GganbuComponent } from './base.types';
 
 const gganbuProps = new Set([...stylePropList, '_styles']);

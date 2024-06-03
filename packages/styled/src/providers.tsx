@@ -9,7 +9,7 @@ import {
   ThemeProviderProps as EmotionThemeProviderProps,
 } from '@emotion/react';
 import createEmotionCache from '@emotion/cache';
-import { createCssVars, gganbuTheme } from '@gganbu/css';
+import { createCssVars, gganbuTheme } from '@gganbu-org/css';
 import { CssVariablesProps } from './providers.types';
 import { As, MergeProps, PropsOf } from './base.types';
 
