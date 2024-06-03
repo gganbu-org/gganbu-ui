@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@gganbu/components';
-import { stylePropList } from '@gganbu/css';
+import { Button } from '@gganbu-org/react';
+import { stylePropList } from '@gganbu-org/css';
 import { generateArgTypesToDisable } from './stories.utils';
 
 function AppleIcon() {

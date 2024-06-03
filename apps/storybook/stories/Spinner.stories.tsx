@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Spinner } from '@gganbu/components';
-import { stylePropList } from '@gganbu/css';
+import { Spinner } from '@gganbu-org/react';
+import { stylePropList } from '@gganbu-org/css';
 import { generateArgTypesToDisable } from './stories.utils';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
