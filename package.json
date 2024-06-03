@@ -53,7 +53,7 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "build": "turbo build",
-    "clean": "turbo run clean && rm -rf node_modules",
+    "clean": "turbo run clean && rm -rf node_modules && rm -rf yarn.lock",
     "create:graph": "turbo build --graph=dependency-graph.png",
     "create:package": "yarn hygen generator create-package with-prompt"
   }
