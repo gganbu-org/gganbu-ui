@@ -46,7 +46,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "file:../../styled",
-    "@gganbu-org/utilities": "file:../../utilities"
+    "@gganbu-org/styled": "^0.0.0",
+    "@gganbu-org/utilities": "^0.0.0"
   }
 }

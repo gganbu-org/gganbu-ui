@@ -2,9 +2,10 @@
   "name": "gganbu-ui",
   "private": true,
   "workspaces": [
-    "packages/*",
+    "packages/**",
     "apps/*"
   ],
+  "packageManager": "yarn@1.22.21",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.2",
@@ -53,7 +54,7 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "build": "turbo build",
-    "clean": "turbo run clean && rm -rf node_modules && rm -rf yarn.lock",
+    "clean": "turbo run clean && rm -rf node_modules",
     "create:graph": "turbo build --graph=dependency-graph.png",
     "create:package": "yarn hygen generator create-package with-prompt"
   }
