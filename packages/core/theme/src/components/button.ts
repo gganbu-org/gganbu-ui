@@ -1,4 +1,4 @@
-import { ThemePropsWithUtils } from '../hooks';
+import type { ThemePropsWithUtils } from '../types';
 
 const themes = {
   primary: 'blue',

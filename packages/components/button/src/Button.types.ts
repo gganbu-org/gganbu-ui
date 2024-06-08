@@ -1,5 +1,5 @@
-import { HTMLGganbuUIProps } from '@gganbu-org/styled';
-import { ButtonTheme, ButtonSize, ButtonVariant } from '@gganbu-org/theme';
+import type { HTMLGganbuUIProps } from '@gganbu-org/styled';
+import type { ButtonTheme, ButtonSize, ButtonVariant } from '@gganbu-org/theme';
 
 export interface ButtonWrapperProps {
   condition: boolean;

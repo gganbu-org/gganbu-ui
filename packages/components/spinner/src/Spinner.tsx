@@ -1,6 +1,6 @@
 import { gb, forwardRef } from '@gganbu-org/styled';
 import useSpinner from './useSpinner';
-import { SpinnerProps } from './Spinner.types';
+import type { SpinnerProps } from './Spinner.types';
 
 const Spinner = forwardRef<'div', SpinnerProps>((props, ref) => {
   const { Component, label, getSpinnerProps } = useSpinner(props);

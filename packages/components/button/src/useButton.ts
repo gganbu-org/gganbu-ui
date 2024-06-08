@@ -1,8 +1,6 @@
 import { cloneElement, isValidElement } from 'react';
-import { gb } from '@gganbu-org/styled';
-import { useThemeStyles } from '@gganbu-org/theme';
-
-import { ButtonProps } from './Button.types'; // Change the import statement to match the actual file name
+import { gb, useThemeStyles } from '@gganbu-org/styled';
+import type { ButtonProps } from './Button.types';
 
 const createCloneIcon = (icon?: React.ReactNode) =>
   isValidElement(icon)

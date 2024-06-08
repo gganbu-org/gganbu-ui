@@ -1,14 +1,4 @@
-import { keyframes } from '@gganbu-org/styled';
-import { ThemePropsWithUtils } from '../hooks';
-
-const spin = keyframes({
-  '0%': {
-    transform: 'rotate(0deg)',
-  },
-  '100%': {
-    transform: 'rotate(360deg)',
-  },
-});
+import type { ThemePropsWithUtils } from '../types';
 
 const themes = {
   primary: 'blue',
@@ -59,7 +49,6 @@ const baseStyles = {
   borderTopColor: 'transparent',
   borderRightColor: 'transparent',
   borderStyle: 'solid',
-  animation: `${spin} 0.75s linear infinite`,
 };
 
 export const spinnerTheme = {

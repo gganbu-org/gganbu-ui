@@ -1,11 +1,11 @@
-# `components`
+# `@gganbu-org/react`
 
 > TODO: description
 
 ## Usage
 
 ```
-const components = require('components');
+const { Button, Spinner } = require('@gganbu-org/react');
 
 // TODO: DEMONSTRATE API
 ```

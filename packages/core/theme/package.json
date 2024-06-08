@@ -37,14 +37,7 @@
     "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify --external react",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.25",
-    "@types/react-dom": "^18.2.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+  "peerDependencies": {},
+  "devDependencies": {},
+  "dependencies": {}
 }

@@ -4,12 +4,13 @@ import { useDarkMode } from 'storybook-dark-mode';
 import { themes } from '@storybook/theming';
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 
-import { CssReset, ThemeProvider } from '@gganbu-org/styled';
 import {
+  CssReset,
+  ThemeProvider,
   ColorSchemeProvider,
-  GGANBU_THEME_WITH_COMPONENT,
   setDataset,
-} from '@gganbu-org/theme';
+} from '@gganbu-org/styled';
+import { DEFAULT_THEME } from '@gganbu-org/theme';
 
 function CustomGganbuProvider(props: PropsWithChildren) {
   const { children } = props;
@@ -34,7 +35,7 @@ function CustomGganbuProvider(props: PropsWithChildren) {
   }, [theme]);
 
   return (
-    <ThemeProvider theme={GGANBU_THEME_WITH_COMPONENT}>
+    <ThemeProvider theme={DEFAULT_THEME}>
       <ColorSchemeProvider value={theme}>
         <CssReset />
         {children}

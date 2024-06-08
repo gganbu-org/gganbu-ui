@@ -1,11 +1,11 @@
-# `components`
+# `@gganbu-org/theme`
 
 > TODO: description
 
 ## Usage
 
 ```
-const components = require('components');
+const { DEFAULT_THEME } = require('@gganbu-org/theme');
 
 // TODO: DEMONSTRATE API
 ```

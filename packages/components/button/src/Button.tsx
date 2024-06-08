@@ -1,8 +1,7 @@
-import { HTMLGganbuUIProps, gb, forwardRef } from '@gganbu-org/styled';
+import { type HTMLGganbuUIProps, gb, forwardRef } from '@gganbu-org/styled';
 import { Spinner } from '@gganbu-org/spinner';
-
 import useButton from './useButton';
-import { ButtonProps, ButtonWrapperProps } from './Button.types';
+import type { ButtonProps, ButtonWrapperProps } from './Button.types';
 
 function Wrapper({ condition, wrapper, children }: ButtonWrapperProps) {
   return condition ? wrapper(children) : children;

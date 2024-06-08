@@ -1,16 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Spinner } from '@gganbu-org/react';
-import { stylePropList } from '@gganbu-org/css';
-import { generateArgTypesToDisable } from './stories.utils';
+import { Spinner } from '@gganbu-org/spinner';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'Example/Spinner',
   component: Spinner,
   tags: ['autodocs'],
-  argTypes: {
-    ...generateArgTypesToDisable(stylePropList),
-  },
   decorators: [
     (Story) => (
       <div
@@ -31,30 +26,36 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const basic: Story = {
+export const Basic: Story = {
   args: {
     size: 'md',
     theme: 'primary',
   },
 };
 
-export const theme = () => (
-  <>
-    <Spinner key="bordered" theme="primary" />
-    <Spinner key="solid" theme="secondary" />
-    <Spinner key="solid" theme="success" />
-    <Spinner key="solid" theme="danger" />
-    <Spinner key="solid" theme="warning" />
-    <Spinner key="solid" theme="current" />
-  </>
-);
+export function Theme() {
+  return (
+    <>
+      <Spinner key="bordered" theme="primary" />
+      <Spinner key="solid" theme="secondary" />
+      <Spinner key="solid" theme="success" />
+      <Spinner key="solid" theme="danger" />
+      <Spinner key="solid" theme="warning" />
+      <Spinner key="solid" theme="current" />
+    </>
+  );
+}
 
-export const size = () => (
-  <>
-    <Spinner size="sm" theme="primary" />
-    <Spinner size="md" theme="danger" />
-    <Spinner size="lg" theme="success" />
-  </>
-);
+export function Size() {
+  return (
+    <>
+      <Spinner size="sm" theme="primary" />
+      <Spinner size="md" theme="danger" />
+      <Spinner size="lg" theme="success" />
+    </>
+  );
+}
 
-export const label = () => <Spinner label="label" />;
+export function Label() {
+  return <Spinner label="label" />;
+}
