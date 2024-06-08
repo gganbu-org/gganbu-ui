@@ -2,6 +2,6 @@
 to: <%= packageDomain %>/<%= packageName %>/tsconfig.json
 ---
 {
-  "extends": "../../tsconfig.json",
+  "extends": "<%= relativeRootPath %>tsconfig.json",
 }
 
