@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import _merge from 'lodash.merge';
 import { ThemeContext as EmotionThemeContext } from '@emotion/react';
 import {
   callIfFunc,
@@ -53,13 +54,13 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     const variantThemeMap = getValueByPath(themeStyleConfig, 'variants');
 
     if (baseThemeMap) {
-      Object.assign(themeStyles, {
+      _merge(themeStyles, {
         ...callIfFunc(baseThemeMap, themeProps),
       });
     }
 
     if (sizeThemeMap) {
-      Object.assign(themeStyles, {
+      _merge(themeStyles, {
         ...callIfFunc(
           getValueByPath(sizeThemeMap, themeProps.size),
           themeProps,
@@ -68,7 +69,7 @@ export const useThemeStyles = (themeKey: string, props: ThemeProps) => {
     }
 
     if (variantThemeMap) {
-      Object.assign(themeStyles, {
+      _merge(themeStyles, {
         ...callIfFunc(
           getValueByPath(variantThemeMap, themeProps.variant || 'solid'),
           themeProps,

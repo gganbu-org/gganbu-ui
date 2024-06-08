@@ -1,4 +1,5 @@
 import React, { forwardRef as reactForwardRef } from 'react';
+import _merge from 'lodash.merge';
 import {
   Global as EmotionGlobal,
   jsx as emotionJsx,
@@ -30,7 +31,7 @@ const Global = ({ styles }: any) =>
   });
 
 const customTheme = <T extends object>(theme: T) => {
-  Object.assign(theme, {
+  _merge(theme, {
     cssVars: createCssVars(theme),
   });
 

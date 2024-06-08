@@ -1,4 +1,5 @@
 import React from 'react';
+import _merge from 'lodash.merge';
 import emotionStyled from '@emotion/styled';
 import { pick } from '@gganbu-org/utils';
 import { stylePropList } from './system-props';
@@ -15,7 +16,7 @@ const styled = (props: any) => {
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#merging_objects_with_same_properties
    * The properties are overwritten by other objects that have the same properties later in the parameters order.
    */
-  const styles = Object.assign(_styles, systemProps);
+  const styles = _merge(_styles, systemProps);
 
   const cssObject = css(styles)(theme);
 

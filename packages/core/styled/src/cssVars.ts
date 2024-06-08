@@ -39,13 +39,13 @@ export const toCustomProperties = (
     const entry = { [name]: value };
 
     if (isObject(value) && halt?.(value)) {
-      Object.assign(next, entry);
+      _merge(next, entry);
     } else {
       const nestedObj = isObject(value)
         ? toCustomProperties(value, name, delimiter, options)
         : entry;
 
-      Object.assign(next, nestedObj);
+      _merge(next, nestedObj);
     }
   };
 
@@ -116,7 +116,7 @@ const createTokensToCssVars = (tokens: DesignTokens) => {
 
     const source = transformValue(key, designToken);
 
-    Object.assign(target, source);
+    _merge(target, source);
   });
 
   return target;
