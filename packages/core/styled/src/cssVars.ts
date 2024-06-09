@@ -22,7 +22,7 @@ const TOKEN_PSEUDO_CLASSES = {
   [TOKEN_ALIASES.DARK]: '&[data-theme=dark]',
 } as const;
 
-export const toCustomProperties = (
+export const flattenToTokens = (
   obj: JSONObject = {},
   prefix?: string,
   delimiter = '-',
@@ -42,7 +42,7 @@ export const toCustomProperties = (
       _merge(next, entry);
     } else {
       const nestedObj = isObject(value)
-        ? toCustomProperties(value, name, delimiter, options)
+        ? flattenToTokens(value, name, delimiter, options)
         : entry;
 
       _merge(next, nestedObj);
@@ -128,21 +128,16 @@ export const createCssVars = (theme: Theme) => {
   const scaleTokens = SCALE_TOKENS.reduce((acc, scale) => {
     return {
       ...acc,
-      ...toCustomProperties(theme[scale], scale, '.'),
+      ...flattenToTokens(theme[scale], scale, '.'),
     };
   }, {});
 
-  const semanticTokens = toCustomProperties(
-    theme.semanticTokens,
-    'colors',
-    '.',
-    {
-      halt: (value) =>
-        Object.keys(value).every((key) =>
-          Object.values(TOKEN_ALIASES).includes(key),
-        ),
-    },
-  );
+  const semanticTokens = flattenToTokens(theme.semanticTokens, 'colors', '.', {
+    halt: (value) =>
+      Object.keys(value).every((key) =>
+        Object.values(TOKEN_ALIASES).includes(key),
+      ),
+  });
 
   const tokens = _merge(scaleTokens, semanticTokens) as DesignTokens;
 

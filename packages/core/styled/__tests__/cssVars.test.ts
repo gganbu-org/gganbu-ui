@@ -1,7 +1,7 @@
 import { joinWithHyphen, isObject, getValueByPath } from '@gganbu-org/utils';
-import { createCssVars, toCustomProperties } from '../src/cssVars';
+import { createCssVars, flattenToTokens } from '../src/cssVars';
 
-describe('toCustomProperties', () => {
+describe('flattenToTokens', () => {
   const colors = {
     gray: {
       100: '#f8f9fa',
@@ -20,9 +20,9 @@ describe('toCustomProperties', () => {
   };
 
   it('should convert object to custom properties format', () => {
-    const customProperties = toCustomProperties(colors);
+    const tokens = flattenToTokens(colors);
 
-    expect(customProperties).toEqual({
+    expect(tokens).toEqual({
       'gray-100': '#f8f9fa',
       'gray-200': '#e9ecef',
       'gray-300': '#dee2e6',
@@ -53,9 +53,9 @@ describe('toCustomProperties', () => {
       },
     };
 
-    const customProperties = toCustomProperties(nestedColors);
+    const tokens = flattenToTokens(nestedColors);
 
-    expect(customProperties).toEqual({
+    expect(tokens).toEqual({
       'primary-blue': '#007bff',
       'primary-red': '#dc3545',
       'secondary-green': '#28a745',
@@ -65,12 +65,9 @@ describe('toCustomProperties', () => {
   });
 
   it('should handle prefix', () => {
-    const customProperties = toCustomProperties(
-      colors,
-      joinWithHyphen('gb', 'colors'),
-    );
+    const tokens = flattenToTokens(colors, joinWithHyphen('gb', 'colors'));
 
-    expect(customProperties).toEqual({
+    expect(tokens).toEqual({
       'gb-colors-gray-100': '#f8f9fa',
       'gb-colors-gray-200': '#e9ecef',
       'gb-colors-gray-300': '#dee2e6',
@@ -95,13 +92,9 @@ describe('toCustomProperties', () => {
       },
     };
 
-    const customProperties = toCustomProperties(
-      delimiterCase,
-      'colors',
-      delimiter,
-    );
+    const tokens = flattenToTokens(delimiterCase, 'colors', delimiter);
 
-    expect(customProperties).toEqual({
+    expect(tokens).toEqual({
       'colors.primary.blue': '#007bff',
       'colors.primary.red': '#dc3545',
     });
@@ -116,11 +109,11 @@ describe('toCustomProperties', () => {
       },
     };
 
-    const customProperties = toCustomProperties(haltCase, 'colors', delimiter, {
+    const tokens = flattenToTokens(haltCase, 'colors', delimiter, {
       halt: (value) => isObject(value),
     });
 
-    expect(customProperties).toEqual({
+    expect(tokens).toEqual({
       'colors.primary': {
         blue: '#007bff',
         red: '#dc3545',
