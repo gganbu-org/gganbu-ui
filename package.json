@@ -62,6 +62,12 @@
     "build": "turbo build",
     "clean": "yarn cache clean && turbo run clean && rm -rf node_modules",
     "create:graph": "turbo build --graph=dependency-graph.png",
-    "create:package": "yarn hygen generator create-package with-prompt"
+    "create:package": "yarn hygen generator create-package with-prompt",
+    "version": "changeset version",
+    "release": "changeset publish",
+    "enter:beta": "changeset pre enter beta",
+    "exit:beta": "changeset pre exit beta",
+    "version:canary": "changeset version --snapshot canary",
+    "release:canary": "changeset publish --snapshot --no-git-tag --tag canary"
   }
 }
