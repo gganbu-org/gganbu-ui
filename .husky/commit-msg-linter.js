@@ -13,7 +13,7 @@ const supportsColor = require('supports-color');
   };
 
   // 정규식 패턴 정의
-  const COMMIT_MSG_PATTERN = /^(fix|docs|feat|refactor|chore|changesets):\s.+$/;
+  const COMMIT_MSG_PATTERN = /^(fix|docs|feat|refactor|chore|ci):\s.+$/;
 
   // 예시 및 올바른 커밋 메시지 형식 정의
   const CORRECT_COMMIT_MSG_FORMAT = 'fix|docs|feat|refactor: <Message>';
