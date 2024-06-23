@@ -24,6 +24,11 @@ jobs:
     name: changesets-release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Node.js 20.x
         uses: actions/setup-node@v3
         with:
