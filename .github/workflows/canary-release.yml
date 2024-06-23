@@ -31,8 +31,8 @@ jobs:
       - name: Setup Git User
         shell: bash
         run: |
-          git config --global user.email "shigatsu970704@gmail.com"
-          git config --global user.name "minzznag144"
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
