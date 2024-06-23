@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/hooks",
-  "version": "0.0.0",
+  "version": "0.0.0-canary-20240623103954",
   "description": "Gganbu hooks for React",
   "repository": {
     "type": "git",
