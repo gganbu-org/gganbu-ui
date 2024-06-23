@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/react",
-  "version": "0.0.0",
+  "version": "0.0.0-canary-20240623102556",
   "description": "Gganbu Design System for React",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/button": "^0.0.0",
-    "@gganbu-org/spinner": "^0.0.0"
+    "@gganbu-org/button": "0.0.0-canary-20240623102556",
+    "@gganbu-org/spinner": "0.0.0-canary-20240623102556"
   }
 }
