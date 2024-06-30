@@ -111,17 +111,14 @@ jobs:
           channel-id: 'C076U73UDFH'
           payload: |
             {
-              "attachments": [
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+              "blocks": [
                 {
-                  "blocks": [
-                    {
-                      "type": "section",
-                      "text": {
-                        "type": "mrkdwn",
-                        "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                      }
-                    }
-                  ]
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  }
                 }
               ]
             }
@@ -170,17 +167,14 @@ jobs:
           update-ts: ${{ steps.slack.outputs.ts }}
           payload: |
             {
-              "attachments": [
+              "text": "새 릴리스 배포됨: ${{ github.sha }}",
+              "blocks": [
                 {
-                  "blocks": [
-                    {
-                      "type": "section",
-                      "text": {
-                        "type": "mrkdwn",
-                        "text": "*새 릴리스 배포됨*\n\n${{ env.slack_message }}"
-                      }
-                    }
-                  ]
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*새 릴리스 배포됨*\n\n${{ env.slack_message }}"
+                  }
                 }
               ]
             }
