@@ -98,3 +98,91 @@ jobs:
     if: ${{ needs.check-chromatic.outputs.any_changed == 'true' }}
     uses: ./.github/workflows/chromatic.yml
     secrets: inherit
+
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          # The following message update step does not accept a channel name.
+          # Setting a channel ID here for consistency is highly recommended.
+          channel-id: 'C076U73UDFH'
+          payload: |
+            {
+              "attachments": [
+                {
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      - name: Get release information
+        id: get_release_info
+        run: |
+          PACKAGES=$(grep -oP '@[^ ]*' $(find .changeset -type f -name '*.md' ! -name 'README.md') | sort -u)
+          echo "packages=$PACKAGES" >> $GITHUB_ENV
+
+          VERSIONS=()
+          BRANCH=${GITHUB_REF#refs/heads/}
+          declare -A PACKAGE_PATHS
+
+          for PACKAGE in $PACKAGES; do
+            PACKAGE_PATH=$(grep -rl "\"name\": \"$PACKAGE\"" ./packages | sed 's|/package.json||')
+            PACKAGE_PATHS[$PACKAGE]=$PACKAGE_PATH
+          done
+
+          for PACKAGE in $PACKAGES; do
+            PACKAGE_PATH=${PACKAGE_PATHS[$PACKAGE]}
+            VERSION=$(grep -oP '^## \[\K[0-9]+\.[0-9]+\.[0-9]+' ${PACKAGE_PATH}/CHANGELOG.md | head -n 1)
+            PACKAGE_AUTHORS=$(git log --pretty=format:"%an" ${PACKAGE_PATH} | sort | uniq)
+            VERSIONS+=($VERSION)
+          done
+
+          echo "versions=${VERSIONS[*]}" >> $GITHUB_ENV
+          echo "branch=$BRANCH" >> $GITHUB_ENV
+      - name: Format Slack message
+        id: format_slack_message
+        run: |
+          PACKAGES=(${PACKAGES})
+          VERSIONS=(${VERSIONS})
+          MESSAGE=""
+          for i in "${!PACKAGES[@]}"; do
+            PACKAGE_PATH=${PACKAGE_PATHS[${PACKAGES[$i]}]}
+            MESSAGE="$MESSAGE\n*${PACKAGES[$i]}* - ${VERSIONS[$i]} by merry.lee <https://github.com/gganbu-org/gganbu-ui/blob/${{ env.branch }}/${PACKAGE_PATH}/CHANGELOG.md|Release Notes>"
+          done
+          echo "slack_message=$MESSAGE" >> $GITHUB_ENV
+      - uses: slackapi/slack-github-action@v1.26.0
+        with:
+          # Unlike the step posting a new message, this step does not accept a channel name.
+          # Please use a channel ID, not a name here.
+          channel-id: 'C076U73UDFH'
+          update-ts: ${{ steps.slack.outputs.ts }}
+          payload: |
+            {
+              "attachments": [
+                {
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "*새 릴리스 배포됨*\n\n${{ env.slack_message }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
