@@ -1,5 +1,16 @@
 # @gganbu-org/button
 
+## 0.0.0-canary-20240705154406
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`ce07d9c`](https://github.com/gganbu-org/gganbu-ui/commit/ce07d9c1b9c886656041e730e474ca279cb79257) Thanks [@minzzang144](https://github.com/minzzang144)! - changeset summary
+
+- Updated dependencies [[`ce07d9c`](https://github.com/gganbu-org/gganbu-ui/commit/ce07d9c1b9c886656041e730e474ca279cb79257)]:
+  - @gganbu-org/spinner@0.0.0-canary-20240705154406
+  - @gganbu-org/styled@0.0.0-canary-20240705154406
+  - @gganbu-org/theme@0.0.0-canary-20240705154406
+
 ## 0.0.0-canary-20240623103954
 
 ### Patch Changes
