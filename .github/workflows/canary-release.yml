@@ -110,16 +110,16 @@ jobs:
       - name: Get changed packages
         id: get_changed_packages
         run: |
-          CHANGED_FILES=(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           CHANGED_PACKAGES=""
-          for FILE in {CHANGED_FILES}; do
-            if [[ {FILE} == packages/*/CHANGELOG.md ]]; then
-              PACKAGE=(echo {FILE} | cut -d'/' -f2)
-              VERSION=(grep '^## \[.*\] - ' packages/{PACKAGE}/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
-              CHANGED_PACKAGES="{CHANGED_PACKAGES}\n{PACKAGE} {VERSION}"
+          for FILE in $CHANGED_FILES; do
+            if [[ $FILE == packages/*/CHANGELOG.md ]]; then
+              PACKAGE=$(echo $FILE | cut -d'/' -f2)
+              VERSION=$(grep '^## \[.*\] - ' packages/$PACKAGE/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
+              CHANGED_PACKAGES="${CHANGED_PACKAGES}\n${PACKAGE} ${VERSION}"
             fi
           done
-          echo "changed_packages={CHANGED_PACKAGES}" >> {GITHUB_ENV}
+          echo -e "changed_packages=${CHANGED_PACKAGES}" >> $GITHUB_ENV
 
       - name: Prepare Slack message
         id: prepare_slack_message
