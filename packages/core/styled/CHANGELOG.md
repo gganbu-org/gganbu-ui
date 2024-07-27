@@ -1,5 +1,16 @@
 # @gganbu-org/styled
 
+## 0.0.0-canary-20240727092949
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`9e0498f`](https://github.com/gganbu-org/gganbu-ui/commit/9e0498ff78785f09d8b30b9c17fa3c581cec3046) Thanks [@minzzang144](https://github.com/minzzang144)! - chore: changesets 슬랙 테스트"
+
+- Updated dependencies [[`9e0498f`](https://github.com/gganbu-org/gganbu-ui/commit/9e0498ff78785f09d8b30b9c17fa3c581cec3046)]:
+  - @gganbu-org/theme@0.0.0-canary-20240727092949
+  - @gganbu-org/hooks@0.0.0-canary-20240727092949
+  - @gganbu-org/utils@0.0.0-canary-20240727092949
+
 ## 0.0.0-canary-20240727061410
 
 ### Patch Changes
