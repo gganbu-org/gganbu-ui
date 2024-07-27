@@ -16,157 +16,132 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check-changesets:
-    runs-on: ubuntu-latest
-    name: Check for changes in .changesets
-    outputs:
-      any_changed: ${{ steps.check_changesets.outputs.any_changed }}
-      any_deleted: ${{ steps.check_changesets.outputs.any_deleted }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Check .changesets directory for changes
-        id: check_changesets
-        uses: tj-actions/changed-files@v44
-        with:
-          files: |
-            .changeset/**
+  # check-changesets:
+  #   runs-on: ubuntu-latest
+  #   name: Check for changes in .changesets
+  #   outputs:
+  #     any_changed: ${{ steps.check_changesets.outputs.any_changed }}
+  #     any_deleted: ${{ steps.check_changesets.outputs.any_deleted }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Check .changesets directory for changes
+  #       id: check_changesets
+  #       uses: tj-actions/changed-files@v44
+  #       with:
+  #         files: |
+  #           .changeset/**
 
-  changesets-release:
-    name: changesets-release
-    runs-on: ubuntu-latest
-    needs: [check-changesets]
-    if: ${{ needs.check-changesets.outputs.any_changed == 'true' }} || ${{ needs.check-changesets.outputs.any_deleted == 'true' }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # changesets-release:
+  #   name: changesets-release
+  #   runs-on: ubuntu-latest
+  #   needs: [check-changesets]
+  #   if: ${{ needs.check-changesets.outputs.any_changed == 'true' }} || ${{ needs.check-changesets.outputs.any_deleted == 'true' }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.x
+  #     - name: Setup Node.js 20.x
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20.x
 
-      - name: Setup Git User
-        shell: bash
-        # This sets the git user to the author of the last commit
-        run: |
-          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+  #     - name: Setup Git User
+  #       shell: bash
+  #       # This sets the git user to the author of the last commit
+  #       run: |
+  #         git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+  #         git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
 
-      - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
-      - name: Creating .npmrc
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Create Release Pull Request or Publish to NPM
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
-          version: yarn run version:canary
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn run release:canary
-          title: 'ci(changesets): :package: version packages'
-          commit: 'ci(changesets): version packages'
-          setupGitUser: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #     - name: Install dependencies
+  #       run: yarn install --immutable --immutable-cache --check-cache
+  #     - name: Creating .npmrc
+  #       run: |
+  #         cat << EOF > "$HOME/.npmrc"
+  #           //registry.npmjs.org/:_authToken=$NPM_TOKEN
+  #         EOF
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #     - name: Create Release Pull Request or Publish to NPM
+  #       id: changesets
+  #       uses: changesets/action@v1
+  #       with:
+  #         # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
+  #         version: yarn run version:canary
+  #         # This expects you to have a script called release which does a build for your packages and calls changeset publish
+  #         publish: yarn run release:canary
+  #         title: 'ci(changesets): :package: version packages'
+  #         commit: 'ci(changesets): version packages'
+  #         setupGitUser: false
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  check-chromatic:
-    runs-on: ubuntu-latest
-    name: Check for changes in apps/storybook
-    outputs:
-      any_changed: ${{ steps.changed-files.outputs.any_changed }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files: |
-            apps/storybook/**
+  # check-chromatic:
+  #   runs-on: ubuntu-latest
+  #   name: Check for changes in apps/storybook
+  #   outputs:
+  #     any_changed: ${{ steps.changed-files.outputs.any_changed }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Get changed files
+  #       id: changed-files
+  #       uses: tj-actions/changed-files@v44
+  #       with:
+  #         files: |
+  #           apps/storybook/**
 
-  chromatic:
-    name: Run visual tests
-    needs: [check-chromatic]
-    if: ${{ needs.check-chromatic.outputs.any_changed == 'true' }}
-    uses: ./.github/workflows/chromatic.yml
-    secrets: inherit
+  # chromatic:
+  #   name: Run visual tests
+  #   needs: [check-chromatic]
+  #   if: ${{ needs.check-chromatic.outputs.any_changed == 'true' }}
+  #   uses: ./.github/workflows/chromatic.yml
+  #   secrets: inherit
 
   slack:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get changed packages
+        id: get_changed_packages
+        run: |
+          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          CHANGED_PACKAGES=""
+          for FILE in $CHANGED_FILES; do
+            if [[ $FILE == packages/*/CHANGELOG.md ]]; then
+              PACKAGE=$(echo $FILE | cut -d'/' -f2)
+              VERSION=$(grep '^## \[.*\] - ' packages/$PACKAGE/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
+              CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
+            fi
+          done
+          echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
+
+      - name: Prepare Slack message
+        id: prepare_slack_message
+        run: |
+          CHANGED_PACKAGES=$(echo "${{ env.changed_packages }}" | tr '\n' ' ')
+          BRANCH=${GITHUB_REF#refs/heads/}
+          SLACK_MESSAGE="*배포된 패키지 목록 (버전 클릭시 릴리즈 노트로 이동합니다)*\n"
+          for PACKAGE in $CHANGED_PACKAGES; do
+            PACKAGE_NAME=$(echo $PACKAGE | awk '{print $1}')
+            PACKAGE_VERSION=$(echo $PACKAGE | awk '{print $2}')
+            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/packages/$PACKAGE_NAME/CHANGELOG.md"
+            SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_NAME>: \`$PACKAGE_VERSION\`"
+          done
+          echo "branch=$BRANCH" >> $GITHUB_ENV
+          echo "::set-output name=slack_message::$SLACK_MESSAGE"
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
         with:
-          # The following message update step does not accept a channel name.
-          # Setting a channel ID here for consistency is highly recommended.
-          channel-id: 'C076U73UDFH'
-          payload: |
-            {
-              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      - name: Get release information
-        id: get_release_info
-        run: |
-          PACKAGES=$(grep -oP '@[^ ]*' $(find .changeset -type f -name '*.md' ! -name 'README.md') | sort -u)
-          echo "packages=$PACKAGES" >> $GITHUB_ENV
-
-          VERSIONS=()
-          BRANCH=${GITHUB_REF#refs/heads/}
-          declare -A PACKAGE_PATHS
-
-          for PACKAGE in $PACKAGES; do
-            PACKAGE_PATH=$(grep -rl "\"name\": \"$PACKAGE\"" ./packages | sed 's|/package.json||')
-            PACKAGE_PATHS[$PACKAGE]=$PACKAGE_PATH
-          done
-
-          for PACKAGE in $PACKAGES; do
-            PACKAGE_PATH=${PACKAGE_PATHS[$PACKAGE]}
-            VERSION=$(grep -oP '^## \[\K[0-9]+\.[0-9]+\.[0-9]+' ${PACKAGE_PATH}/CHANGELOG.md | head -n 1)
-            PACKAGE_AUTHORS=$(git log --pretty=format:"%an" ${PACKAGE_PATH} | sort | uniq)
-            VERSIONS+=($VERSION)
-          done
-
-          echo "versions=${VERSIONS[*]}" >> $GITHUB_ENV
-          echo "branch=$BRANCH" >> $GITHUB_ENV
-      - name: Format Slack message
-        id: format_slack_message
-        run: |
-          PACKAGES=(${PACKAGES})
-          VERSIONS=(${VERSIONS})
-          MESSAGE=""
-          for i in "${!PACKAGES[@]}"; do
-            PACKAGE_PATH=${PACKAGE_PATHS[${PACKAGES[$i]}]}
-            MESSAGE="$MESSAGE\n*${PACKAGES[$i]}* - ${VERSIONS[$i]} by merry.lee <https://github.com/gganbu-org/gganbu-ui/blob/${{ env.branch }}/${PACKAGE_PATH}/CHANGELOG.md|Release Notes>"
-          done
-          echo "slack_message=$MESSAGE" >> $GITHUB_ENV
-      - uses: slackapi/slack-github-action@v1.26.0
-        with:
           # Unlike the step posting a new message, this step does not accept a channel name.
           # Please use a channel ID, not a name here.
           channel-id: 'C076U73UDFH'
-          update-ts: ${{ steps.slack.outputs.ts }}
           payload: |
             {
               "text": "새 릴리스 배포됨: ${{ github.sha }}",
@@ -175,7 +150,14 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*새 릴리스 배포됨*\n\n${{ env.slack_message }}"
+                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ github.event.pull_request.number }}|gganbu-org/gganbu-ui 배포 성공>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.prepare_slack_message.outputs.slack_message }}"
                   }
                 }
               ]
