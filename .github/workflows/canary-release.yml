@@ -120,10 +120,13 @@ jobs:
         run: |
           CHANGED_PACKAGES=""
           for FILE in ${ALL_CHANGED_FILES}; do
-          if [[ $FILE == packages/*/CHANGELOG.md ]]; then
-          PACKAGE=$(echo $FILE | cut -d'/' -f2)
-          VERSION=$(grep '^## \[.*\] - ' packages/$PACKAGE/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
-          CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
+            if [[ $FILE == packages/*/CHANGELOG.md ]]; then
+              PACKAGE=$(echo $FILE | cut -d'/' -f2)
+              VERSION=$(grep '^## \[.*\] - ' packages/$PACKAGE/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
+              echo "PACKAGE: $PACKAGE"
+              echo "VERSION: $VERSION"
+              CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
+            fi
           done
           echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
           echo "changed_packages=$CHANGED_PACKAGES"
