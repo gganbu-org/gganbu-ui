@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/styled",
-  "version": "0.0.0-canary-20240727095118",
+  "version": "0.0.0-canary-20240727101337",
   "description": "> TODO: description",
   "repository": {
     "type": "git",
@@ -58,8 +58,8 @@
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
-    "@gganbu-org/theme": "0.0.0-canary-20240727095118",
-    "@gganbu-org/hooks": "0.0.0-canary-20240727095118",
-    "@gganbu-org/utils": "0.0.0-canary-20240727095118"
+    "@gganbu-org/theme": "0.0.0-canary-20240727101337",
+    "@gganbu-org/hooks": "0.0.0-canary-20240727101337",
+    "@gganbu-org/utils": "0.0.0-canary-20240727101337"
   }
 }
