@@ -1,5 +1,11 @@
 # @gganbu-org/utils
 
+## 0.0.0-canary-20240727044251
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`7c2940a`](https://github.com/gganbu-org/gganbu-ui/commit/7c2940a0a1db61159f556374fc6895bd3636d59c) Thanks [@minzzang144](https://github.com/minzzang144)! - changeset test-20240727-1
+
 ## 0.0.0-canary-20240705154406
 
 ### Patch Changes
