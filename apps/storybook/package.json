@@ -48,10 +48,10 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "dependencies": {
-    "@gganbu-org/button": "0.0.0-canary-20240705154406",
-    "@gganbu-org/spinner": "0.0.0-canary-20240705154406",
-    "@gganbu-org/styled": "0.0.0-canary-20240705154406",
-    "@gganbu-org/theme": "0.0.0-canary-20240705154406"
+    "@gganbu-org/button": "0.0.0-canary-20240727044251",
+    "@gganbu-org/spinner": "0.0.0-canary-20240727044251",
+    "@gganbu-org/styled": "0.0.0-canary-20240727044251",
+    "@gganbu-org/theme": "0.0.0-canary-20240727044251"
   },
   "eslintConfig": {
     "extends": [
