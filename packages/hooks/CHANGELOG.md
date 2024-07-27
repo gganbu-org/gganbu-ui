@@ -1,5 +1,11 @@
 # @gganbu-org/hooks
 
+## 0.0.0-canary-20240727095118
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`580b030`](https://github.com/gganbu-org/gganbu-ui/commit/580b03093dab7b5b25203e79a482cd112f56c065) Thanks [@minzzang144](https://github.com/minzzang144)! - chore: changesets 슬랙 테스트 3번째
+
 ## 0.0.0-canary-20240727093819
 
 ### Patch Changes
