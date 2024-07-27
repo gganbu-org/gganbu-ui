@@ -122,6 +122,10 @@ jobs:
           for FILE in ${ALL_CHANGED_FILES}; do
             if [[ $FILE == packages/*/CHANGELOG.md ]]; then
               PACKAGE=$FILE
+              if [ -f "$FILE" ]; then
+                echo "File exists: $FILE"
+              if [ -f "./$FILE" ]; then
+                echo "File does not exist: $FILE"
               VERSION=$(grep '^## \[.*\] - ' $PACKAGE | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
               echo "PACKAGE: $PACKAGE"
               echo "VERSION: $VERSION"
