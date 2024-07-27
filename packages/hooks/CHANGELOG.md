@@ -1,5 +1,11 @@
 # @gganbu-org/hooks
 
+## 0.0.0-canary-20240727061410
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`952dc41`](https://github.com/gganbu-org/gganbu-ui/commit/952dc4178e8c5fe00bc4914b6179626f691603f7) Thanks [@minzzang144](https://github.com/minzzang144)! - chore: changesets 파일 제거 후에도 동작하는지 테스트
+
 ## 0.0.0-canary-20240727044251
 
 ### Patch Changes
