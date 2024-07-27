@@ -110,31 +110,31 @@ jobs:
       - name: Get changed packages
         id: get_changed_packages
         run: |
-          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          CHANGED_FILES=(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           CHANGED_PACKAGES=""
-          for FILE in $CHANGED_FILES; do
-            if [[ $FILE == packages/*/CHANGELOG.md ]]; then
-              PACKAGE=$(echo $FILE | cut -d'/' -f2)
-              VERSION=$(grep '^## \[.*\] - ' packages/$PACKAGE/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
-              CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
+          for FILE in {CHANGED_FILES}; do
+            if [[ {FILE} == packages/*/CHANGELOG.md ]]; then
+              PACKAGE=(echo {FILE} | cut -d'/' -f2)
+              VERSION=(grep '^## \[.*\] - ' packages/{PACKAGE}/CHANGELOG.md | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
+              CHANGED_PACKAGES="{CHANGED_PACKAGES}\n{PACKAGE} {VERSION}"
             fi
           done
-          echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
+          echo "changed_packages={CHANGED_PACKAGES}" >> {GITHUB_ENV}
 
       - name: Prepare Slack message
         id: prepare_slack_message
         run: |
-          CHANGED_PACKAGES=$(echo "${{ env.changed_packages }}" | tr '\n' ' ')
-          BRANCH=${GITHUB_REF#refs/heads/}
+          CHANGED_PACKAGES=(echo "${{ env.changed_packages }}" | tr '\n' ' ')
+          BRANCH={GITHUB_REF#refs/heads/}
           SLACK_MESSAGE="*배포된 패키지 목록 (버전 클릭시 릴리즈 노트로 이동합니다)*\n"
-          for PACKAGE in $CHANGED_PACKAGES; do
-            PACKAGE_NAME=$(echo $PACKAGE | awk '{print $1}')
-            PACKAGE_VERSION=$(echo $PACKAGE | awk '{print $2}')
-            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/packages/$PACKAGE_NAME/CHANGELOG.md"
-            SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_NAME>: \`$PACKAGE_VERSION\`"
+          for PACKAGE in {CHANGED_PACKAGES}; do
+            PACKAGE_NAME=(echo {PACKAGE} | awk '{print $1}')
+            PACKAGE_VERSION=(echo {PACKAGE} | awk '{print $2}')
+            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/{BRANCH}/packages/{PACKAGE_NAME}/CHANGELOG.md"
+            SLACK_MESSAGE="{SLACK_MESSAGE}\n• <{CHANGELOG_URL}|{PACKAGE_NAME}>: \`{PACKAGE_VERSION|\`"
           done
-          echo "branch=$BRANCH" >> $GITHUB_ENV
-          echo "::set-output name=slack_message::$SLACK_MESSAGE"
+          echo "branch={BRANCH}" >> {GITHUB_ENV}
+          echo "{name}={slack_message}" >> {SLACK_MESSAGE}
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
@@ -144,7 +144,7 @@ jobs:
           channel-id: 'C076U73UDFH'
           payload: |
             {
-              "text": "새 릴리스 배포됨: ${{ github.sha }}",
+              "text": "새 릴리즈 배포됨: ${{ github.sha }}",
               "blocks": [
                 {
                   "type": "section",
