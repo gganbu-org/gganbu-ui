@@ -6,10 +6,12 @@ on:
     branches:
       - devlop
       - feature/**
+      - chnageset-release/**
   pull_request:
     branches:
       - devlop
       - feature/**
+      - chnageset-release/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
