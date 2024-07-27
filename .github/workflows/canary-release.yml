@@ -127,7 +127,7 @@ jobs:
               else
                 echo "File does not exist: $PACKAGE"
               fi
-              VERSION=$(grep '^## \[.*\] - ' "$PACKAGE" | head -n 1 | sed -E 's/^## \[(.*)\] - .*$/\1/')
+              VERSION=$(grep '^## ' "$PACKAGE" | head -n 1 | sed -E 's/^## (.*)$/\1/')
               echo "PACKAGE: $PACKAGE"
               echo "VERSION: $VERSION"
               CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
