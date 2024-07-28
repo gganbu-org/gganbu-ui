@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/theme",
-  "version": "0.0.0-canary-20240728105924",
+  "version": "0.0.0-canary-20240728112043",
   "description": "Gganbu Design System Theme Package which provides support for APIs to theme UIs and components.",
   "repository": {
     "type": "git",

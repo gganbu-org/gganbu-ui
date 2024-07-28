@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/button",
-  "version": "0.0.0-canary-20240728105924",
+  "version": "0.0.0-canary-20240728112043",
   "description": "A Button is a clickable element which communicates that users can trigger an action.",
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18",
-    "@gganbu-org/spinner": "0.0.0-canary-20240728105924"
+    "@gganbu-org/spinner": "0.0.0-canary-20240728112043"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -47,8 +47,8 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "0.0.0-canary-20240728105924",
-    "@gganbu-org/theme": "0.0.0-canary-20240728105924",
-    "@gganbu-org/spinner": "0.0.0-canary-20240728105924"
+    "@gganbu-org/styled": "0.0.0-canary-20240728112043",
+    "@gganbu-org/theme": "0.0.0-canary-20240728112043",
+    "@gganbu-org/spinner": "0.0.0-canary-20240728112043"
   }
 }
