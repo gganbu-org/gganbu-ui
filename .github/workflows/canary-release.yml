@@ -176,7 +176,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ fromJson(steps.get_pr_info.outputs.result).number }}|✨✨ @gganbu-org/gganbu-ui 카나리 배포 성공 - ${{fromJson(steps.get_pr_info.outputs.result).title}}#${{fromJson(steps.get_pr_info.outputs.result).number}} ✨✨\n>"
+                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ fromJson(steps.get_pr_info.outputs.result).number }}|✨✨ @gganbu-org/gganbu-ui 카나리 배포 성공 - ${{fromJson(steps.get_pr_info.outputs.result).title}}#${{fromJson(steps.get_pr_info.outputs.result).number}} ✨✨>\n"
                   }
                 },
                 {
