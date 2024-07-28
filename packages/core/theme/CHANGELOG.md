@@ -1,5 +1,11 @@
 # @gganbu-org/theme
 
+## 0.0.0-canary-20240728122555
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`74aac2f`](https://github.com/gganbu-org/gganbu-ui/commit/74aac2f16ed8c55af6e00f94dcd839aa7293a5be) Thanks [@minzzang144](https://github.com/minzzang144)! - chore: changesets 슬랙 테스트
+
 ## 0.0.0-canary-20240728112043
 
 ### Patch Changes
