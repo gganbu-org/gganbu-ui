@@ -21,7 +21,6 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-links',
-    '@storybook/addon-webpack5-compiler-swc',
     'storybook-dark-mode',
   ],
 
@@ -32,18 +31,24 @@ const config: StorybookConfig = {
 
   docs: {},
 
-  // NOTE: https://storybook.js.org/docs/configure/compilers#the-swc-compiler-doesnt-work-with-react
-  swc: () => ({
-    jsc: {
-      transform: {
-        react: {
-          runtime: 'automatic',
-        },
-      },
-    },
-  }),
-
   webpackFinal: async (config) => {
+    if (config.module) {
+      config.module.rules?.push({
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              presets: [
+                '@babel/preset-env',
+                ['@babel/preset-react', { runtime: 'automatic' }],
+                '@babel/preset-typescript',
+              ],
+            },
+          },
+        ],
+      });
+    }
     if (config.resolve) {
       config.resolve.plugins = [
         ...(config.resolve.plugins || []),

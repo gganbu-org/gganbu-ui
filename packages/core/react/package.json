@@ -1,0 +1,56 @@
+{
+  "name": "@gganbu-org/react",
+  "version": "0.0.0-canary-20240728130828",
+  "description": "Gganbu Design System for React",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "packages/core/react"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "next ui",
+    "components",
+    "react components",
+    "react ui"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
+    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify --external react",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@gganbu-org/button": "0.0.0-canary-20240728130828",
+    "@gganbu-org/spinner": "0.0.0-canary-20240728130828"
+  }
+}

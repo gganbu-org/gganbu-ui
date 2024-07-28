@@ -2,13 +2,13 @@
 to: <%= packageDomain %>/<%= packageName %>/README.md
 ---
 
-# <%= packageName %>
+# @gganbu-org/<%= packageName %>
 
 This is the sample README for <%= packageName %>
 
 ## Usage
 ```
-const <%= packageName %> = require('<%= packageName %>');
+const <%= packageName %> = require('@gganbu-org/<%= packageName %>');
 
 // TODO: DEMONSTRATE API
 ```

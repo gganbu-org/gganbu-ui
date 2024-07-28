@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@gganbu/components';
-import { stylePropList } from '@gganbu/css';
-import { generateArgTypesToDisable } from './stories.utils';
+import { Button } from '@gganbu-org/button';
 
 function AppleIcon() {
   return (
@@ -37,7 +35,6 @@ const meta = {
         AppleIcon: <AppleIcon />,
       },
     },
-    ...generateArgTypesToDisable(stylePropList),
   },
   args: {
     isLoading: false,
@@ -63,7 +60,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const basic: Story = {
+export const Basic: Story = {
   args: {
     size: 'md',
     theme: 'primary',
@@ -72,75 +69,87 @@ export const basic: Story = {
   },
 };
 
-export const variant = () => (
-  <>
-    <Button key="solid" variant="solid">
-      Solid
-    </Button>
-    <Button key="ghost" variant="ghost">
-      Ghost
-    </Button>
-    <Button key="bordered" variant="bordered">
-      Bordered
-    </Button>
-    <Button key="link" variant="link">
-      Link
-    </Button>
-  </>
-);
+export function Variant() {
+  return (
+    <>
+      <Button key="solid" variant="solid">
+        Solid
+      </Button>
+      <Button key="ghost" variant="ghost">
+        Ghost
+      </Button>
+      <Button key="bordered" variant="bordered">
+        Bordered
+      </Button>
+      <Button key="link" variant="link">
+        Link
+      </Button>
+    </>
+  );
+}
 
-export const theme = () => (
-  <>
-    <Button key="primary" theme="primary">
-      Primary
-    </Button>
-    <Button key="secondary" theme="secondary">
-      Secondary
-    </Button>
-    <Button key="success" theme="success">
-      Success
-    </Button>
-    <Button key="warning" theme="warning">
-      Warning
-    </Button>
-    <Button key="danger" theme="danger">
-      Danger
-    </Button>
-  </>
-);
+export function Theme() {
+  return (
+    <>
+      <Button key="primary" theme="primary">
+        Primary
+      </Button>
+      <Button key="secondary" theme="secondary">
+        Secondary
+      </Button>
+      <Button key="success" theme="success">
+        Success
+      </Button>
+      <Button key="warning" theme="warning">
+        Warning
+      </Button>
+      <Button key="danger" theme="danger">
+        Danger
+      </Button>
+    </>
+  );
+}
 
-export const size = () => (
-  <>
-    <Button key="sm" size="sm">
-      SM
-    </Button>
-    <Button key="md" size="md">
-      MD
-    </Button>
-    <Button key="lg" size="lg">
-      LG
-    </Button>
-  </>
-);
+export function Size() {
+  return (
+    <>
+      <Button key="sm" size="sm">
+        SM
+      </Button>
+      <Button key="md" size="md">
+        MD
+      </Button>
+      <Button key="lg" size="lg">
+        LG
+      </Button>
+    </>
+  );
+}
 
-export const disabled = () => <Button disabled>Button</Button>;
+export function Disabled() {
+  return <Button disabled>Button</Button>;
+}
 
-export const loading = () => <Button isLoading>loading...</Button>;
+export function Loading() {
+  return <Button isLoading>loading...</Button>;
+}
 
-export const icon = () => (
-  <>
-    <Button key="startIcon" startIcon={<AppleIcon />}>
-      Apple
-    </Button>
-    <Button key="endIcon" endIcon={<AppleIcon />}>
-      Apple
-    </Button>
-    <Button
-      key="multipleIcon"
-      startIcon={<AppleIcon />}
-      endIcon={<AppleIcon />}
-    >
-      Apple
-    </Button>
-  </>
-);
+export function Icon() {
+  return (
+    <>
+      <Button key="startIcon" startIcon={<AppleIcon />}>
+        Apple
+      </Button>
+      <Button key="endIcon" endIcon={<AppleIcon />}>
+        Apple
+      </Button>
+      <Button
+        key="multipleIcon"
+        startIcon={<AppleIcon />}
+        endIcon={<AppleIcon />}
+      >
+        Apple
+      </Button>
+    </>
+  );
+}
