@@ -2,11 +2,8 @@
 name: ✨ Canary release
 
 on:
-  push:
-    branches:
-      - devlop
-      - feature/**
   pull_request:
+    types: [opened, synchronize]
     branches:
       - devlop
       - feature/**
@@ -144,8 +141,7 @@ jobs:
             CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/$PACKAGE_CHANGELOG_PATH"
             SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_CHANGELOG_PATH>: \`$PACKAGE_VERSION\`"
           done
-          echo "branch=$BRANCH" >> $GITHUB_ENV
-          echo "slack_message=$SLACK_MESSAGE" >> $GITHUB_ENV
+          echo "::set-output name=slack_message::$SLACK_MESSAGE"
           echo "slack_message=$SLACK_MESSAGE"
       - name: Post to a Slack channel
         id: slack
@@ -156,20 +152,13 @@ jobs:
           channel-id: 'C076U73UDFH'
           payload: |
             {
-              "text": "@gganbu-org/gganbu-ui 릴리즈 알림: ${{ github.sha }}",
+              "text": "@gganbu-org/gganbu-ui 릴리즈: ${{ github.sha }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ github.event.number }}|gganbu-org/gganbu-ui 배포 성공>"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{github.event.number}}|@gganbu-org/gganbu-ui#${{github.event.number}}배포 성공>\n"
+                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ github.event.pull_request.number }}|@gganbu-org/gganbu-ui 배포 성공 - ${{github.event.pull_request.title}}#${{github.event.pull_request.number}}>"
                   }
                 },
                 {
