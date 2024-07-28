@@ -1,5 +1,16 @@
 # @gganbu-org/button
 
+## 0.0.0-canary-20240728095613
+
+### Patch Changes
+
+- [#34](https://github.com/gganbu-org/gganbu-ui/pull/34) [`4804805`](https://github.com/gganbu-org/gganbu-ui/commit/4804805a6c348279cc47c853f044fe865c74bea1) Thanks [@minzzang144](https://github.com/minzzang144)! - chore: changesets 슬랙 테스트
+
+- Updated dependencies [[`4804805`](https://github.com/gganbu-org/gganbu-ui/commit/4804805a6c348279cc47c853f044fe865c74bea1)]:
+  - @gganbu-org/spinner@0.0.0-canary-20240728095613
+  - @gganbu-org/styled@0.0.0-canary-20240728095613
+  - @gganbu-org/theme@0.0.0-canary-20240728095613
+
 ## 0.0.0-canary-20240727104520
 
 ### Patch Changes
