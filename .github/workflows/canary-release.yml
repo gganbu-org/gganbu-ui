@@ -114,6 +114,19 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
 
+      - name: Get PR infomation
+        uses: actions/github-script@v6
+        id: get_pr_info
+        with:
+          script: |
+            return (
+              await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                commit_sha: context.sha,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              })
+            ).data[0];
+
       - name: Get changed packages
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
@@ -140,16 +153,13 @@ jobs:
           SLACK_MESSAGE=""
           for PACKAGE_INFO in "${PACKAGES_ARRAY[@]}"; do
             PACKAGE_CHANGELOG_PATH=$(echo $PACKAGE_INFO | awk '{print $1}')
+            PACKAGE_NAME=$(echo $PACKAGE_CHANGELOG_PATH | sed 's|/CHANGELOG.md||')
             PACKAGE_VERSION=$(echo $PACKAGE_INFO | awk '{print $2}')
             CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/$PACKAGE_CHANGELOG_PATH"
-            SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_CHANGELOG_PATH>: \`$PACKAGE_VERSION\`"
+            SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_NAME>: \`v$PACKAGE_VERSION\`"
           done
           echo "slack_message=$SLACK_MESSAGE" >> $GITHUB_ENV
-          echo "pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
-          echo "pr_title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
           echo "slack_message=$SLACK_MESSAGE"
-          echo "pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
-          echo "pr_title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")"
 
       - name: Post to a Slack channel
         id: slack
@@ -166,9 +176,16 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ env.pr_number }}|@gganbu-org/gganbu-ui 배포 성공 - ${{env.pr_title}}#${{env.pr_number}}>"
+                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ fromJson(steps.get_pr_info.outputs.result).number }}|✨✨ @gganbu-org/gganbu-ui 카나리 배포 성공 - ${{fromJson(steps.get_pr_info.outputs.result).title}}#${{fromJson(steps.get_pr_info.outputs.result).number}} ✨✨\n>"
                   }
                 },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "📦 배포된 패키지 목록 (버전 클릭시 릴리즈 노트로 이동합니다)\n"
+                  }
+                }
                 {
                   "type": "divider"
                 },
