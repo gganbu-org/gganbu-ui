@@ -125,22 +125,23 @@ jobs:
               VERSION=$(grep '^## ' "$PACKAGE" | head -n 1 | sed -E 's/^## (.*)$/\1/')
               echo "PACKAGE: $PACKAGE"
               echo "VERSION: $VERSION"
-              CHANGED_PACKAGES="$CHANGED_PACKAGES\n$PACKAGE $VERSION"
+              CHANGED_PACKAGES="$CHANGED_PACKAGES|$PACKAGE $VERSION"
             fi
           done
+          CHANGED_PACKAGES=$(echo $CHANGED_PACKAGES | sed 's/^|//')  # Remove leading delimiter
           echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
           echo "changed_packages=$CHANGED_PACKAGES"
 
       - name: Prepare Slack message
         id: prepare_slack_message
         run: |
-          CHANGED_PACKAGES=$(echo "${{ env.changed_packages }}" | tr '\n' ' ')
+          IFS='|' read -r -a PACKAGES_ARRAY <<< "${{ env.changed_packages }}"
           BRANCH=${GITHUB_REF#refs/heads/}
           SLACK_MESSAGE="*배포된 패키지 목록 (버전 클릭시 릴리즈 노트로 이동합니다)*\n"
-          for PACKAGE in $CHANGED_PACKAGES; do
-            PACKAGE_CHANGELOG_PATH=$(echo $PACKAGE | awk '{print $1}')
-            PACKAGE_VERSION=$(echo $PACKAGE | awk '{print $2}')
-            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/packages/$PACKAGE_CHANGELOG_PATH"
+          for PACKAGE_INFO in "${PACKAGES_ARRAY[@]}"; do
+            PACKAGE_CHANGELOG_PATH=$(echo $PACKAGE_INFO | awk '{print $1}')
+            PACKAGE_VERSION=$(echo $PACKAGE_INFO | awk '{print $2}')
+            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/$PACKAGE_CHANGELOG_PATH"
             echo "PACKAGE_CHANGELOG_PATH: $PACKAGE_CHANGELOG_PATH"
             echo "PACKAGE_VERSION: $PACKAGE_VERSION"
             echo "CHANGELOG_URL: $CHANGELOG_URL"
