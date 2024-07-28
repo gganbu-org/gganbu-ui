@@ -34,7 +34,7 @@ jobs:
             .changeset/**
 
   changesets-release:
-    name: changesets-release
+    name: Release packages with changesets
     runs-on: ubuntu-latest
     needs: [check-changesets]
     if: ${{ needs.check-changesets.outputs.any_changed == 'true' }} || ${{ needs.check-changesets.outputs.any_deleted == 'true' }}
@@ -101,7 +101,7 @@ jobs:
     uses: ./.github/workflows/chromatic.yml
     secrets: inherit
 
-  check-changed-packages:
+  slack:
     runs-on: ubuntu-latest
     needs: [check-changesets]
     if: ${{ needs.check-changesets.outputs.any_deleted == 'true' }}
@@ -114,7 +114,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
 
-      - name: List all changed files
+      - name: Get changed packages
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
@@ -122,11 +122,6 @@ jobs:
           for FILE in ${ALL_CHANGED_FILES}; do
             if [[ $FILE == packages/*/CHANGELOG.md ]]; then
               PACKAGE=$FILE
-              if [ -f "$PACKAGE" ]; then
-                echo "File exists: $PACKAGE"
-              else
-                echo "File does not exist: $PACKAGE"
-              fi
               VERSION=$(grep '^## ' "$PACKAGE" | head -n 1 | sed -E 's/^## (.*)$/\1/')
               echo "PACKAGE: $PACKAGE"
               echo "VERSION: $VERSION"
@@ -135,6 +130,25 @@ jobs:
           done
           echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
           echo "changed_packages=$CHANGED_PACKAGES"
+
+      - name: Prepare Slack message
+        id: prepare_slack_message
+        run: |
+          CHANGED_PACKAGES=$(echo "${{ env.changed_packages }}" | tr '\n' ' ')
+          BRANCH=${GITHUB_REF#refs/heads/}
+          SLACK_MESSAGE="*배포된 패키지 목록 (버전 클릭시 릴리즈 노트로 이동합니다)*\n"
+          for PACKAGE in $CHANGED_PACKAGES; do
+            PACKAGE_CHANGELOG_PATH=$(echo $PACKAGE | awk '{print $1}')
+            PACKAGE_VERSION=$(echo $PACKAGE | awk '{print $2}')
+            CHANGELOG_URL="https://github.com/gganbu-org/gganbu-ui/blob/$BRANCH/packages/$PACKAGE_CHANGELOG_PATH"
+            echo "PACKAGE_CHANGELOG_PATH: $PACKAGE_CHANGELOG_PATH"
+            echo "PACKAGE_VERSION: $PACKAGE_VERSION"
+            echo "CHANGELOG_URL: $CHANGELOG_URL"
+            SLACK_MESSAGE="$SLACK_MESSAGE\n• <$CHANGELOG_URL|$PACKAGE_CHANGELOG_PATH>: \`$PACKAGE_VERSION\`"
+          done
+          echo "branch=$BRANCH" >> $GITHUB_ENV
+          echo "slack_message=$SLACK_MESSAGE" >> $GITHUB_ENV
+          echo "slack_message=$SLACK_MESSAGE"
 
   # slack:
   #   runs-on: ubuntu-latest
