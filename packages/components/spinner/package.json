@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/spinner",
-  "version": "0.0.0-canary-20240728125910",
+  "version": "0.0.0-canary-20240728130454",
   "description": "A Spinner is an animation that communicates a loading state to users.",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "0.0.0-canary-20240728125910",
-    "@gganbu-org/theme": "0.0.0-canary-20240728125910"
+    "@gganbu-org/styled": "0.0.0-canary-20240728130454",
+    "@gganbu-org/theme": "0.0.0-canary-20240728130454"
   }
 }
