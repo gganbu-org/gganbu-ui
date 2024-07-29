@@ -1,5 +1,15 @@
 # @gganbu-org/react
 
+## 0.0.0-canary-20240729123455
+
+### Patch Changes
+
+- [#57](https://github.com/gganbu-org/gganbu-ui/pull/57) [`03f343c`](https://github.com/gganbu-org/gganbu-ui/commit/03f343c7a54702af70efc4e335980f92f3be3d50) Thanks [@Danji-ya](https://github.com/Danji-ya)! - changset test 20240729-1
+
+- Updated dependencies [[`03f343c`](https://github.com/gganbu-org/gganbu-ui/commit/03f343c7a54702af70efc4e335980f92f3be3d50)]:
+  - @gganbu-org/spinner@0.0.0-canary-20240729123455
+  - @gganbu-org/button@0.0.0-canary-20240729123455
+
 ## 0.0.0-canary-20240728130828
 
 ### Patch Changes
