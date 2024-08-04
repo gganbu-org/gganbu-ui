@@ -1,17 +1,33 @@
-import { type HTMLGganbuUIProps, gb, forwardRef } from '@gganbu-org/styled';
+import { gb, forwardRef } from '@gganbu-org/styled';
 import { Spinner } from '@gganbu-org/spinner';
+import { Ripple } from '@gganbu-org/ripple';
 import useButton from './useButton';
-import type { ButtonProps, ButtonWrapperProps } from './Button.types';
+import type {
+  ButtonProps,
+  ButtonWrapperProps,
+  ButtonIconProps,
+} from './Button.types';
 
-function Wrapper({ condition, wrapper, children }: ButtonWrapperProps) {
+function ConditionalWrapper({
+  condition,
+  wrapper,
+  children,
+}: ButtonWrapperProps) {
   return condition ? wrapper(children) : children;
 }
 
-function ButtonIcon(props: HTMLGganbuUIProps<'span'>) {
-  const { children, ...rest } = props;
+function ButtonIcon(props: ButtonIconProps) {
+  const { children, ml, mr, ...rest } = props;
 
   return (
-    <gb.span display="inline-flex" alignSelf="center" flexShrink={0} {...rest}>
+    <gb.span
+      display="inline-flex"
+      alignSelf="center"
+      flexShrink="0"
+      marginLeft={ml}
+      marginRight={mr}
+      {...rest}
+    >
       {children}
     </gb.span>
   );
@@ -24,36 +40,38 @@ const Button = forwardRef<'button', ButtonProps>((props, ref) => {
     startIcon,
     children,
     endIcon,
-    iconSpacing,
     isLoading,
+    iconSpacing,
     spinnerSize,
     spinner = <Spinner size={spinnerSize} theme="current" />,
+    getRippleProps,
   } = useButton(props);
 
   return (
     <Component ref={ref} {...getButtonProps()}>
-      {isLoading && (
-        <gb.span
-          display="inline-flex"
-          alignSelf="center"
-          flexShrink={0}
-          position="absolute"
-        >
-          {spinner}
-        </gb.span>
-      )}
-      <Wrapper
+      <ConditionalWrapper
         condition={isLoading}
         wrapper={(buttonContent) => (
-          <gb.span opacity={0}>{buttonContent}</gb.span>
+          <>
+            <gb.span
+              display="inline-flex"
+              alignSelf="center"
+              flexShrink="0"
+              position="absolute"
+            >
+              {spinner}
+            </gb.span>
+            <gb.span opacity="0">{buttonContent}</gb.span>
+          </>
         )}
       >
         <>
           {startIcon && <ButtonIcon mr={iconSpacing}>{startIcon}</ButtonIcon>}
           {children}
           {endIcon && <ButtonIcon ml={iconSpacing}>{endIcon}</ButtonIcon>}
+          <Ripple {...getRippleProps()} />
         </>
-      </Wrapper>
+      </ConditionalWrapper>
     </Component>
   );
 });

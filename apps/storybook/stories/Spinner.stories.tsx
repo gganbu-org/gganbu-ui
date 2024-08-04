@@ -36,12 +36,12 @@ export const Basic: Story = {
 export function Theme() {
   return (
     <>
-      <Spinner key="bordered" theme="primary" />
-      <Spinner key="solid" theme="secondary" />
-      <Spinner key="solid" theme="success" />
-      <Spinner key="solid" theme="danger" />
-      <Spinner key="solid" theme="warning" />
-      <Spinner key="solid" theme="current" />
+      <Spinner theme="primary" />
+      <Spinner theme="secondary" />
+      <Spinner theme="success" />
+      <Spinner theme="danger" />
+      <Spinner theme="warning" />
+      <Spinner theme="current" />
     </>
   );
 }

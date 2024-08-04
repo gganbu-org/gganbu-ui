@@ -1,11 +1,11 @@
 # @gganbu-org/utils
 
-This is the sample README for utils
+Utilities in the Gganbu Design System
 
 ## Usage
 
 ```
-const { pick } = require('@gganbu-org/utils');
+import { pick } from '@gganbu-org/utils';
 
 // TODO: DEMONSTRATE API
 ```

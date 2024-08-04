@@ -1,11 +1,11 @@
 # `@gganbu-org/button`
 
-> TODO: description
+A Button is a clickable element which communicates that users can trigger an action.
 
 ## Usage
 
 ```
-const { Button } = require('@gganbu-org/button');
+import { Button } from '@gganbu-org/button';
 
 // TODO: DEMONSTRATE API
 ```

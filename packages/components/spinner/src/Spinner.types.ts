@@ -1,5 +1,7 @@
-import type { HTMLGganbuUIProps } from '@gganbu-org/styled';
-import type { SpinnerTheme, SpinnerSize } from '@gganbu-org/theme';
+import type {
+  HTMLGganbuUIProps,
+  SpinnerVariantProps,
+} from '@gganbu-org/styled';
 
 interface Props extends HTMLGganbuUIProps<'div'> {
   /**
@@ -8,17 +10,4 @@ interface Props extends HTMLGganbuUIProps<'div'> {
   label?: string;
 }
 
-interface SpinnerThemeProps {
-  /**
-   * The color theme of the spinner
-   * @default primary
-   */
-  theme?: SpinnerTheme;
-  /**
-   * The size of the spinner
-   * @default md
-   */
-  size?: SpinnerSize;
-}
-
-export interface SpinnerProps extends Props, SpinnerThemeProps {}
+export interface SpinnerProps extends Props, SpinnerVariantProps {}

@@ -1,5 +1,10 @@
-import type { CSSObject as EmotionCssObject } from '@emotion/react';
-import type { SystemProps } from './system-props/types';
+import { SystemProps } from './system-props';
+
+export type Primitive = null | undefined | boolean | number | string;
+
+export interface Dict {
+  [propertiesName: string]: Primitive;
+}
 
 export type OmitProps<Target, Props extends keyof any> = Omit<Target, Props>;
 
@@ -16,8 +21,6 @@ export type MergeProps<
 export type As = React.ElementType;
 
 export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T>;
-
-export type CSSObject = EmotionCssObject;
 
 export type DOMElements = keyof JSX.IntrinsicElements;
 
@@ -43,7 +46,7 @@ interface CustomComponent<Component extends As> {
 }
 
 export interface GganbuProps extends SystemProps {
-  _styles?: CSSObject;
+  _themeClasses?: string;
 }
 
 export type HTMLGganbuUIProps<

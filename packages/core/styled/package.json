@@ -1,7 +1,7 @@
 {
   "name": "@gganbu-org/styled",
-  "version": "0.0.0-canary-20240729123455",
-  "description": "> TODO: description",
+  "version": "0.0.0",
+  "description": "Styled API for creating component styling",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
@@ -31,35 +31,43 @@
     "access": "public",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./styles.css": "./dist/styles.css",
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
     "test": "jest",
+    "prepare": "yarn generate:dev",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
+    "cssgen:dev": "panda cssgen",
+    "cssgen:prod": "mkdir -p ./dist && panda cssgen --minify -c ./panda.config.build.ts --outfile dist/styles.css",
+    "generate:dev": "panda codegen --clean -c ./panda.config.ts && yarn cssgen:dev",
+    "generate:prod": "panda codegen --clean -c ./panda.config.build.ts && panda cssgen --minify -c ./panda.config.build.ts && yarn cssgen:prod",
+    "dev": "yarn generate:dev && panda -w -c ./panda.config.ts",
+    "build": "yarn generate:prod && tsup"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18",
-    "@emotion/react": ">=11",
-    "@emotion/styled": ">=11",
-    "@emotion/cache": ">=11"
+    "react-dom": ">=18"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.41.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/lodash.merge": "^4.6.9",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@emotion/cache": "^11.11.0"
+    "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
-    "@gganbu-org/theme": "0.0.0-canary-20240729123455",
-    "@gganbu-org/hooks": "0.0.0-canary-20240729123455",
-    "@gganbu-org/utils": "0.0.0-canary-20240729123455"
+    "@gganbu-org/hooks": "0.0.0",
+    "@gganbu-org/theme": "0.0.0",
+    "@gganbu-org/utils": "0.0.0"
   }
 }

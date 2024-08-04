@@ -1,11 +1,11 @@
 # `@gganbu-org/spinner`
 
-> TODO: description
+A Spinner is an animation that communicates a loading state to users.
 
 ## Usage
 
 ```
-const { Spinner } = require('@gganbu-org/spinner');
+import { Spinner } from '@gganbu-org/spinner';
 
 // TODO: DEMONSTRATE API
 ```

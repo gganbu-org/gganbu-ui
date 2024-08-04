@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/button",
-  "version": "0.0.0-canary-20240729123455",
+  "version": "0.0.0",
   "description": "A Button is a clickable element which communicates that users can trigger an action.",
   "repository": {
     "type": "git",
@@ -28,17 +28,24 @@
     "access": "public",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify --external react",
+    "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18",
-    "@gganbu-org/spinner": "0.0.0-canary-20240729123455"
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -47,8 +54,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "0.0.0-canary-20240729123455",
-    "@gganbu-org/theme": "0.0.0-canary-20240729123455",
-    "@gganbu-org/spinner": "0.0.0-canary-20240729123455"
+    "@gganbu-org/styled": "0.0.0",
+    "@gganbu-org/spinner": "0.0.0",
+    "@gganbu-org/ripple": "0.0.0",
+    "@gganbu-org/utils": "0.0.0"
   }
 }

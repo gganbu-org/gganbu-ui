@@ -1,11 +1,11 @@
 # `@gganbu-org/hooks`
 
-> TODO: Gganbu hooks for React
+Gganbu hooks for React
 
 ## Usage
 
 ```
-const { useMediaQuery } = require('@gganbu-org/hooks');
+import { useMediaQuery } from '@gganbu-org/hooks';
 
 // TODO: DEMONSTRATE API
 ```

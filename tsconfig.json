@@ -18,14 +18,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "paths": {
-      /* packages alias */
-      "@gganbu-org/react/*": ["packages/core/react/src/*"],
-      "@gganbu-org/styled/*": ["packages/core/styled/src/*"],
-      "@gganbu-org/theme/*": ["packages/core/theme/src/*"],
-      "@gganbu-org/components/*": ["packages/components/src/*"],
-      "@gganbu-org/hooks/*": ["packages/hooks/src/*"],
-      "@gganbu-org/rollup/*": ["packages/rollup/src/*"],
-      "@gganbu-org/utils/*": ["packages/utils/src/*"],
+      /* Alias */
+      "@gganbu-org/styled-system/*": ["packages/core/styled-system/dist/*"],
     },
 
     /* Advanced Options */
