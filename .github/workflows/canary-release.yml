@@ -33,7 +33,7 @@ jobs:
       - name: Create pull request by gh pr create
         if: steps.check_pr.outputs.PR_EXISTS == ''
         run: |
-          PULL_REQUEST_TITLE="$(git log -1 --pretty=%B)"
+          PULL_REQUEST_TITLE="$(git log -1 --pretty=format:%s)"
           gh pr create --base develop -H "${GITHUB_REF#refs/heads/}" --title "${PULL_REQUEST_TITLE}" --fill --body-file .github/PULL_REQUEST_TEMPLATE.md -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
