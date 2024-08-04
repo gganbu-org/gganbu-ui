@@ -54,11 +54,6 @@ interface Props extends HTMLGganbuUIProps<'button'> {
    */
   isDisabled?: boolean;
   /**
-   * Whether the full button.
-   * @default false
-   */
-  fullWidth?: boolean;
-  /**
    * Replace content with spinner when isLoading is set to true.
    */
   spinner?: React.ReactNode;
