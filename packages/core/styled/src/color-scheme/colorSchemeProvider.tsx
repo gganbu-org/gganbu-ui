@@ -61,6 +61,7 @@ function ColorSchemeProvider(props: ColorSchemeProviderProps) {
       triggerFirstLoad: false,
     },
     (matches) => {
+      if (externalColorScheme) return;
       if (!isSystemScheme(colorScheme)) return;
 
       const nextColorScheme = matches ? COLOR_SCHEME.DARK : COLOR_SCHEME.LIGHT;
