@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { themes } from '@storybook/theming';
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
-import '@gganbu-org/styled-system/styles.css';
+import '@gganbu-org/styled-utils/styles.css';
 
 import { ColorSchemeProvider, setDataset } from '@gganbu-org/styled';
 

@@ -1,11 +1,11 @@
 {
-  "name": "@gganbu-org/styled-system",
+  "name": "@gganbu-org/styled-utils",
   "version": "0.0.0",
   "description": "CSS utilities for the Gganbu Design System",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
-    "directory": "packages/core/styled-system"
+    "directory": "packages/core/styled-utils"
   },
   "bugs": {
     "url": "https://github.com/gganbu-org/gganbu-ui/issues"

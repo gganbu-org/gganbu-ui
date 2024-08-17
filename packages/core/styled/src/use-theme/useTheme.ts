@@ -1,4 +1,4 @@
-import { button, spinner } from '@gganbu-org/styled-system/recipes';
+import { button, spinner } from '@gganbu-org/styled-utils/recipes';
 
 const components = {
   button,

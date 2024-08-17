@@ -8,4 +8,4 @@ export type { SystemProps } from './system-props';
 export type {
   ButtonVariantProps,
   SpinnerVariantProps,
-} from '@gganbu-org/styled-system/recipes';
+} from '@gganbu-org/styled-utils/recipes';

@@ -58,7 +58,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled-system": "0.0.0",
+    "@gganbu-org/styled-utils": "0.0.0",
     "@gganbu-org/theme": "0.0.0",
     "@gganbu-org/hooks": "0.0.0",
     "@gganbu-org/utils": "0.0.0"

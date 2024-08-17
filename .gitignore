@@ -34,5 +34,5 @@ coverage
 .env
 
 ## Panda
-!./styled-system/package.json
-styled-system-studio
+!./styled-utils/package.json
+styled-utils-studio

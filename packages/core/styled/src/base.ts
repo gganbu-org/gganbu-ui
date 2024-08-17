@@ -1,6 +1,6 @@
 import React from 'react';
 import { pick, omit } from '@gganbu-org/utils';
-import { cx, css } from '@gganbu-org/styled-system/css';
+import { cx, css } from '@gganbu-org/styled-utils/css';
 import { systemPropList } from './system-props';
 import type { GganbuComponent } from './base.types';
 

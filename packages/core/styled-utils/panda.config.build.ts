@@ -11,7 +11,7 @@ export default defineConfig({
   include: ['../../components/**/*.{js,jsx,ts,tsx}'],
 
   outdir: './dist',
-  importMap: '@gganbu-org/styled-system',
+  importMap: '@gganbu-org/styled-utils',
   prefix: 'gganbu',
   outExtension: 'js',
 });

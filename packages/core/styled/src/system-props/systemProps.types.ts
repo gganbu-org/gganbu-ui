@@ -1,4 +1,4 @@
-import { SystemProperties as PandaSystemProperites } from '@gganbu-org/styled-system/types';
+import { SystemProperties as PandaSystemProperites } from '@gganbu-org/styled-utils/types';
 import type { SystemProperties } from '@gganbu-org/theme';
 
 type ArrayElement<ArrayType extends readonly unknown[]> =
