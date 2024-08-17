@@ -55,7 +55,7 @@
     ]
   },
   "scripts": {
-    "prepare": "husky && yarn workspace @gganbu-org/styled prepare",
+    "prepare": "husky && yarn workspace @gganbu-org/styled-system prepare",
     "multitask": "turbo run lint test build",
     "test": "turbo run test",
     "lint": "turbo run lint",

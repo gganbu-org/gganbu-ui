@@ -14,13 +14,9 @@
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "paths": {
-      /* Alias */
-      "@gganbu-org/styled-system/*": ["packages/core/styled-system/dist/*"],
-    },
 
     /* Advanced Options */
     "resolveJsonModule": true,

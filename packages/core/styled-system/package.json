@@ -1,8 +1,7 @@
 {
-  "private": true,
   "name": "@gganbu-org/styled-system",
   "version": "0.0.0",
-  "description": "Provides styling for the Gganbu Design System.",
+  "description": "CSS utilities for the Gganbu Design System",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
@@ -50,13 +49,20 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "prepare": "yarn generate:dev",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "generate:dev": "panda codegen --clean -c ./panda.config.ts && panda cssgen -c ./panda.config.ts",
+    "generate:prod": "panda codegen --clean -c ./panda.config.build.ts && panda cssgen -c ./panda.config.build.ts",
+    "dev": "yarn generate:dev && panda -w -c ./panda.config.ts",
+    "build": "yarn generate:prod"
   },
   "peerDependencies": {
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.41.0"
   },
   "dependencies": {
+    "@gganbu-org/theme": "0.0.0"
   }
 }
   
