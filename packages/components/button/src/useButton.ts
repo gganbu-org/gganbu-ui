@@ -21,7 +21,7 @@ const useButton = (props: ButtonProps) => {
     size = 'md',
     startIcon: startIconProp,
     endIcon: endIconProp,
-    iconSpacing = 1,
+    iconSpacing = '1',
     isDisabled = false,
     isLoading = false,
     fullWidth = false,
