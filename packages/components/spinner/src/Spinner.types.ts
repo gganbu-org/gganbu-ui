@@ -1,7 +1,4 @@
-import type {
-  HTMLGganbuUIProps,
-  SpinnerVariantProps,
-} from '@gganbu-org/styled';
+import type { HTMLGganbuUIProps, VariantProps } from '@gganbu-org/styled';
 
 interface Props extends HTMLGganbuUIProps<'div'> {
   /**
@@ -10,4 +7,4 @@ interface Props extends HTMLGganbuUIProps<'div'> {
   label?: string;
 }
 
-export interface SpinnerProps extends Props, SpinnerVariantProps {}
+export interface SpinnerProps extends Props, VariantProps<'spinner'> {}

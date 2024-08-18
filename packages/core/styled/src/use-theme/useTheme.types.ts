@@ -1,11 +1,11 @@
-import { recipeEntries } from './useTheme.constants';
+import type {
+  ButtonVariantProps,
+  SpinnerVariantProps,
+} from '@gganbu-org/styled-utils/recipes';
 
-export type RecipeMapKeys = (typeof recipeEntries)[number][0];
+interface VariantMap {
+  button: ButtonVariantProps;
+  spinner: SpinnerVariantProps;
+}
 
-export type ExtractProps<T> = T extends { __type: infer P } ? P : never;
-
-export type RecipeMap = {
-  [K in RecipeMapKeys]: (typeof recipeEntries)[number][1];
-};
-
-export type RecipeProps<K extends keyof RecipeMap> = ExtractProps<RecipeMap[K]>;
+export type VariantProps<T extends keyof VariantMap> = VariantMap[T];

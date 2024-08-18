@@ -1,6 +1,6 @@
 import type {
   HTMLGganbuUIProps,
-  ButtonVariantProps,
+  VariantProps,
   SystemProps,
 } from '@gganbu-org/styled';
 
@@ -59,4 +59,4 @@ interface Props extends HTMLGganbuUIProps<'button'> {
   spinner?: React.ReactNode;
 }
 
-export interface ButtonProps extends Props, ButtonVariantProps {}
+export interface ButtonProps extends Props, VariantProps<'button'> {}
