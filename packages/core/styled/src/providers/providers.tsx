@@ -1,7 +1,7 @@
 import React, { forwardRef as reactForwardRef } from 'react';
-import { ColorSchemeProvider } from './color-scheme';
+import { ColorSchemeProvider } from '../color-scheme';
+import type { As, MergeProps, PropsOf } from '../base.types';
 import type { GganbuProviderProps } from './providers.types';
-import type { As, MergeProps, PropsOf } from './base.types';
 
 export function GganbuProvider(props: GganbuProviderProps) {
   const { children } = props;
