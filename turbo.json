@@ -5,8 +5,9 @@
       "outputs": ["dist/**", "storybook-static/**"],
       "dependsOn": ["^build"]
     },
-    "test": {
-      "dependsOn": ["build"]
+    "test": {},
+    "@gganbu-org/styled#test": {
+      "dependsOn": ["@gganbu-org/styled-utils#build"] 
     },
     "lint": {},
     "dev": {
