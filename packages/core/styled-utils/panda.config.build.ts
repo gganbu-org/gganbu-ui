@@ -5,6 +5,7 @@ export default defineConfig({
   presets: [gganbuPreset],
   hash: { cssVar: false, className: true },
   minify: true,
+  clean: true,
 
   preflight: true,
 

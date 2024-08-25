@@ -49,20 +49,22 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "prepare": "yarn generate:dev",
+    "prepare": "yarn codegen:dev && yarn cssgen:dev",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "generate:dev": "panda codegen --clean -c ./panda.config.ts && panda cssgen -c ./panda.config.ts",
-    "generate:prod": "panda codegen --clean -c ./panda.config.build.ts && panda cssgen -c ./panda.config.build.ts",
-    "dev": "yarn generate:dev && panda -w -c ./panda.config.ts",
-    "build": "yarn generate:prod"
+    "cssgen:dev": "panda cssgen -c ./panda.config.ts",
+    "cssgen:prod": " panda cssgen -c ./panda.config.build.ts",
+    "codegen:dev": "panda codegen -c ./panda.config.ts",
+    "codegen:prod": "panda codegen -c ./panda.config.build.ts",
+    "dev": "yarn codegen:dev && panda -w -c ./panda.config.ts",
+    "build": "yarn codegen:prod && yarn cssgen:prod"
   },
   "peerDependencies": {
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.41.0"
+    "@pandacss/dev": "^0.41.0",
+    "@gganbu-org/theme": "0.0.0"
   },
   "dependencies": {
-    "@gganbu-org/theme": "0.0.0"
   }
 }
   
