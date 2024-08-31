@@ -1,16 +1,5 @@
 # @gganbu-org/styled
 
-## 0.0.0-canary-20240804171356
-
-### Patch Changes
-
-- [#61](https://github.com/gganbu-org/gganbu-ui/pull/61) [`5802c27`](https://github.com/gganbu-org/gganbu-ui/commit/5802c2710d53c6cd344ff11cfd3db47021ab811d) Thanks [@github-actions](https://github.com/apps/github-actions)! - canary release 수정 적용
-
-- Updated dependencies [[`5802c27`](https://github.com/gganbu-org/gganbu-ui/commit/5802c2710d53c6cd344ff11cfd3db47021ab811d)]:
-  - @gganbu-org/theme@0.0.0-canary-20240804171356
-  - @gganbu-org/hooks@0.0.0-canary-20240804171356
-  - @gganbu-org/utils@0.0.0-canary-20240804171356
-
 ## 0.0.0-canary-20240728130828
 
 ### Patch Changes
