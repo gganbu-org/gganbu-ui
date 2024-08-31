@@ -3,7 +3,6 @@ import { gganbuPreset } from '@gganbu-org/theme';
 
 export default defineConfig({
   presets: [gganbuPreset],
-  clean: true,
 
   preflight: true,
 
