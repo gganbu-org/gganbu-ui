@@ -28,7 +28,7 @@ export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
 
     function classes() {
       const systemProps = pick(rest, systemPropList);
-      return cx(_themeClasses, className, css(systemProps));
+      return cx(_themeClasses, css(systemProps), className);
     }
 
     return React.createElement(
