@@ -38,12 +38,14 @@
     "dist/**"
   ],
   "scripts": {
+    "prepare": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev",
     "test": "jest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev:watch",
     "build": "yarn codegen:prod && yarn mkdir-dist && yarn cssgen:prod && tsup",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
     "mkdir-dist": "mkdir -p ./dist",
+    "cssgen:dev": "panda cssgen -c ./panda.config.ts --outfile ./dist/styles.css",
     "cssgen:dev:watch": "panda cssgen -w -c ./panda.config.ts --outfile ./dist/styles.css",
     "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ./dist/styles.css",
     "codegen:dev": "panda codegen -c ./panda.config.ts",

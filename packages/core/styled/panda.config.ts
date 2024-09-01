@@ -1,5 +1,5 @@
 import { defineConfig } from '@pandacss/dev';
-import { gganbuPreset } from '@gganbu-org/theme';
+import { gganbuPreset } from '../theme/src';
 
 export default defineConfig({
   presets: [gganbuPreset],
