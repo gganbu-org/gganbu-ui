@@ -20,20 +20,25 @@ to: <%= packageDomain %>/<%= packageName %>/package.json
   ],
   "homepage": "",
   "license": "ISC",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
+  "main": "./src/index.ts",
   "sideEffects": false,
   "files": [
     "dist/**"
   ],
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
   "scripts": {
     "test": "jest",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
