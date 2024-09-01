@@ -55,6 +55,7 @@
     ]
   },
   "scripts": {
+    "prepare": "husky",
     "multitask": "turbo run lint test build",
     "test": "turbo run test",
     "lint": "turbo run lint",
