@@ -45,18 +45,18 @@
     },
     "./types": {
       "types": "./dist/types/index.d.ts"
-    },
-    "./styles.css": "./dist/styles.css"
+    }
   },
   "scripts": {
-    "prepare": "yarn codegen:dev && yarn cssgen:dev",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "cssgen:dev": "panda cssgen -c ./panda.config.ts",
-    "cssgen:prod": " panda cssgen -c ./panda.config.build.ts",
+    "dev": "yarn codegen:dev && yarn mkdir-styled-dist && yarn cssgen:dev",
+    "build": "yarn codegen:prod && yarn mkdir-styled-dist && yarn cssgen:prod",
+
+    "mkdir-styled-dist": "mkdir -p ../styled/dist",
+    "cssgen:dev": "panda cssgen -w -c ./panda.config.ts --outfile ../styled/dist/styles.css",
+    "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ../styled/dist/styles.css",
     "codegen:dev": "panda codegen -c ./panda.config.ts",
-    "codegen:prod": "panda codegen -c ./panda.config.build.ts",
-    "dev": "yarn codegen:dev && panda -w -c ./panda.config.ts",
-    "build": "yarn codegen:prod && yarn cssgen:prod"
+    "codegen:prod": "panda codegen -c ./panda.config.build.ts"
   },
   "peerDependencies": {
   },
@@ -67,4 +67,3 @@
   "dependencies": {
   }
 }
-  

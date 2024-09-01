@@ -27,6 +27,10 @@
   "files": [
     "dist/**"
   ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./dist/styles.css"
+  },
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.js",
@@ -38,6 +42,7 @@
         "import": "./dist/index.mjs",
         "require": "./dist/index.js"
       },
+      "./styles.css": "./dist/styles.css",
       "./package.json": "./package.json"
     }
   },
