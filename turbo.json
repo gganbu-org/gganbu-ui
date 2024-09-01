@@ -7,7 +7,7 @@
     },
     "test": {},
     "@gganbu-org/styled#test": {
-      "dependsOn": ["@gganbu-org/styled-utils#build"] 
+      "dependsOn": ["@gganbu-org/styled#build"] 
     },
     "lint": {},
     "dev": {

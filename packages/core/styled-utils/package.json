@@ -48,21 +48,11 @@
     }
   },
   "scripts": {
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "dev": "yarn codegen:dev && yarn mkdir-styled-dist && yarn cssgen:dev",
-    "build": "yarn codegen:prod && yarn mkdir-styled-dist && yarn cssgen:prod",
-
-    "mkdir-styled-dist": "mkdir -p ../styled/dist",
-    "cssgen:dev": "panda cssgen -w -c ./panda.config.ts --outfile ../styled/dist/styles.css",
-    "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ../styled/dist/styles.css",
-    "codegen:dev": "panda codegen -c ./panda.config.ts",
-    "codegen:prod": "panda codegen -c ./panda.config.build.ts"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.41.0",
-    "@gganbu-org/theme": "0.0.0"
   },
   "dependencies": {
   }

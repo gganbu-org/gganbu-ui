@@ -40,14 +40,21 @@
   "scripts": {
     "test": "jest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev:watch",
+    "build": "yarn codegen:prod && yarn mkdir-dist && yarn cssgen:prod && tsup",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup"
+    "mkdir-dist": "mkdir -p ./dist",
+    "cssgen:dev:watch": "panda cssgen -w -c ./panda.config.ts --outfile ./dist/styles.css",
+    "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ./dist/styles.css",
+    "codegen:dev": "panda codegen -c ./panda.config.ts",
+    "codegen:prod": "panda codegen -c ./panda.config.build.ts"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.41.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
