@@ -1,6 +1,6 @@
 import { defineSemanticTokens } from '@pandacss/dev';
-import { convertNestedValue } from './utils';
-import { semanticColors as colors } from './foundation';
+import { convertNestedValue } from '../utils';
+import { semanticColors as colors } from '../foundation';
 
 const TOKEN_ALIASES: { BASE: string; DARK: string } = {
   BASE: 'base',

@@ -1,5 +1,5 @@
 import { defineRecipe } from '@pandacss/dev';
-import { compoundVariants } from '../utils';
+import { compoundVariants } from '../customization';
 
 export const SpinnerRecipe = defineRecipe({
   className: 'spinner',

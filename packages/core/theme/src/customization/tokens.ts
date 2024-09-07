@@ -1,5 +1,5 @@
 import { defineTokens } from '@pandacss/dev';
-import { convertNestedValue } from './utils';
+import { convertNestedValue } from '../utils';
 import {
   colors,
   fontWeights,
@@ -8,7 +8,7 @@ import {
   letterSpacings,
   sizes,
   spacing,
-} from './foundation';
+} from '../foundation';
 import { animations } from './keyframes';
 
 export const createTokens = () => {
