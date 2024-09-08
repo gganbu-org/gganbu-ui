@@ -11,33 +11,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create-pull-request:
-    runs-on: ubuntu-latest
-    name: Create pull request
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Check for existing pull request
-        id: check_pr
-        run: |
-          PR_EXISTS=$(gh pr list --head "${GITHUB_REF#refs/heads/}" --state open --json number --jq '.[0].number')
-          if [ -n "$PR_EXISTS" ]; then
-            echo "Pull request already exists for this branch. Skipping creation."
-            echo "PR_EXISTS=$PR_EXISTS" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create pull request by gh pr create
-        if: steps.check_pr.outputs.PR_EXISTS == ''
-        run: |
-          PULL_REQUEST_TITLE="$(git log -1 --pretty=format:%s)"
-          gh pr create --base develop -H "${GITHUB_REF#refs/heads/}" --title "${PULL_REQUEST_TITLE}" --fill --body-file .github/PULL_REQUEST_TEMPLATE.md -d
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   check-changesets:
     runs-on: ubuntu-latest
     name: Check for changes in .changesets
