@@ -1,3 +1,7 @@
-export { convertNestedValue, mapValueToKeys } from './normalize';
-export { systemProperties } from './systemProperties';
-export type { SystemProperties } from './systemProperties';
+export {
+  convertNestedValue,
+  mapValueToKeys,
+  normalizeCssRules,
+} from './normalize';
+
+export type { RawCssRule } from './normalize';

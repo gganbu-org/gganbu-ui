@@ -1,5 +1,5 @@
 import { definePreset } from '@pandacss/dev';
-import { mapValueToKeys, systemProperties } from './utils';
+import { mapValueToKeys, normalizeCssRules } from './utils';
 import { recipes } from './recipes';
 import {
   createTokens,
@@ -7,10 +7,13 @@ import {
   conditions,
   createSemanticTokens,
 } from './customization';
+import type { PresetOptions } from './base.type';
 
 const recipeKeys = Object.keys(recipes);
 
-const createPreset = () => {
+const createPreset = (presetOpts: PresetOptions = {}) => {
+  const { css: rawCss = [] } = presetOpts;
+
   const tokens = createTokens();
   const semanticTokens = createSemanticTokens();
 
@@ -24,13 +27,9 @@ const createPreset = () => {
     },
     staticCss: {
       recipes: mapValueToKeys(recipeKeys, ['*']),
-      css: [
-        {
-          properties: systemProperties as Record<string, any>,
-        },
-      ],
+      css: normalizeCssRules(rawCss),
     },
   });
 };
 
-export const gganbuPreset = createPreset();
+export const gganbuPreset = createPreset;

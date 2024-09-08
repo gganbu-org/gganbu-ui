@@ -1,5 +1,7 @@
 import { SystemProperties as PandaSystemProperites } from '@gganbu-org/styled-utils/types';
-import type { SystemProperties } from '@gganbu-org/theme';
+import { systemProperties } from './systemProps.constants';
+
+export type SystemProperties = typeof systemProperties;
 
 type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;

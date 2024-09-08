@@ -1,8 +1,17 @@
 import { defineConfig } from '@pandacss/dev';
-import { gganbuPreset } from '../theme/src';
+import { gganbuPreset } from '@gganbu-org/theme';
+import { systemProperties } from './src/system-props';
 
 export default defineConfig({
-  presets: [gganbuPreset],
+  presets: [
+    gganbuPreset({
+      css: [
+        {
+          properties: systemProperties,
+        },
+      ],
+    }),
+  ],
 
   preflight: true,
 

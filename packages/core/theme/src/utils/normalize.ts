@@ -2,6 +2,18 @@ interface NestedObject<T> {
   [key: string]: T | NestedObject<T>;
 }
 
+export interface RawCssRule {
+  properties: {
+    [property: string]: Array<string | number | boolean>;
+  };
+}
+
+export interface CssRule {
+  properties: {
+    [property: string]: Array<string | number>;
+  };
+}
+
 export interface Tokens {
   [key: string]: { value: any } | Tokens;
 }
@@ -31,3 +43,17 @@ export const convertNestedValue = (
 
 export const mapValueToKeys = <T extends string, U>(keys: T[], value: U) =>
   keys.reduce((o, key) => ({ ...o, [key]: value }), {});
+
+export const normalizeCssRules = (rules: RawCssRule[]): CssRule[] => {
+  return rules.map((rule) => ({
+    ...rule,
+    properties: Object.fromEntries(
+      Object.entries(rule.properties).map(([key, values]) => [
+        key,
+        values.map((value) =>
+          typeof value === 'boolean' ? value.toString() : value,
+        ),
+      ]),
+    ),
+  }));
+};
