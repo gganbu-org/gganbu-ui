@@ -63,7 +63,7 @@ jobs:
         id: npm-publish
         run: |
           yarn run version:canary
-          yarn run publish:canary
+          yarn run release:canary
           find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
           git add .changeset/ -u
           git commit -m "chore: cleanup canary changesets"
