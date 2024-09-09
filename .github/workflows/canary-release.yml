@@ -64,6 +64,10 @@ jobs:
         run: |
           yarn changeset version:canary
           yarn changeset publish:canary
+          find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
+          git add .changeset/ -u
+          git commit -m "chore: cleanup canary changesets"
+          git push origin $(git branch --show-current)
 
   check-chromatic:
     runs-on: ubuntu-latest
