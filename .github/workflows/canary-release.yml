@@ -59,20 +59,11 @@ jobs:
           EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Create Release Pull Request or Publish to NPM
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
-          version: yarn run version:canary
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn run release:canary
-          title: 'ci(changesets): :package: version packages'
-          commit: 'ci(changesets): version packages'
-          setupGitUser: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to NPM
+        id: npm-publish
+        run: |
+          yarn changeset version:canary
+          yarn changeset publish:canary
 
   check-chromatic:
     runs-on: ubuntu-latest
