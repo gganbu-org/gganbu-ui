@@ -28,7 +28,7 @@ export const buttonRecipe = defineRecipe({
     variant: {
       solid: { color: 'text.primary' },
       outline: { borderWidth: '2px', bgColor: 'transparent' },
-      ghost: { borderWidth: '2px', bgColor: 'transparent' },
+      ghost: {},
       link: {},
     },
     size: {

@@ -72,8 +72,7 @@ const outline = {
 const ghost = {
   primary: {
     color: {
-      base: 'primary.ghost',
-      _hover: 'text.primary',
+      base: 'primary.solid',
     },
     borderColor: 'primary.ghost',
     bg: {
@@ -82,8 +81,7 @@ const ghost = {
   },
   secondary: {
     color: {
-      base: 'secondary.ghost',
-      _hover: 'text.primary',
+      base: 'secondary.solid',
     },
     borderColor: 'secondary.ghost',
     bg: {
@@ -92,8 +90,7 @@ const ghost = {
   },
   success: {
     color: {
-      base: 'success.ghost',
-      _hover: 'text.primary',
+      base: 'success.solid',
     },
     borderColor: 'success.ghost',
     bg: {
@@ -102,8 +99,7 @@ const ghost = {
   },
   warning: {
     color: {
-      base: 'warning.ghost',
-      _hover: 'text.primary',
+      base: 'warning.solid',
     },
     borderColor: 'warning.ghost',
     bg: {
@@ -112,8 +108,7 @@ const ghost = {
   },
   danger: {
     color: {
-      base: 'danger.ghost',
-      _hover: 'text.primary',
+      base: 'danger.solid',
     },
     borderColor: 'danger.ghost',
     bg: {

@@ -166,7 +166,7 @@ export const semanticColors = {
       _dark: '{colors.blue.400}',
     },
     ghost: {
-      base: '{colors.blue.500}',
+      base: '{colors.blue.400/20}',
       _dark: '{colors.blue.400}',
     },
     link: {
@@ -188,7 +188,7 @@ export const semanticColors = {
       _dark: '{colors.purple.400}',
     },
     ghost: {
-      base: '{colors.purple.500}',
+      base: '{colors.purple.400/20}',
       _dark: '{colors.purple.400}',
     },
     link: {
@@ -209,7 +209,7 @@ export const semanticColors = {
       base: '{colors.green.500}',
       _dark: '{colors.green.400}',
     },
-    ghost: { base: '{colors.green.500}', _dark: '{colors.green.400}' },
+    ghost: { base: '{colors.green.400/20}', _dark: '{colors.green.400}' },
     link: {
       base: '{colors.green.500}',
       _dark: '{colors.green.400}',
@@ -229,7 +229,7 @@ export const semanticColors = {
       _dark: '{colors.yellow.400}',
     },
     ghost: {
-      base: '{colors.yellow.500}',
+      base: '{colors.yellow.400/20}',
       _dark: '{colors.yellow.400}',
     },
     link: {
@@ -251,7 +251,7 @@ export const semanticColors = {
       _dark: '{colors.red.400}',
     },
     ghost: {
-      base: '{colors.red.500}',
+      base: '{colors.red.400/20}',
       _dark: '{colors.red.400}',
     },
     link: {
