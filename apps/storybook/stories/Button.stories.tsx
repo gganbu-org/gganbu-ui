@@ -76,8 +76,8 @@ export function Variant() {
   return (
     <>
       <Button variant="solid">Solid</Button>
-      <Button variant="outline">Outline</Button>
       <Button variant="link">Link</Button>
+      <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
     </>
   );
