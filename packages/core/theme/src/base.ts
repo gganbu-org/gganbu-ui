@@ -7,7 +7,7 @@ import {
   conditions,
   createSemanticTokens,
 } from './customization';
-import type { PresetOptions } from './base.type';
+import type { PresetOptions } from './base.types';
 
 const recipeKeys = Object.keys(recipes);
 
