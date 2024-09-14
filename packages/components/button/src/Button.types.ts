@@ -40,7 +40,7 @@ interface Props extends HTMLGganbuUIProps<'button'> {
   endIcon?: React.ReactNode;
   /**
    * The spacing of the icon
-   * @default 1
+   * @default "1"
    */
   iconSpacing?: SystemProps['marginLeft'];
   /**
