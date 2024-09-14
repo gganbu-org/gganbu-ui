@@ -7,6 +7,6 @@ export const systemProperties = {
   marginLeft: ['1', '2', '3'],
   marginRight: ['1', '2', '3'],
   srOnly: [true],
-};
+} as const;
 
 export const systemPropList = Object.keys(systemProperties);

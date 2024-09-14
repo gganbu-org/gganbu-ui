@@ -7,7 +7,7 @@ export default defineConfig({
     gganbuPreset({
       css: [
         {
-          properties: systemProperties,
+          properties: systemProperties as Record<string, any>,
         },
       ],
     }),

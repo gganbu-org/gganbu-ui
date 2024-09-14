@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@gganbu-org/button';
+import { systemPropList } from '@gganbu-org/styled';
+import { generateArgTypesToDisable } from '../utils';
 
 function AppleIcon() {
   return (
@@ -23,6 +25,7 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
+    ...generateArgTypesToDisable(systemPropList),
     startIcon: {
       options: [null, 'AppleIcon'],
       mapping: {
