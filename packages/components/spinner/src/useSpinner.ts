@@ -1,16 +1,15 @@
-import { gb, useThemeStyles } from '@gganbu-org/styled';
+import { gb, useTheme } from '@gganbu-org/styled';
 import type { SpinnerProps } from './Spinner.types';
 
 const useSpinner = (props: SpinnerProps) => {
   const { size = 'md', theme = 'primary', label, ...rest } = props;
 
   const Component = gb.div;
-  const themeStyles = useThemeStyles('Spinner', { size, theme });
+  const classes = useTheme('spinner', { theme, size });
 
   const getSpinnerProps = () => ({
-    _styles: themeStyles,
+    _themeClasses: classes,
     ...rest,
-    animateSpin: true,
   });
 
   return {

@@ -3,14 +3,8 @@ import type { Preview } from '@storybook/react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { themes } from '@storybook/theming';
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
-
-import {
-  CssReset,
-  ThemeProvider,
-  ColorSchemeProvider,
-  setDataset,
-} from '@gganbu-org/styled';
-import { DEFAULT_THEME } from '@gganbu-org/theme';
+import { ColorSchemeProvider, setDataset } from '@gganbu-org/styled';
+import '@gganbu-org/styled/styles.css';
 
 function CustomGganbuProvider(props: PropsWithChildren) {
   const { children } = props;
@@ -34,14 +28,7 @@ function CustomGganbuProvider(props: PropsWithChildren) {
     setDataset(theme);
   }, [theme]);
 
-  return (
-    <ThemeProvider theme={DEFAULT_THEME}>
-      <ColorSchemeProvider value={theme}>
-        <CssReset />
-        {children}
-      </ColorSchemeProvider>
-    </ThemeProvider>
-  );
+  return <ColorSchemeProvider value={theme}>{children}</ColorSchemeProvider>;
 }
 
 const preview: Preview = {

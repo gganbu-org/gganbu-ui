@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@gganbu-org/button';
+import { systemPropList } from '@gganbu-org/styled';
+import { generateArgTypesToDisable } from '../utils';
 
 function AppleIcon() {
   return (
@@ -23,6 +25,7 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
+    ...generateArgTypesToDisable(systemPropList),
     startIcon: {
       options: [null, 'AppleIcon'],
       mapping: {
@@ -72,18 +75,10 @@ export const Basic: Story = {
 export function Variant() {
   return (
     <>
-      <Button key="solid" variant="solid">
-        Solid
-      </Button>
-      <Button key="ghost" variant="ghost">
-        Ghost
-      </Button>
-      <Button key="bordered" variant="bordered">
-        Bordered
-      </Button>
-      <Button key="link" variant="link">
-        Link
-      </Button>
+      <Button variant="solid">Solid</Button>
+      <Button variant="link">Link</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
     </>
   );
 }
@@ -91,21 +86,11 @@ export function Variant() {
 export function Theme() {
   return (
     <>
-      <Button key="primary" theme="primary">
-        Primary
-      </Button>
-      <Button key="secondary" theme="secondary">
-        Secondary
-      </Button>
-      <Button key="success" theme="success">
-        Success
-      </Button>
-      <Button key="warning" theme="warning">
-        Warning
-      </Button>
-      <Button key="danger" theme="danger">
-        Danger
-      </Button>
+      <Button theme="primary">Primary</Button>
+      <Button theme="secondary">Secondary</Button>
+      <Button theme="success">Success</Button>
+      <Button theme="warning">Warning</Button>
+      <Button theme="danger">Danger</Button>
     </>
   );
 }
@@ -113,15 +98,9 @@ export function Theme() {
 export function Size() {
   return (
     <>
-      <Button key="sm" size="sm">
-        SM
-      </Button>
-      <Button key="md" size="md">
-        MD
-      </Button>
-      <Button key="lg" size="lg">
-        LG
-      </Button>
+      <Button size="sm">SM</Button>
+      <Button size="md">MD</Button>
+      <Button size="lg">LG</Button>
     </>
   );
 }
@@ -131,23 +110,19 @@ export function Disabled() {
 }
 
 export function Loading() {
-  return <Button isLoading>loading...</Button>;
+  return <Button isLoading>Loading...</Button>;
+}
+
+export function Fullwidth() {
+  return <Button fullWidth>Full width</Button>;
 }
 
 export function Icon() {
   return (
     <>
-      <Button key="startIcon" startIcon={<AppleIcon />}>
-        Apple
-      </Button>
-      <Button key="endIcon" endIcon={<AppleIcon />}>
-        Apple
-      </Button>
-      <Button
-        key="multipleIcon"
-        startIcon={<AppleIcon />}
-        endIcon={<AppleIcon />}
-      >
+      <Button startIcon={<AppleIcon />}>Start</Button>
+      <Button endIcon={<AppleIcon />}>End</Button>
+      <Button startIcon={<AppleIcon />} endIcon={<AppleIcon />}>
         Apple
       </Button>
     </>

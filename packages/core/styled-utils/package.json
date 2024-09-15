@@ -1,0 +1,59 @@
+{
+  "name": "@gganbu-org/styled-utils",
+  "version": "0.0.0",
+  "description": "CSS utilities for the Gganbu Design System",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "packages/core/styled-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "react",
+    "styles",
+    "css"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "exports": {
+    "./css": {
+      "types": "./dist/css/index.d.ts",
+      "require": "./dist/css/index.js",
+      "import": "./dist/css/index.js"
+    },
+    "./patterns": {
+      "types": "./dist/patterns/index.d.ts",
+      "require": "./dist/patterns/index.js",
+      "import": "./dist/patterns/index.js"
+    },
+    "./recipes": {
+      "types": "./dist/recipes/index.d.ts",
+      "require": "./dist/recipes/index.js",
+      "import": "./dist/recipes/index.js"
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "require": "./dist/tokens/index.js",
+      "import": "./dist/tokens/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

@@ -1,11 +1,11 @@
 # `@gganbu-org/react`
 
-> TODO: description
+Gganbu Design System for React
 
 ## Usage
 
 ```
-const { Button, Spinner } = require('@gganbu-org/react');
+import { Button, Spinner } from '@gganbu-org/react';
 
 // TODO: DEMONSTRATE API
 ```

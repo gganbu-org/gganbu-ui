@@ -29,13 +29,21 @@ to: <%= packageDomain %>/<%= packageName %>/package.json
     "access": "public",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
     "test": "jest",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
+    "build": "tsup",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {},
   "devDependencies": {},

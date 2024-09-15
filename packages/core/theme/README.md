@@ -1,11 +1,11 @@
 # `@gganbu-org/theme`
 
-> TODO: description
+A preset for Panda CSS that contains Gganbu Design System's branding.
 
 ## Usage
 
 ```
-const { DEFAULT_THEME } = require('@gganbu-org/theme');
+import { gganbuPreset } from '@gganbu-org/theme';
 
 // TODO: DEMONSTRATE API
 ```

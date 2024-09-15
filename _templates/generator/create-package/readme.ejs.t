@@ -8,7 +8,7 @@ This is the sample README for <%= packageName %>
 
 ## Usage
 ```
-const <%= packageName %> = require('@gganbu-org/<%= packageName %>');
+import <%= packageName %> from '@gganbu-org/<%= packageName %>';
 
 // TODO: DEMONSTRATE API
 ```

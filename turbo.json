@@ -6,6 +6,9 @@
       "dependsOn": ["^build"]
     },
     "test": {},
+    "@gganbu-org/styled#test": {
+      "dependsOn": ["@gganbu-org/styled#build"] 
+    },
     "lint": {},
     "dev": {
       "cache": false,

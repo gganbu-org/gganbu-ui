@@ -14,19 +14,9 @@
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "paths": {
-      /* packages alias */
-      "@gganbu-org/react/*": ["packages/core/react/src/*"],
-      "@gganbu-org/styled/*": ["packages/core/styled/src/*"],
-      "@gganbu-org/theme/*": ["packages/core/theme/src/*"],
-      "@gganbu-org/components/*": ["packages/components/src/*"],
-      "@gganbu-org/hooks/*": ["packages/hooks/src/*"],
-      "@gganbu-org/rollup/*": ["packages/rollup/src/*"],
-      "@gganbu-org/utils/*": ["packages/utils/src/*"],
-    },
 
     /* Advanced Options */
     "resolveJsonModule": true,
