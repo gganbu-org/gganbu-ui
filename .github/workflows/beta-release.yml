@@ -1,5 +1,5 @@
-# .github/workflows/release.yml
-name: 🎉 Release
+# .github/workflows/beta-release.yml
+name: 🚀 Beta Release
 
 on:
   push:
@@ -61,6 +61,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
+
       - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
@@ -73,6 +74,7 @@ jobs:
       # Conversely, in order to close the beta release and launch the official release, the yarn run exit:beta command must be used first.
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
+        if: ${{ needs.check-changesets.outputs.mode == 'pre' }}
         uses: changesets/action@v1
         with:
           # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
@@ -85,6 +87,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # This must be done before closing a release.
+      - name: Preparation for npm publishing the official release
+        if: ${{ needs.check-changesets.outputs.mode == 'exit' }}
+        run: |
+          yarn run version
+          find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
+          git add .changeset/ -u
+          git commit -m "chore: ready to release"
+          git push origin $(git branch --show-current)
 
   check-chromatic:
     runs-on: ubuntu-latest
@@ -102,17 +114,17 @@ jobs:
           files: |
             apps/storybook/**
 
-  chromatic:
+  chromatic-publish:
     name: Run visual tests
     needs: [check-chromatic]
     if: ${{ needs.check-chromatic.outputs.any_changed == 'true' }}
     uses: ./.github/workflows/chromatic.yml
     secrets: inherit
 
-  slack:
+  slack-notification:
     runs-on: ubuntu-latest
     needs: [check-changesets]
-    if: ${{ needs.check-changesets.outputs.any_deleted == 'true' && needs.check-changesets.outputs.mode == 'exit' }}
+    if: ${{ needs.check-changesets.outputs.any_deleted == 'true' && needs.check-changesets.outputs.mode == 'pre' }}
     name: Check for changes in repository
     steps:
       - name: Checkout code
@@ -181,13 +193,13 @@ jobs:
           channel-id: 'C076U73UDFH'
           payload: |
             {
-              "text": "@gganbu-org/gganbu-ui 릴리즈 알림: ${{ github.sha }}",
+              "text": "@gganbu-org/gganbu-ui 사전 릴리즈 알림: ${{ github.sha }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*@gganbu-org/gganbu-ui 릴리즈 성공*\n"
+                    "text": "🚀🚀 *@gganbu-org/gganbu-ui 사전 릴리즈 준비 완료* 🚀🚀\n"
                   }
                 },
                 {
