@@ -51,6 +51,12 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Build
+        run: yarn run build
+
+      - name: Tests
+        run: yarn run test
+
       - name: Setup Git User
         shell: bash
         # This sets the git user to the author of the last commit
