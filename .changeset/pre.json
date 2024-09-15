@@ -14,5 +14,7 @@
     "@gganbu-org/rollup": "0.0.0",
     "@gganbu-org/utils": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "wet-dancers-serve"
+  ]
 }
