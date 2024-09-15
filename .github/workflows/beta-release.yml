@@ -125,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check-changesets]
     if: ${{ needs.check-changesets.outputs.any_deleted == 'true' && needs.check-changesets.outputs.mode == 'pre' }}
-    name: Check for changes in repository
+    name: Notify slack that the release is complete
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
