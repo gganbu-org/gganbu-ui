@@ -1,11 +1,11 @@
 # `@gganbu-org/styled`
 
-> TODO: description
+Styled API for creating component styling
 
 ## Usage
 
 ```
-const { GganbuProvider } = require('@gganbu-org/styled');
+import { gb, useTheme } from '@gganbu-org/styled';
 
 // TODO: DEMONSTRATE API
 ```

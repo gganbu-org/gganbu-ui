@@ -1,7 +1,7 @@
 {
   "name": "@gganbu-org/storybook",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "Storybook in the Gganbu Design System",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
@@ -22,7 +22,7 @@
   "homepage": "",
   "license": "ISC",
   "scripts": {
-    "storybook": "storybook dev -p 6006",
+    "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "build-storybook": "storybook build",
     "preview": "serve storybook-static",
@@ -30,7 +30,6 @@
     "chromatic": "dotenv -e apps/storybook/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "devDependencies": {
-    "@storybook/test": "^8.0.9",
     "@chromatic-com/storybook": "^1.3.3",
     "@storybook/addon-essentials": "^8.1.1",
     "@storybook/addon-interactions": "^8.1.1",
@@ -39,9 +38,10 @@
     "@storybook/cli": "^8.1.1",
     "@storybook/react": "^8.1.1",
     "@storybook/react-webpack5": "^8.1.1",
+    "@storybook/test": "^8.0.9",
+    "babel-loader": "^9.1.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "babel-loader": "^9.1.3",
     "serve": "^14.2.1",
     "storybook": "^8.0.9",
     "storybook-dark-mode": "^4.0.1",
@@ -50,8 +50,7 @@
   "dependencies": {
     "@gganbu-org/button": "0.0.0",
     "@gganbu-org/spinner": "0.0.0",
-    "@gganbu-org/styled": "0.0.0",
-    "@gganbu-org/theme": "0.0.0"
+    "@gganbu-org/styled": "0.0.0"
   },
   "eslintConfig": {
     "extends": [

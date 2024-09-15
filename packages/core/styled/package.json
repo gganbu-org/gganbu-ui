@@ -1,7 +1,7 @@
 {
   "name": "@gganbu-org/styled",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "Styled API for creating component styling",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
@@ -27,37 +27,52 @@
   "files": [
     "dist/**"
   ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./dist/styles.css"
+  },
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./styles.css": "./dist/styles.css",
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
+    "prepare": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev",
     "test": "jest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev:watch",
+    "build": "yarn codegen:prod && yarn mkdir-dist && yarn cssgen:prod && tsup",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts --minify"
+    "mkdir-dist": "mkdir -p ./dist",
+    "cssgen:dev": "panda cssgen -c ./panda.config.ts --outfile ./dist/styles.css",
+    "cssgen:dev:watch": "panda cssgen -w -c ./panda.config.ts --outfile ./dist/styles.css",
+    "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ./dist/styles.css",
+    "codegen:dev": "panda codegen -c ./panda.config.ts",
+    "codegen:prod": "panda codegen -c ./panda.config.build.ts"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18",
-    "@emotion/react": ">=11",
-    "@emotion/styled": ">=11",
-    "@emotion/cache": ">=11"
+    "react-dom": ">=18"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.41.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/lodash.merge": "^4.6.9",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@emotion/cache": "^11.11.0"
+    "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
+    "@gganbu-org/styled-utils": "0.0.0",
     "@gganbu-org/theme": "0.0.0",
     "@gganbu-org/hooks": "0.0.0",
     "@gganbu-org/utils": "0.0.0"

@@ -1,11 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from '@gganbu-org/spinner';
+import { systemPropList } from '@gganbu-org/styled';
+import { generateArgTypesToDisable } from '../utils';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'Example/Spinner',
   component: Spinner,
   tags: ['autodocs'],
+  argTypes: {
+    ...generateArgTypesToDisable(systemPropList),
+  },
   decorators: [
     (Story) => (
       <div
@@ -36,12 +41,12 @@ export const Basic: Story = {
 export function Theme() {
   return (
     <>
-      <Spinner key="bordered" theme="primary" />
-      <Spinner key="solid" theme="secondary" />
-      <Spinner key="solid" theme="success" />
-      <Spinner key="solid" theme="danger" />
-      <Spinner key="solid" theme="warning" />
-      <Spinner key="solid" theme="current" />
+      <Spinner theme="primary" />
+      <Spinner theme="secondary" />
+      <Spinner theme="success" />
+      <Spinner theme="danger" />
+      <Spinner theme="warning" />
+      <Spinner theme="current" />
     </>
   );
 }

@@ -31,6 +31,11 @@ const config: StorybookConfig = {
 
   docs: {},
 
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    skipCompiler: true,
+  },
+
   webpackFinal: async (config) => {
     if (config.module) {
       config.module.rules?.push({

@@ -1,10 +1,28 @@
-import type { HTMLGganbuUIProps } from '@gganbu-org/styled';
-import type { ButtonTheme, ButtonSize, ButtonVariant } from '@gganbu-org/theme';
+import type {
+  HTMLGganbuUIProps,
+  VariantProps,
+  SystemProps,
+} from '@gganbu-org/styled';
 
 export interface ButtonWrapperProps {
   condition: boolean;
   wrapper: (children: JSX.Element) => JSX.Element;
   children: JSX.Element;
+}
+
+export interface ButtonIconProps extends HTMLGganbuUIProps<'span'> {
+  /**
+   * The child Node
+   */
+  children?: React.ReactNode;
+  /**
+   * The button start icon.
+   */
+  mr?: SystemProps['marginRight'];
+  /**
+   * The button end icon.
+   */
+  ml?: SystemProps['marginLeft'];
 }
 
 interface Props extends HTMLGganbuUIProps<'button'> {
@@ -22,9 +40,9 @@ interface Props extends HTMLGganbuUIProps<'button'> {
   endIcon?: React.ReactNode;
   /**
    * The spacing of the icon
-   * @default 0.5rem
+   * @default "1"
    */
-  iconSpacing?: string;
+  iconSpacing?: SystemProps['marginLeft'];
   /**
    * Whether the button show a loading spinner.
    * @default false
@@ -41,22 +59,4 @@ interface Props extends HTMLGganbuUIProps<'button'> {
   spinner?: React.ReactNode;
 }
 
-interface ButtonThemeProps {
-  /**
-   * The color theme of the Button
-   * @default primary
-   */
-  theme?: ButtonTheme;
-  /**
-   * The size of the Button
-   * @default md
-   */
-  size?: ButtonSize;
-  /**
-   * The variant of the Button
-   * @default solid
-   */
-  variant?: ButtonVariant;
-}
-
-export interface ButtonProps extends Props, ButtonThemeProps {}
+export interface ButtonProps extends Props, VariantProps<'button'> {}

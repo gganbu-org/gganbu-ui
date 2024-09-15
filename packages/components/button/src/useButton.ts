@@ -1,5 +1,7 @@
 import { cloneElement, isValidElement } from 'react';
-import { gb, useThemeStyles } from '@gganbu-org/styled';
+import { gb, useTheme } from '@gganbu-org/styled';
+import { useRipple } from '@gganbu-org/ripple';
+import { chain } from '@gganbu-org/utils';
 import type { ButtonProps } from './Button.types';
 
 const createCloneIcon = (icon?: React.ReactNode) =>
@@ -14,30 +16,37 @@ const createCloneIcon = (icon?: React.ReactNode) =>
 const useButton = (props: ButtonProps) => {
   const {
     children,
+    variant = 'solid',
     theme = 'primary',
     size = 'md',
-    variant = 'solid',
     startIcon: startIconProp,
     endIcon: endIconProp,
-    iconSpacing = '0.5rem',
+    iconSpacing = '1',
     isDisabled = false,
     isLoading = false,
+    fullWidth = false,
     spinner,
+    onClick: rawOnClick,
     ...rest
   } = props;
+  const { onRippleClickHandler, onClearRipple, ripples } = useRipple();
 
   const Component = gb.button;
   const disabled = isDisabled || isLoading;
-  const themeStyles = useThemeStyles('Button', { theme, size, variant });
 
   const startIcon = createCloneIcon(startIconProp);
   const endIcon = createCloneIcon(endIconProp);
 
+  const classes = useTheme('button', { variant, theme, size, fullWidth });
+
   const getButtonProps = () => ({
-    _styles: themeStyles,
+    _themeClasses: classes,
     disabled,
+    onClick: chain(rawOnClick, onRippleClickHandler),
     ...rest,
   });
+
+  const getRippleProps = () => ({ ripples, onClear: onClearRipple });
 
   return {
     Component,
@@ -49,6 +58,7 @@ const useButton = (props: ButtonProps) => {
     isLoading,
     spinner,
     spinnerSize: size,
+    getRippleProps,
   };
 };
 
