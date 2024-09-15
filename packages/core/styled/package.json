@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/styled",
-  "version": "0.0.0",
+  "version": "0.1.0-beta.0",
   "description": "Styled API for creating component styling",
   "repository": {
     "type": "git",
@@ -72,9 +72,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled-utils": "0.0.0",
-    "@gganbu-org/theme": "0.0.0",
-    "@gganbu-org/hooks": "0.0.0",
-    "@gganbu-org/utils": "0.0.0"
+    "@gganbu-org/styled-utils": "0.1.0-beta.0",
+    "@gganbu-org/theme": "0.1.0-beta.0",
+    "@gganbu-org/hooks": "0.1.0-beta.0",
+    "@gganbu-org/utils": "0.1.0-beta.0"
   }
 }

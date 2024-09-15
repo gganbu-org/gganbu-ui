@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/button",
-  "version": "0.0.0",
+  "version": "0.1.0-beta.0",
   "description": "A Button is a clickable element which communicates that users can trigger an action.",
   "repository": {
     "type": "git",
@@ -54,9 +54,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "0.0.0",
-    "@gganbu-org/spinner": "0.0.0",
-    "@gganbu-org/ripple": "0.0.0",
-    "@gganbu-org/utils": "0.0.0"
+    "@gganbu-org/styled": "0.1.0-beta.0",
+    "@gganbu-org/spinner": "0.1.0-beta.0",
+    "@gganbu-org/ripple": "0.1.0-beta.0",
+    "@gganbu-org/utils": "0.1.0-beta.0"
   }
 }
