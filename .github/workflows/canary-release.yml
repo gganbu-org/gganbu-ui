@@ -52,6 +52,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
+
       - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
@@ -59,6 +60,7 @@ jobs:
           EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish to NPM
         id: npm-publish
         run: |
@@ -89,7 +91,7 @@ jobs:
           files: |
             apps/storybook/**
 
-  chromatic:
+  chromatic-publish:
     name: Run visual tests
     needs: [check-chromatic]
     if: ${{ needs.check-chromatic.outputs.any_changed == 'true' }}
