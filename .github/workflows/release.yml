@@ -74,6 +74,9 @@ jobs:
         id: npm-publish
         run: |
           yarn run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   check-chromatic:
     runs-on: ubuntu-latest
