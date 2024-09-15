@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@gganbu-org/storybook": "0.0.0",
+    "@gganbu-org/button": "0.0.0",
+    "@gganbu-org/ripple": "0.0.0",
+    "@gganbu-org/spinner": "0.0.0",
+    "@gganbu-org/react": "0.0.0",
+    "@gganbu-org/styled": "0.0.0",
+    "@gganbu-org/styled-utils": "0.0.0",
+    "@gganbu-org/theme": "0.0.0",
+    "@gganbu-org/hooks": "0.0.0",
+    "@gganbu-org/rollup": "0.0.0",
+    "@gganbu-org/utils": "0.0.0"
+  },
+  "changesets": []
+}
