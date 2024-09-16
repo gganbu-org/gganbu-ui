@@ -1,7 +1,6 @@
 {
   "name": "gganbu-ui",
   "private": true,
-  "packageManager": "pnpm@9.10.0",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.2",
