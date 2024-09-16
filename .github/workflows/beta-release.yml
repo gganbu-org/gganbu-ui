@@ -47,19 +47,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: pnpm install
 
       - name: Build
-        run: yarn run build
+        run: pnpm run build
 
       - name: Tests
-        run: yarn run test
+        run: pnpm run test
 
       - name: Setup Git User
         shell: bash
@@ -76,17 +83,17 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # To open a beta release, you must first run the yarn run enter:beta command.
-      # Conversely, in order to close the beta release and launch the official release, the yarn run exit:beta command must be used first.
+      # To open a beta release, you must first run the pnpm run enter:beta command.
+      # Conversely, in order to close the beta release and launch the official release, the pnpm run exit:beta command must be used first.
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
         if: ${{ needs.check-changesets.outputs.mode == 'pre' }}
         uses: changesets/action@v1
         with:
           # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
-          version: yarn run version
+          version: pnpm run version
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn run release
+          publish: pnpm run release
           title: 'ci(changesets): :package: version packages'
           commit: 'ci(changesets): version packages'
           setupGitUser: false
@@ -98,7 +105,7 @@ jobs:
       - name: Preparation for npm publishing the official release
         if: ${{ needs.check-changesets.outputs.mode == 'exit' }}
         run: |
-          yarn run version
+          pnpm run version
           find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
           git add .changeset/ -u
           git commit -m "chore: ready to release"

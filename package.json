@@ -1,11 +1,7 @@
 {
   "name": "gganbu-ui",
   "private": true,
-  "workspaces": [
-    "packages/**",
-    "apps/*"
-  ],
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "pnpm@9.10.0",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.2",
@@ -33,7 +29,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^0.8.0",
-    "husky": "^9.0.11",
+    "husky": "^9.1.6",
     "hygen": "^6.2.11",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -55,20 +51,24 @@
     ]
   },
   "scripts": {
-    "prepare": "husky && yarn workspace @gganbu-org/styled prepare",
+    "prepare": "husky",
     "multitask": "turbo run lint test build",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dev": "turbo run dev --parallel",
     "build": "turbo build",
-    "clean": "yarn cache clean && turbo run clean && rm -rf node_modules",
+    "clean": "pnpm store prune && turbo run clean && rm -rf node_modules",
     "create:graph": "turbo build --graph=dependency-graph.png",
-    "create:package": "yarn hygen generator create-package with-prompt",
+    "create:package": "pnpm hygen generator create-package with-prompt",
     "version": "changeset version",
     "release": "changeset publish",
     "enter:beta": "changeset pre enter beta",
     "exit:beta": "changeset pre exit beta",
     "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --snapshot --no-git-tag --tag canary"
+  },
+  "engines": {
+    "node": ">=20.x",
+    "pnpm": ">=9.x"
   }
 }

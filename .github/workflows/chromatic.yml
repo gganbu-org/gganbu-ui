@@ -21,11 +21,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
       - name: Install dependencies
-        # ⚠️ Pick one of these, matching the package manager for your project
-        # run: npm ci
-        # run: pnpm install
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: pnpm install
 
       - name: Run Chromatic
         uses: chromaui/action@latest

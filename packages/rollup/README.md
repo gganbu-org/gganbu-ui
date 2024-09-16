@@ -12,10 +12,10 @@ Using npm:
 npm install @gganbu/rollup -D
 ```
 
-Using yarn:
+Using pnpm:
 
 ```console
-yarn add @gganbu/rollup -D
+pnpm add @gganbu/rollup -D
 ```
 
 ## Usage

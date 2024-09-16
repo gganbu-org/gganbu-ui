@@ -48,9 +48,9 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "dependencies": {
-    "@gganbu-org/button": "0.1.0-beta.0",
-    "@gganbu-org/spinner": "0.1.0-beta.0",
-    "@gganbu-org/styled": "0.1.0-beta.0"
+    "@gganbu-org/button": "workspace:*",
+    "@gganbu-org/spinner": "workspace:*",
+    "@gganbu-org/styled": "workspace:*"
   },
   "eslintConfig": {
     "extends": [
