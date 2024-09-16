@@ -13,5 +13,8 @@
     "@gganbu-org/hooks": "0.0.0",
     "@gganbu-org/rollup": "0.0.0",
     "@gganbu-org/utils": "0.0.0"
-  }
+  },
+  "changesets": [
+    "many-dodos-collect"
+  ]
 }
