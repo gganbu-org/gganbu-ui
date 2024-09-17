@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/spinner",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0",
   "description": "A Spinner is an animation that communicates a loading state to users.",
   "repository": {
     "type": "git",

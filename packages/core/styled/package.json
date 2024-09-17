@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/styled",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0",
   "description": "Styled API for creating component styling",
   "repository": {
     "type": "git",
