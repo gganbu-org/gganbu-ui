@@ -1,0 +1,48 @@
+# .github/workflows/chromatic.yml
+
+name: 'Chromatic'
+
+on: workflow_call
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-chromatic
+  cancel-in-progress: true
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/storybook
+          onlyChanged: true # 👈 Required option to enable TurboSnap / 터보스냅이 필요할지는 테스트 여부에 따라 상이할 예정
+          exitZeroOnChanges: true # 👈 Option to prevent the workflow from failing
+          autoAcceptChanges: 'master' # 👈 Option to accept all changes on master
+          # ignoreLastBuildOnBranch: 'my-branch' # 👈 Option to ignore the last build on target branch

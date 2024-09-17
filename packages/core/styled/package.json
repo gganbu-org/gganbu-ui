@@ -1,0 +1,79 @@
+{
+  "name": "@gganbu-org/styled",
+  "version": "0.1.0",
+  "description": "Styled API for creating component styling",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "packages/core/styled"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "react",
+    "styled",
+    "css"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./dist/styles.css"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./styles.css": "./dist/styles.css",
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "pnpm run codegen:dev && pnpm run mkdir-dist && pnpm run cssgen:dev:watch",
+    "build": "pnpm run codegen:prod && pnpm run mkdir-dist && pnpm run cssgen:prod && tsup",
+    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
+    "mkdir-dist": "mkdir -p ./dist",
+    "cssgen:dev": "panda cssgen -c ./panda.config.ts --outfile ./dist/styles.css",
+    "cssgen:dev:watch": "panda cssgen -w -c ./panda.config.ts --outfile ./dist/styles.css",
+    "cssgen:prod": "panda cssgen -c ./panda.config.build.ts --outfile ./dist/styles.css",
+    "codegen:dev": "panda codegen -c ./panda.config.ts",
+    "codegen:prod": "panda codegen -c ./panda.config.build.ts"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.41.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@gganbu-org/styled-utils": "workspace:*",
+    "@gganbu-org/theme": "workspace:*",
+    "@gganbu-org/hooks": "workspace:*",
+    "@gganbu-org/utils": "workspace:*"
+  }
+}

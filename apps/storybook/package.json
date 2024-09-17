@@ -1,0 +1,62 @@
+{
+  "name": "@gganbu-org/storybook",
+  "version": "0.0.0",
+  "description": "Storybook in the Gganbu Design System",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "apps/storybook"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "react",
+    "storybook"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "build-storybook": "storybook build",
+    "preview": "serve storybook-static",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf storybook-static",
+    "chromatic": "dotenv -e apps/storybook/.env chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.3.3",
+    "@storybook/addon-docs": "^8.1.1",
+    "@storybook/addon-essentials": "^8.1.1",
+    "@storybook/addon-interactions": "^8.1.1",
+    "@storybook/addon-links": "^8.1.1",
+    "@storybook/blocks": "^8.1.1",
+    "@storybook/cli": "^8.1.1",
+    "@storybook/react": "^8.1.1",
+    "@storybook/react-webpack5": "^8.1.1",
+    "@storybook/test": "^8.0.9",
+    "@storybook/theming": "^8.1.1",
+    "babel-loader": "^9.1.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "serve": "^14.2.1",
+    "storybook": "^8.0.9",
+    "storybook-dark-mode": "^4.0.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
+  },
+  "dependencies": {
+    "@gganbu-org/button": "workspace:*",
+    "@gganbu-org/spinner": "workspace:*",
+    "@gganbu-org/styled": "workspace:*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}
