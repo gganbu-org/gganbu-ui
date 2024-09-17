@@ -1,5 +1,19 @@
 # @gganbu-org/button
 
+## 0.1.0-beta.4
+
+### Minor Changes
+
+- [#68](https://github.com/gganbu-org/gganbu-ui/pull/68) [`861a484`](https://github.com/gganbu-org/gganbu-ui/commit/861a484de3d2ddc99afb8fad5df0aca0e8ea150e) Thanks [@minzzang144](https://github.com/minzzang144)! - 베타 릴리즈 테스트 - 9
+
+### Patch Changes
+
+- Updated dependencies [[`861a484`](https://github.com/gganbu-org/gganbu-ui/commit/861a484de3d2ddc99afb8fad5df0aca0e8ea150e)]:
+  - @gganbu-org/spinner@0.1.0-beta.4
+  - @gganbu-org/ripple@0.1.0-beta.4
+  - @gganbu-org/styled@0.1.0-beta.4
+  - @gganbu-org/utils@0.1.0-beta.4
+
 ## 0.1.0-beta.3
 
 ### Minor Changes
