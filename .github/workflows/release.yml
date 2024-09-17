@@ -170,7 +170,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "🎉🎉 *@gganbu-org/gganbu-ui 릴리즈 성공* 🎉🎉\n"
+                    "text": "🎉🎉 *<https://github.com/gganbu-org/gganbu-ui|@gganbu-org/gganbu-ui> 릴리즈 성공* 🎉🎉\n"
                   }
                 },
                 {

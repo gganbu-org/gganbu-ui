@@ -172,19 +172,6 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
 
-      - name: Get PR infomation
-        uses: actions/github-script@v6
-        id: get_pr_info
-        with:
-          script: |
-            return (
-              await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                commit_sha: context.sha,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              })
-            ).data[0];
-
       - name: Get changed packages
         id: get_changed_packages
         env:
@@ -235,14 +222,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "🚀🚀 *@gganbu-org/gganbu-ui 사전 릴리즈 준비 완료* 🚀🚀\n"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ fromJson(steps.get_pr_info.outputs.result).number }}|${{fromJson(steps.get_pr_info.outputs.result).title}}#${{fromJson(steps.get_pr_info.outputs.result).number}}>\n"
+                    "text": "🚀🚀 *<https://github.com/gganbu-org/gganbu-ui|@gganbu-org/gganbu-ui> 사전 릴리즈 준비 완료* 🚀🚀\n"
                   }
                 },
                 {
