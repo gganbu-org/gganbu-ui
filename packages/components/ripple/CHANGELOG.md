@@ -1,5 +1,16 @@
 # @gganbu-org/ripple
 
+## 0.1.0-beta.3
+
+### Minor Changes
+
+- [#68](https://github.com/gganbu-org/gganbu-ui/pull/68) [`b6f72b2`](https://github.com/gganbu-org/gganbu-ui/commit/b6f72b25e7ad5823be5485c69c549bc18bfcc1d2) Thanks [@minzzang144](https://github.com/minzzang144)! - 베타 릴리즈 테스트 - 8
+
+### Patch Changes
+
+- Updated dependencies [[`b6f72b2`](https://github.com/gganbu-org/gganbu-ui/commit/b6f72b25e7ad5823be5485c69c549bc18bfcc1d2)]:
+  - @gganbu-org/styled@0.1.0-beta.3
+
 ## 0.1.0-beta.2
 
 ### Minor Changes
