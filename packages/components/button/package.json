@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/button",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "A Button is a clickable element which communicates that users can trigger an action.",
   "repository": {
     "type": "git",
