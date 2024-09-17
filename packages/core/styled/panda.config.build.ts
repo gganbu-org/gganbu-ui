@@ -18,10 +18,7 @@ export default defineConfig({
 
   preflight: true,
 
-  include: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    '../../components/**/*.{js,jsx,ts,tsx}',
-  ],
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
 
   outdir: '../styled-utils/dist',
   importMap: '@gganbu-org/styled-utils',
