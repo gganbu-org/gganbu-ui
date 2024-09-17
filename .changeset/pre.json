@@ -15,6 +15,7 @@
     "@gganbu-org/utils": "0.0.0"
   },
   "changesets": [
-    "many-dodos-collect"
+    "many-dodos-collect",
+    "swift-nails-divide"
   ]
 }
