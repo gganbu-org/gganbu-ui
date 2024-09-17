@@ -127,8 +127,7 @@ jobs:
         if: ${{ needs.check-changesets.outputs.mode == 'exit' }}
         run: |
           pnpm run version
-          find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
-          git add .changeset/ -u
+          git add .
           git commit -m "chore: ready to release"
           git push origin $(git branch --show-current)
         env:
