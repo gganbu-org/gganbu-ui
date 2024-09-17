@@ -52,11 +52,11 @@ jobs:
 
           # Check if the changesets field has changed
           if echo "$DIFF" | grep -q '"changesets"'; then
-            echo "Changesets have changed."
-            echo "diff=true" >> $GITHUB_ENV
+            echo "diff=true" >> $GITHUB_OUTPUT
+            echo "diff=true"
           else
-            echo "No changes in changesets."
-            echo "diff=false" >> $GITHUB_ENV
+            echo "diff=false" >> $GITHUB_OUTPUT
+            echo "diff=false"
           fi
 
   changesets-release:
