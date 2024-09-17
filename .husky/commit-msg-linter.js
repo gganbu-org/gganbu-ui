@@ -1,15 +1,16 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
-const supportsColor = require('supports-color');
 
 (function () {
+  const hasColorSupport = process.stdout.isTTY && process.env.TERM !== 'dumb';
+
   // ANSI 컬러 코드 정의
   const COLORS = {
-    RED: supportsColor?.stdout ? '\x1b[0;31m' : '',
-    GREEN: supportsColor?.stdout ? '\x1b[0;32m' : '',
-    BLUE: supportsColor?.stdout ? '\x1b[1;34m' : '',
-    EOS: supportsColor?.stdout ? '\x1b[0m' : '',
-    BOLD: supportsColor?.stdout ? '\x1b[1m' : '',
+    RED: hasColorSupport ? '\x1b[0;31m' : '',
+    GREEN: hasColorSupport ? '\x1b[0;32m' : '',
+    BLUE: hasColorSupport ? '\x1b[1;34m' : '',
+    EOS: hasColorSupport ? '\x1b[0m' : '',
+    BOLD: hasColorSupport ? '\x1b[1m' : '',
   };
 
   // 정규식 패턴 정의

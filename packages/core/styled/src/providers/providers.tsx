@@ -1,4 +1,4 @@
-import React, { forwardRef as reactForwardRef } from 'react';
+import React, { PropsWithoutRef, forwardRef as reactForwardRef } from 'react';
 import { ColorSchemeProvider } from '../color-scheme';
 import type { As, MergeProps, PropsOf } from '../base.types';
 import type { GganbuProviderProps } from './providers.types';
@@ -12,7 +12,7 @@ export function GganbuProvider(props: GganbuProviderProps) {
 export function forwardRef<Component extends As, Props extends object>(
   component: React.ForwardRefRenderFunction<
     any,
-    MergeProps<PropsOf<Component>, Props>
+    PropsWithoutRef<MergeProps<PropsOf<Component>, Props>>
   >,
 ) {
   return reactForwardRef(component);

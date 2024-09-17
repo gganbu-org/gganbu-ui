@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/ripple",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A Ripple is an animation that the state of a click to the user.",
   "repository": {
     "type": "git",
@@ -52,6 +52,6 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled": "0.0.0"
+    "@gganbu-org/styled": "workspace:*"
   }
 }

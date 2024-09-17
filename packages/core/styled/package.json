@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/styled",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Styled API for creating component styling",
   "repository": {
     "type": "git",
@@ -47,11 +47,10 @@
     }
   },
   "scripts": {
-    "prepare": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev",
     "test": "jest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "dev": "yarn codegen:dev && yarn mkdir-dist && yarn cssgen:dev:watch",
-    "build": "yarn codegen:prod && yarn mkdir-dist && yarn cssgen:prod && tsup",
+    "dev": "pnpm run codegen:dev && pnpm run mkdir-dist && pnpm run cssgen:dev:watch",
+    "build": "pnpm run codegen:prod && pnpm run mkdir-dist && pnpm run cssgen:prod && tsup",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
     "mkdir-dist": "mkdir -p ./dist",
     "cssgen:dev": "panda cssgen -c ./panda.config.ts --outfile ./dist/styles.css",
@@ -72,9 +71,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@gganbu-org/styled-utils": "0.0.0",
-    "@gganbu-org/theme": "0.0.0",
-    "@gganbu-org/hooks": "0.0.0",
-    "@gganbu-org/utils": "0.0.0"
+    "@gganbu-org/styled-utils": "workspace:*",
+    "@gganbu-org/theme": "workspace:*",
+    "@gganbu-org/hooks": "workspace:*",
+    "@gganbu-org/utils": "workspace:*"
   }
 }

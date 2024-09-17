@@ -19,6 +19,8 @@ jobs:
       any_changed: ${{ steps.check_changesets.outputs.any_changed }}
       any_deleted: ${{ steps.check_changesets.outputs.any_deleted }}
       mode: ${{ steps.get_changeset_mode.outputs.mode }}
+      length: ${{ steps.get_changesets_length.outputs.length }}
+      diff: ${{ steps.check_changesets_diff.outputs.diff }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,13 +32,32 @@ jobs:
         with:
           files: |
             .changeset/**
-      # Check changeset mode(pre or exit)
-      - name: Read mode from .changeset/pre.json
+      - name: Check changeset mode(pre or exit)
         id: get_changeset_mode
         run: |
           MODE=$(cat .changeset/pre.json | jq -r '.mode')
           echo "mode=$MODE" >> $GITHUB_OUTPUT
           echo "mode=$MODE"
+      - name: Check Changesets length
+        id: get_changesets_length
+        run: |
+          CHANGESETS_LENGTH=$(cat .changeset/pre.json | jq -r '.changesets | length')
+          echo "length=$CHANGESETS_LENGTH" >> $GITHUB_OUTPUT
+          echo "length=$CHANGESETS_LENGTH"
+      - name: Check Changesets diff
+        id: check_changesets_diff
+        run: |
+          # Get the diff for the pre.json file
+          DIFF=$(git diff HEAD^ HEAD -- .changeset/pre.json)
+
+          # Check if the changesets field has changed
+          if echo "$DIFF" | grep -q '"changesets"'; then
+            echo "diff=true" >> $GITHUB_OUTPUT
+            echo "diff=true"
+          else
+            echo "diff=false" >> $GITHUB_OUTPUT
+            echo "diff=false"
+          fi
 
   changesets-release:
     name: Release packages with changesets
@@ -47,16 +68,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
-        run: yarn run build
+        run: pnpm run build
 
       - name: Tests
-        run: yarn run test
+        run: pnpm run test
 
       - name: Setup Git User
         shell: bash
@@ -64,9 +95,6 @@ jobs:
         run: |
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
           git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
-
-      - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
 
       - name: Creating .npmrc
         run: |
@@ -76,19 +104,19 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # To open a beta release, you must first run the yarn run enter:beta command.
-      # Conversely, in order to close the beta release and launch the official release, the yarn run exit:beta command must be used first.
+      # To open a beta release, you must first run the pnpm run enter:beta command.
+      # Conversely, in order to close the beta release and launch the official release, the pnpm run exit:beta command must be used first.
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
         if: ${{ needs.check-changesets.outputs.mode == 'pre' }}
         uses: changesets/action@v1
         with:
           # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
-          version: yarn run version
+          version: pnpm run version
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn run release
-          title: 'ci(changesets): :package: version packages'
-          commit: 'ci(changesets): version packages'
+          publish: pnpm run release
+          title: 'ci(changeset): :package: version packages'
+          commit: 'ci(changeset): version packages'
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -98,9 +126,8 @@ jobs:
       - name: Preparation for npm publishing the official release
         if: ${{ needs.check-changesets.outputs.mode == 'exit' }}
         run: |
-          yarn run version
-          find .changeset -type f -name "*.md" ! -name "README.md" -exec rm -f {} +
-          git add .changeset/ -u
+          pnpm run version
+          git add .
           git commit -m "chore: ready to release"
           git push origin $(git branch --show-current)
         env:
@@ -133,7 +160,7 @@ jobs:
   slack-notification:
     runs-on: ubuntu-latest
     needs: [check-changesets]
-    if: ${{ needs.check-changesets.outputs.any_deleted == 'true' && needs.check-changesets.outputs.mode == 'pre' }}
+    if: ${{ needs.check-changesets.outputs.mode == 'pre' && needs.check-changesets.outputs.diff == 'true' && needs.check-changesets.outputs.length > 0 }}
     name: Notify slack that the release is complete
     steps:
       - name: Checkout code
@@ -144,19 +171,6 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
-
-      - name: Get PR infomation
-        uses: actions/github-script@v6
-        id: get_pr_info
-        with:
-          script: |
-            return (
-              await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                commit_sha: context.sha,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              })
-            ).data[0];
 
       - name: Get changed packages
         id: get_changed_packages
@@ -208,14 +222,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "🚀🚀 *@gganbu-org/gganbu-ui 사전 릴리즈 준비 완료* 🚀🚀\n"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/gganbu-org/gganbu-ui/pull/${{ fromJson(steps.get_pr_info.outputs.result).number }}|${{fromJson(steps.get_pr_info.outputs.result).title}}#${{fromJson(steps.get_pr_info.outputs.result).number}}>\n"
+                    "text": "🚀🚀 *<https://github.com/gganbu-org/gganbu-ui|@gganbu-org/gganbu-ui> 사전 릴리즈 준비 완료* 🚀🚀\n"
                   }
                 },
                 {

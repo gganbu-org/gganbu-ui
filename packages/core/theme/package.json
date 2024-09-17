@@ -1,6 +1,6 @@
 {
   "name": "@gganbu-org/theme",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A preset for Panda CSS that contains Gganbu Design System's branding.",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {
-     "@pandacss/dev": ">=0.41.0"
+    "@pandacss/dev": ">=0.41.0"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.41.0"
