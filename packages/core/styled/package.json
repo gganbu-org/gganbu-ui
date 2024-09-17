@@ -47,7 +47,6 @@
     }
   },
   "scripts": {
-    "prepare": "pnpm run codegen:dev && pnpm run mkdir-dist && pnpm run cssgen:dev",
     "test": "jest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "pnpm run codegen:dev && pnpm run mkdir-dist && pnpm run cssgen:dev:watch",
