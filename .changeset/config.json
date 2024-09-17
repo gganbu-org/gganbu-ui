@@ -4,7 +4,7 @@
     "@changesets/changelog-github",
     { "repo": "gganbu-org/gganbu-ui" }
   ],
-  "commit": false,
+  "commit": true,
   "fixed": [],
   "linked": [],
   "access": "public",
