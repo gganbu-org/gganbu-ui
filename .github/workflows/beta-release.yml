@@ -115,8 +115,8 @@ jobs:
           version: pnpm run version
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm run release
-          title: 'ci(changesets): :package: version packages'
-          commit: 'ci(changesets): version packages'
+          title: 'ci(changeset): :package: version packages'
+          commit: 'ci(changeset): version packages'
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
