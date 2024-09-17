@@ -19,8 +19,8 @@ jobs:
       any_changed: ${{ steps.check_changesets.outputs.any_changed }}
       any_deleted: ${{ steps.check_changesets.outputs.any_deleted }}
       mode: ${{ steps.get_changeset_mode.outputs.mode }}
-      length: ${{ steps.get_changeset_mode.outputs.length }}
-      diff: ${{ steps.get_changeset_mode.outputs.diff }}
+      length: ${{ steps.get_changesets_length.outputs.length }}
+      diff: ${{ steps.check_changesets_diff.outputs.diff }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
