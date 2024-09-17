@@ -1,5 +1,11 @@
 # @gganbu-org/utils
 
+## 0.1.0-beta.5
+
+### Minor Changes
+
+- [#68](https://github.com/gganbu-org/gganbu-ui/pull/68) [`c060e9f`](https://github.com/gganbu-org/gganbu-ui/commit/c060e9f24a8d054d3ae8f519dc665d51faf5c718) Thanks [@minzzang144](https://github.com/minzzang144)! - 베타 릴리즈 테스트 - 10
+
 ## 0.1.0-beta.4
 
 ### Minor Changes
