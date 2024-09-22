@@ -43,6 +43,7 @@ const useButton = (props: ButtonProps) => {
     _themeClasses: classes,
     disabled,
     onClick: chain(rawOnClick, onRippleClickHandler),
+    type: 'button' as const,
     ...rest,
   });
 
