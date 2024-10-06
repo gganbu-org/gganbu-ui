@@ -17,14 +17,17 @@ export const pick = <T extends Record<string, T>, K extends keyof T>(
     return obj;
   }, {});
 
-export function omit<T extends Record<string, T>, K extends keyof T>(
+export const omit = <T extends Record<string, T>, K extends keyof T>(
   object: T,
   keys: K[],
-) {
+) => {
+  /*
+   * Return a (shallow) copy of an object with some specified set of keys removed.
+   */
   const clone = { ...object };
 
   for (const key of keys) {
     if (key in clone) delete clone[key as string];
   }
   return clone;
-}
+};
