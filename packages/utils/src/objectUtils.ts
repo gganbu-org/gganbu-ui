@@ -1,6 +1,6 @@
 import { isNonNull } from './assertion';
 
-export const pick = <T extends Record<string, T>, K extends keyof T>(
+export const pick = <T extends object, K extends keyof T>(
   object: T,
   keys: K[],
 ) =>
