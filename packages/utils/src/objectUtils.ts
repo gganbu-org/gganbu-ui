@@ -17,19 +17,17 @@ export const pick = <T extends Record<string, T>, K extends keyof T>(
     return obj;
   }, {});
 
-export const omit = <T extends Record<string, T>, K extends keyof T>(
+export const omit = <T extends object, K extends keyof T>(
   object: T,
   keys: K[],
 ) => {
   /*
    * Return a (shallow) copy of an object with some specified set of keys removed.
    */
-  const clone = { ...object };
+  const shallowCopy = { ...object };
+  keys.forEach((key) => Reflect.deleteProperty(shallowCopy, key));
 
-  for (const key of keys) {
-    if (key in clone) delete clone[key as string];
-  }
-  return clone;
+  return shallowCopy;
 };
 
 export const split = <T extends object, K extends keyof T>(
