@@ -1,5 +1,5 @@
 import React from 'react';
-import { pick, omit } from '@gganbu-org/utils';
+import { split } from '@gganbu-org/utils';
 import { cx, css } from '@gganbu-org/styled-utils/css';
 import { systemPropList } from './system-props';
 import type { GganbuComponent } from './base.types';
@@ -18,13 +18,8 @@ export const genComponentStyle = <T extends React.ElementType>(tag?: T) => {
       className,
       ...rest
     } = props;
-
-    const restProps = omit(rest, systemPropList);
-
-    function classes() {
-      const systemProps = pick(rest, systemPropList);
-      return cx(_themeClasses, css(systemProps), className);
-    }
+    const [systemProps, restProps] = split(rest, systemPropList);
+    const classes = () => cx(_themeClasses, css(systemProps), className);
 
     return React.createElement(
       Element,
