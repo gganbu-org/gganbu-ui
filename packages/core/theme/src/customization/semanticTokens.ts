@@ -1,10 +1,11 @@
 import { defineSemanticTokens } from '@pandacss/dev';
+import { PSEUDO_CLASSES } from './conditions';
 import { convertNestedValue } from '../utils';
 import { semanticColors as colors } from '../foundation';
 
 const TOKEN_ALIASES: { BASE: string; DARK: string } = {
-  BASE: 'base',
-  DARK: '_dark',
+  BASE: PSEUDO_CLASSES.BASE.VALUE,
+  DARK: PSEUDO_CLASSES.DARK.VALUE,
 } as const;
 
 export const createSemanticTokens = () => {

@@ -1,3 +1,5 @@
+import { PSEUDO_CLASSES } from '../customization/conditions';
+
 export const colors = {
   whiteAlpha: {
     50: 'rgba(255, 255, 255, 0.04)',
@@ -148,115 +150,118 @@ export const colors = {
 export const semanticColors = {
   text: {
     primary: {
-      base: 'white',
-      _dark: '{colors.gray.50}',
+      [PSEUDO_CLASSES.BASE.VALUE]: 'white',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.gray.50}',
     },
   },
   primary: {
     solid: {
-      base: '{colors.blue.500}',
-      _dark: '{colors.blue.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.blue.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.blue.400}',
     },
     'solid.hover': {
-      base: '{colors.blue.600}',
-      _dark: '{colors.blue.500}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.blue.600}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.blue.500}',
     },
     outline: {
-      base: '{colors.blue.500}',
-      _dark: '{colors.blue.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.blue.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.blue.400}',
     },
     ghost: {
-      base: '{colors.blue.400/20}',
-      _dark: '{colors.blue.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.blue.400/20}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.blue.400}',
     },
     link: {
-      base: '{colors.blue.500}',
-      _dark: '{colors.blue.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.blue.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.blue.400}',
     },
   },
   secondary: {
     solid: {
-      base: '{colors.purple.500}',
-      _dark: '{colors.purple.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.purple.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.purple.400}',
     },
     'solid.hover': {
-      base: '{colors.purple.600}',
-      _dark: '{colors.purple.500}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.purple.600}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.purple.500}',
     },
     outline: {
-      base: '{colors.purple.500}',
-      _dark: '{colors.purple.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.purple.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.purple.400}',
     },
     ghost: {
-      base: '{colors.purple.400/20}',
-      _dark: '{colors.purple.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.purple.400/20}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.purple.400}',
     },
     link: {
-      base: '{colors.purple.500}',
-      _dark: '{colors.purple.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.purple.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.purple.400}',
     },
   },
   success: {
     solid: {
-      base: '{colors.green.500}',
-      _dark: '{colors.green.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.green.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.green.400}',
     },
     'solid.hover': {
-      base: '{colors.green.600}',
-      _dark: '{colors.green.500}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.green.600}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.green.500}',
     },
     outline: {
-      base: '{colors.green.500}',
-      _dark: '{colors.green.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.green.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.green.400}',
     },
-    ghost: { base: '{colors.green.400/20}', _dark: '{colors.green.400}' },
+    ghost: {
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.green.400/20}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.green.400}',
+    },
     link: {
-      base: '{colors.green.500}',
-      _dark: '{colors.green.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.green.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.green.400}',
     },
   },
   warning: {
     solid: {
-      base: '{colors.yellow.500}',
-      _dark: '{colors.yellow.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.yellow.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.yellow.400}',
     },
     'solid.hover': {
-      base: '{colors.yellow.600}',
-      _dark: '{colors.yellow.500}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.yellow.600}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.yellow.500}',
     },
     outline: {
-      base: '{colors.yellow.500}',
-      _dark: '{colors.yellow.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.yellow.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.yellow.400}',
     },
     ghost: {
-      base: '{colors.yellow.400/20}',
-      _dark: '{colors.yellow.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.yellow.400/20}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.yellow.400}',
     },
     link: {
-      base: '{colors.yellow.500}',
-      _dark: '{colors.yellow.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.yellow.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.yellow.400}',
     },
   },
   danger: {
     solid: {
-      base: '{colors.red.500}',
-      _dark: '{colors.red.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.red.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.red.400}',
     },
     'solid.hover': {
-      base: '{colors.red.600}',
-      _dark: '{colors.red.500}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.red.600}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.red.500}',
     },
     outline: {
-      base: '{colors.red.500}',
-      _dark: '{colors.red.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.red.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.red.400}',
     },
     ghost: {
-      base: '{colors.red.400/20}',
-      _dark: '{colors.red.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.red.400/20}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.red.400}',
     },
     link: {
-      base: '{colors.red.500}',
-      _dark: '{colors.red.400}',
+      [PSEUDO_CLASSES.BASE.VALUE]: '{colors.red.500}',
+      [PSEUDO_CLASSES.DARK.VALUE]: '{colors.red.400}',
     },
   },
 };
