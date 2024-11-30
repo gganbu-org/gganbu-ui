@@ -134,6 +134,9 @@ importers:
       '@gganbu-org/button':
         specifier: workspace:*
         version: link:../../packages/components/button
+      '@gganbu-org/icon-button':
+        specifier: workspace:*
+        version: link:../../packages/components/icon-button
       '@gganbu-org/spinner':
         specifier: workspace:*
         version: link:../../packages/components/spinner
@@ -223,6 +226,21 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
+
+  packages/components/icon-button:
+    dependencies:
+      '@gganbu-org/ripple':
+        specifier: workspace:*
+        version: link:../ripple
+      '@gganbu-org/spinner':
+        specifier: workspace:*
+        version: link:../spinner
+      '@gganbu-org/styled':
+        specifier: workspace:*
+        version: link:../../core/styled
+      '@gganbu-org/utils':
+        specifier: workspace:*
+        version: link:../../utils
 
   packages/components/ripple:
     dependencies:

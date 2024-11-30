@@ -37,12 +37,16 @@
     }
   },
   "scripts": {
-    "test": "jest",
     "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
     "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {},
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "@gganbu-org/styled": "workspace:*",
+    "@gganbu-org/spinner": "workspace:*",
+    "@gganbu-org/ripple": "workspace:*",
+    "@gganbu-org/utils": "workspace:*"
+  }
 }
