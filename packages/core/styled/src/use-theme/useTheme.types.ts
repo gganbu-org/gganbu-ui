@@ -1,5 +1,6 @@
 import type {
   SpinnerRecipe,
+  IconButtonRecipe,
   ButtonRecipe,
 } from '@gganbu-org/styled-utils/recipes';
 
@@ -20,6 +21,7 @@ type Recipe<R extends WithVariantMap> = {
 export interface VariantMap {
   spinner: Recipe<SpinnerRecipe>;
   button: Recipe<ButtonRecipe>;
+  iconButton: Recipe<IconButtonRecipe>;
 }
 
 export type VariantProps<T extends keyof VariantMap> = VariantMap[T];

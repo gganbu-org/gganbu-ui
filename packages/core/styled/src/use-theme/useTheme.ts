@@ -1,8 +1,9 @@
-import { button, spinner } from '@gganbu-org/styled-utils/recipes';
+import { button, iconButton, spinner } from '@gganbu-org/styled-utils/recipes';
 import type { VariantProps } from './useTheme.types';
 
 const components = {
   button,
+  iconButton,
   spinner,
 };
 

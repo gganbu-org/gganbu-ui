@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@gganbu-org/button": "workspace:*",
+    "@gganbu-org/icon-button": "workspace:*",
     "@gganbu-org/spinner": "workspace:*",
     "@gganbu-org/styled": "workspace:*"
   },
