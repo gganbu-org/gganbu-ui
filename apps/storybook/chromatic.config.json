@@ -1,0 +1,8 @@
+{
+  "projectId": "Project:664871fb3ef2a81e82b1f66f",
+  "autoAcceptChanges": "master",
+  "onlyChanged": true,
+  "exitOnceUploaded": true,
+  "storybookBaseDir": "apps/storybook",
+  "zip": true
+}

@@ -1,0 +1,1 @@
+export { gganbuPreset } from './base';

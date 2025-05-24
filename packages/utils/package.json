@@ -1,0 +1,52 @@
+{
+  "name": "@gganbu-org/utils",
+  "version": "0.1.0",
+  "description": "Utilities in the Gganbu Design System",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "packages/utils"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "react",
+    "utils"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
+    "build": "tsup"
+  },
+  "peerDependencies": {},
+  "devDependencies": {},
+  "dependencies": {}
+}

@@ -1,0 +1,60 @@
+{
+  "name": "@gganbu-org/hooks",
+  "version": "0.1.0",
+  "description": "Gganbu hooks for React",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gganbu-org/gganbu-ui.git",
+    "directory": "packages/hooks"
+  },
+  "bugs": {
+    "url": "https://github.com/gganbu-org/gganbu-ui/issues"
+  },
+  "keywords": [
+    "next",
+    "hooks",
+    "react",
+    "react hooks"
+  ],
+  "author": "Danji-ya <erangerang15@gmail.com>",
+  "contributors": [
+    "minzzang144 <shigatsu970704@gmail.com>"
+  ],
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "lint": "TIMING=1 eslint --ext .ts,.tsx src/",
+    "build": "tsup",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {}
+}

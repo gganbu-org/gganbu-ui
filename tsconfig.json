@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ES2015",
+    "module": "ES2015",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    /* Strict Type-Checking Options */
+    "strict": true /* Enable all strict type-checking options. */,
+    "strictFunctionTypes": true /* Enable strict checking of function types. */,
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
+
+    /* Additional Checks */
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+
+    /* Module Resolution Options */
+    "moduleResolution": "Bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /* Advanced Options */
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "exclude": ["**/dist/**, **/node_modules", "__tests__"]
+}
