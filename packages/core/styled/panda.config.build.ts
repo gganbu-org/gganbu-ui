@@ -18,6 +18,14 @@ export default defineConfig({
 
   preflight: true,
 
+  layers: {
+    base: 'gganbu-org_base',
+    recipes: 'gganbu-org_recipes',
+    tokens: 'gganbu-org_tokens',
+    reset: 'gganbu-org_reset',
+    utilities: 'gganbu-org_utilities',
+  },
+
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
 
   outdir: '../styled-utils/dist',

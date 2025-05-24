@@ -32,7 +32,7 @@ This repository contains the following packages :
 
 ## Installation
 To use Gganbu UI components, all you need to do is install the
-`@gganbu-ui/react` package and its peer dependencies:
+`@gganbu-org/react` package and its peer dependencies:
 
 ```sh
 # with pnpm
